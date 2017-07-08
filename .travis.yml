@@ -36,4 +36,4 @@ install:
     # - php bin/console doctrine:fixtures:load -n --env=test
 
 script:
-    - .vendor/bin/phpunit -v
+    - ./vendor/bin/phpunit -v
