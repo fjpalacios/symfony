@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "homepage" %}
+
+{% block body %}
+    <div>
+        <p>Testing a new page!</p>
+    </div>
+    <div class="link">
+        <p><a href="{{ path('about', {'_locale': app.request.locale }) }}">About</a></p>
+    </div>
+{% endblock %}
