@@ -17,17 +17,15 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $locale = $request->getLocale();
-        return $this->render('default/index.html.twig',
-        array('locales' => $this->container->getParameter('locale_supported')));
+        return $this->render('homepage/index.html.twig');
     }
-
     /**
      * @Route("/about", name="about")
      */
     public function aboutAction(Request $request)
     {
         $locale = $request->getLocale();
-        return $this->render('default/about.html.twig');
+        return $this->render('homepage/about.html.twig');
     }
 
 
