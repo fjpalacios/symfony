@@ -4,6 +4,12 @@ parameters:
     #parameter_name: value
 
 services:
+    appBundle.eventListeners.localeRewriteListener:
+        class: AppBundle\EventListener\LocaleRewriteListener
+        arguments: ["@router", "%kernel.default_locale%", "%locale_supported%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
