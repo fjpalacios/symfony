@@ -17,7 +17,9 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         $locale = $request->getLocale();
-        return $this->render('homepage/index.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Posts');
+        $posts = $repository->findAll();
+        return $this->render('homepage/index.html.twig', array('posts' => $posts));
     }
     /**
      * @Route("/about", name="about")

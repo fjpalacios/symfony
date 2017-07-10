@@ -9,4 +9,11 @@
     <div class="link">
         <p><a href="{{ path('about', {'_locale': app.request.locale }) }}">About</a></p>
     </div>
+    <div>
+        <ul class="posts">
+            {% for post in posts %}
+                <li class="posts__item"">{{ post.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
