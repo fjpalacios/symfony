@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user", options={"engine"="MyISAM"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User implements UserInterface
