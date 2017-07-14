@@ -2,9 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\UserType;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
 * @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
@@ -16,7 +19,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $locale = $request->getLocale();
         $repository = $this->getDoctrine()->getRepository('AppBundle:Posts');
         $posts = $repository->findAll();
         return $this->render('homepage/index.html.twig', array('posts' => $posts));
@@ -24,10 +26,25 @@ class DefaultController extends Controller
     /**
      * @Route("/about", name="about")
      */
-    public function aboutAction(Request $request)
+    public function aboutAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        $locale = $request->getLocale();
-        return $this->render('homepage/about.html.twig');
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('homepage/about.html.twig',
+            array("form" => $form->createView())
+        );
     }
 
 
