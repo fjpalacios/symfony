@@ -27,7 +27,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, unique=true)
+     * @ORM\Column(name="username", type="string", length=250, unique=true)
      * @Assert\NotBlank()
      */
     private $username;
@@ -35,7 +35,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @ORM\Column(name="email", type="string", length=250, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
      */
@@ -50,14 +50,14 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=250)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=250)
      * @Assert\NotBlank()
      */
     private $name;
@@ -65,7 +65,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", nullable=true, length=255)
+     * @ORM\Column(name="url", type="string", nullable=true, length=250)
      */
     private $url;
 
