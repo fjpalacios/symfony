@@ -4,15 +4,20 @@
 
 {% block body %}
     <div>
-        <p>Testing a new page!</p>
+        <p>{{ 'testing'|trans }}</p>
     </div>
     <div class="link">
         <p><a href="{{ path('about', {'_locale': app.request.locale }) }}">About</a></p>
+        {% if app.user %}
+        <p><a href="{{ path('logout', {'_locale': app.request.locale }) }}">Logout</a></p>
+        {% else %}
+        <p><a href="{{ path('login', {'_locale': app.request.locale }) }}">Login</a></p>
+        {% endif %}
     </div>
     <div>
         <ul class="posts">
             {% for post in posts %}
-                <li class="posts__item"">{{ post.title }}</li>
+                <li class="posts__item">{{ post.title }}</li>
             {% endfor %}
         </ul>
     </div>

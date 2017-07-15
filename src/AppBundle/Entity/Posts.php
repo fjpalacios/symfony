@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Posts
  *
- * @ORM\Table(name="posts")
+ * @ORM\Table(name="posts", options={"engine"="MyISAM"})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostsRepository")
  */
 class Posts
