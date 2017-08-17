@@ -1,19 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id "login" %}
+{% block body_id 'login' %}
 
 {% block body %}
-{% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-{% endif %}
-
-<form action="{{ path('login') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
-    <input type="hidden" name="_target_path" value="/" />
-    <button type="submit">login</button>
-</form>
+    <div class="container mt-5 content--login">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+        <h2 class="text-center h2 mb-4">{{ 'LOGIN_TITLE'|trans }}</h2>
+        <form class="form-horizontal" action="{{ path('login') }}"
+              method="post">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon" id="username">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                    <input type="text" class="form-control"
+                           placeholder="{{ 'USERNAME'|trans }}"
+                           value="{{ last_username }}" name="_username"
+                           aria-describedby="username" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon" id="password">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    </span>
+                    <input type="password" class="form-control"
+                           placeholder="{{ 'PASSWORD'|trans }}" name="_password"
+                           aria-describedby="password" required/>
+                </div>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                    id="remember_me" name="_remember_me"/>
+                    {{ 'REMEMBER_LOGIN'|trans }}
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="_target_path"
+                    value="{{ path('admin') }}" />
+                <button type="submit" id="submit" name="submit"
+                        class="btn btn-primary">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    &nbsp; {{ 'LOGIN_BTN'|trans }} </button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

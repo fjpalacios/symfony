@@ -1,0 +1,23 @@
+.header {
+    background-color: $main-color;
+    color: $white;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    @include flexbox;
+    @include flex-flow(column wrap);
+    @include align-items(center);
+    @include justify-content(center);
+    h1 {
+        border-bottom: solid 1px;
+        padding-bottom: 6px;
+        margin: 0;
+        a {
+            color: $white;
+            text-decoration: none;
+            &:hover {
+                color: $main-color-hover;
+                text-decoration: none;
+            }
+        }
+    }
+}

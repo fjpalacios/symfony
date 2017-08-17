@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "public" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        {% for post in posts %}
+            {% if post.type == 'page' %}
+                <h2 class="content--post__title h3">
+                    <a href="#">{{ post.title }}</a>
+                </h2>
+                <div class="content--post">
+                    {{ post.content }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

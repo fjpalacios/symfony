@@ -2,6 +2,102 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
         <body>
+            <trans-unit id="TITLE">
+                <source>TITLE</source>
+                <target>Título</target>
+            </trans-unit>
+            <trans-unit id="HOME">
+                <source>HOME</source>
+                <target>Inicio</target>
+            </trans-unit>
+            <trans-unit id="LANGUAGE">
+                <source>LANGUAGE</source>
+                <target>Idioma</target>
+            </trans-unit>
+            <trans-unit id="LOGIN">
+                <source>LOGIN</source>
+                <target>Entrar</target>
+            </trans-unit>
+            <trans-unit id="LOGOUT">
+                <source>LOGOUT</source>
+                <target>Salir</target>
+            </trans-unit>
+            <trans-unit id="LOGIN_TITLE">
+                <source>LOGIN_TITLE</source>
+                <target>Introduce tus datos</target>
+            </trans-unit>
+            <trans-unit id="USERNAME">
+                <source>USERNAME</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="PASSWORD">
+                <source>PASSWORD</source>
+                <target>Contraseña</target>
+            </trans-unit>
+            <trans-unit id="REPEAT_PASSWORD">
+                <source>REPEAT_PASSWORD</source>
+                <target>Repite la contraseña</target>
+            </trans-unit>
+            <trans-unit id="REMEMBER_LOGIN">
+                <source>REMEMBER_LOGIN</source>
+                <target>Recuérdame</target>
+            </trans-unit>
+            <trans-unit id="LOGIN_BTN">
+                <source>LOGIN_BTN</source>
+                <target>Iniciar sesión</target>
+            </trans-unit>
+            <trans-unit id="RESET_BTN">
+                <source>RESET_BTN</source>
+                <target>Vaciar</target>
+            </trans-unit>
+            <trans-unit id="ADD_BTN">
+                <source>ADD_BTN</source>
+                <target>Añadir</target>
+            </trans-unit>
+            <trans-unit id="ADDUSER_TITLE">
+                <source>ADDUSER_TITLE</source>
+                <target>Nuevo usuario</target>
+            </trans-unit>
+            <trans-unit id="EMAIL">
+                <source>EMAIL</source>
+                <target>Correo</target>
+            </trans-unit>
+            <trans-unit id="NAME">
+                <source>NAME</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="URL">
+                <source>URL</source>
+                <target>URL</target>
+            </trans-unit>
+            <trans-unit id="BIO">
+                <source>BIO</source>
+                <target>Bio</target>
+            </trans-unit>
+            <trans-unit id="ROLES">
+                <source>ROLES</source>
+                <target>Permisos</target>
+            </trans-unit>
+            <trans-unit id="USER">
+                <source>User</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="ADMIN">
+                <source>Admin</source>
+                <target>Administrador</target>
+            </trans-unit>
+            <trans-unit id="SUPERADMIN">
+                <source>Superadmin</source>
+                <target>Superadministrador</target>
+            </trans-unit>
+            <trans-unit id="WELCOME">
+                <source>WELCOME</source>
+                <target>Hola</target>
+            </trans-unit>
+            <trans-unit id="ADMIN_PANEL">
+                <source>ADMIN_PANEL</source>
+                <target>Administración</target>
+            </trans-unit>
             <trans-unit id="testing">
                 <source>testing</source>
                 <target>¡Probando una página nueva!</target>

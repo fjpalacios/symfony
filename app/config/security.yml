@@ -1,7 +1,6 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
-
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
@@ -11,30 +10,27 @@ security:
         ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
 
-
-
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         database_users:
             entity: { class: AppBundle:User, property: username }
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
         main:
             anonymous: ~
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
                 login_path: login
                 check_path: login
             logout:
-                path: /logout
+                path: logout
                 target: /
+            remember_me:
+                secret:      "%secret%"
+                lifetime: 864000
+                path:     /
+
+    access_control:
+        - { path: /admin, roles: ROLE_ADMIN }

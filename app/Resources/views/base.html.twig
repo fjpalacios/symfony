@@ -10,19 +10,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body id="{% block body_id %}{% endblock %}">
-        <header>
-            <div class="languages">
-                <ul class="languages__lang-menu">
-                    {% for locale in locales() %}
-                        <li {% if app.request.locale == locale.code %}aria-checked="true" class="languages__lang-menu--active"
-                        {% else %}aria-checked="false"{% endif %} role="menuitem">
-                        <a href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
-                        {{ locale.name|capitalize }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </header>
+        {% include 'header.html.twig' %}
         {% block body %}{% endblock %}
+        {% include 'footer.html.twig' %}
+        <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js.js') }}"></script>
     </body>
 </html>

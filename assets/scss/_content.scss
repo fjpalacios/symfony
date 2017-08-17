@@ -1,0 +1,52 @@
+@media (min-width: 768px) {
+    .content {
+        margin: auto;
+        width: 95%;
+        background-color: $entry-background;
+        border: 1px solid $entry-border;
+        padding: 15px;
+        font-size: 17px;
+        &--login {
+            @extend .content;
+            max-width: 550px;
+        }
+        &--post {
+            @extend .content;
+            &__title {
+                a {
+                    color: $entry-title;
+                    &:hover {
+                        text-decoration: none;
+                        color: $entry-title-hover;
+                    }
+                }
+            }
+        }
+        h2, h3, h4, h5, h6 {
+            color: $entry-title;
+        }
+        .btn-primary {
+            background-color: $bootstrap-primary-color;
+            border-color: $bootstrap-primary-color;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+    margin-top: 1em;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    background-color: $main-color;
+    color: $white;
+    padding-bottom: 10px;
+    bottom: 0;
+    p {
+        text-align: center;
+        margin: 0;
+    }
+}
