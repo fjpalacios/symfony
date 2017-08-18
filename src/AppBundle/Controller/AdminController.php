@@ -8,12 +8,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
 * @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
 */
 class AdminController extends Controller
 {
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
+
     /**
      * @Route("/admin", name="admin")
      */
@@ -31,7 +39,15 @@ class AdminController extends Controller
             $user->setPassword($password);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
-            $em->flush();
+            $flush = $em->flush();
+            if (!$flush)
+            {
+                $status = 'USER_ADDED_PROPERLY';
+            } else
+            {
+                $status = 'USER_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
             return $this->redirectToRoute('admin');
         }
 

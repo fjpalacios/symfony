@@ -90,6 +90,14 @@
                 <source>Superadmin</source>
                 <target>Superadministrador</target>
             </trans-unit>
+            <trans-unit id="USER_ADDED_PROPERLY">
+                <source>USER_ADDED_PROPERLY</source>
+                <target>El usuario se añadió correctamente</target>
+            </trans-unit>
+            <trans-unit id="USER_ADDED_ERROR">
+                <source>USER_ADDED_ERROR</source>
+                <target>Algo salió mal al añadir el nuevo usuario</target>
+            </trans-unit>
             <trans-unit id="WELCOME">
                 <source>WELCOME</source>
                 <target>Hola</target>
