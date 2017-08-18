@@ -98,6 +98,14 @@
                 <source>USER_ADDED_ERROR</source>
                 <target>Something went wrong when adding the new user</target>
             </trans-unit>
+            <trans-unit id="USER_ADDED_USERNAME_EXIST">
+                <source>USER_ADDED_USERNAME_EXIST</source>
+                <target>Username is already added to the database</target>
+            </trans-unit>
+            <trans-unit id="USER_ADDED_EMAIL_EXIST">
+                <source>USER_ADDED_EMAIL_EXIST</source>
+                <target>Email is already added to the database</target>
+            </trans-unit>
             <trans-unit id="WELCOME">
                 <source>WELCOME</source>
                 <target>Hello</target>

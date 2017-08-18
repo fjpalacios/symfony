@@ -11,8 +11,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
-* @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
-*/
+ * @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
+ */
 class AdminController extends Controller
 {
     private $session;
@@ -32,27 +32,40 @@ class AdminController extends Controller
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $password = $passwordEncoder->encodePassword($user,
-                $user->getPlainPassword());
-            $user->setPassword($password);
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $flush = $em->flush();
-            if (!$flush)
-            {
-                $status = 'USER_ADDED_PROPERLY';
-            } else
-            {
-                $status = 'USER_ADDED_ERROR';
+            $userRepo = $em->getRepository('AppBundle:User');
+            $userEmail = $userRepo->findOneBy(array(
+                            'email' => $form->get('email')->getData()
+                    )
+            );
+            $userUsername = $userRepo->findOneBy(array(
+                            'username' => $form->get('username')->getData()
+                    )
+            );
+            if (!$userEmail) {
+                if (!$userUsername) {
+                    $password = $passwordEncoder->encodePassword($user,
+                            $user->getPlainPassword());
+                    $user->setPassword($password);
+                    $em->persist($user);
+                    $flush = $em->flush();
+                    if (!$flush) {
+                        $status = 'USER_ADDED_PROPERLY';
+                    } else {
+                        $status = 'USER_ADDED_ERROR';
+                    }
+                } else {
+                    $status = 'USER_ADDED_USERNAME_EXIST';
+                }
+            } else {
+                $status = 'USER_ADDED_EMAIL_EXIST';
             }
             $this->session->getFlashBag()->add('status', $status);
-            return $this->redirectToRoute('admin');
         }
 
         return $this->render('admin/admin.html.twig',
-            array("form" => $form->createView())
+                array("form" => $form->createView())
         );
     }
 
