@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Posts
+ * Post
  *
- * @ORM\Table(name="posts", options={"engine"="MyISAM"})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostsRepository")
+ * @ORM\Table(name="post", options={"engine"="MyISAM"})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
  */
-class Posts
+class Post
 {
     /**
      * @var int
@@ -128,7 +128,7 @@ class Posts
      *
      * @param string $status
      *
-     * @return Posts
+     * @return Post
      */
     public function setStatus($status)
     {
@@ -152,7 +152,7 @@ class Posts
      *
      * @param string $author
      *
-     * @return Posts
+     * @return Post
      */
     public function setAuthor($author)
     {
@@ -176,7 +176,7 @@ class Posts
      *
      * @param \DateTime $date
      *
-     * @return Posts
+     * @return Post
      */
     public function setDate($date)
     {
@@ -200,7 +200,7 @@ class Posts
      *
      * @param \DateTime $modDate
      *
-     * @return Posts
+     * @return Post
      */
     public function setModDate($modDate)
     {
@@ -224,7 +224,7 @@ class Posts
      *
      * @param string $title
      *
-     * @return Posts
+     * @return Post
      */
     public function setTitle($title)
     {
@@ -248,7 +248,7 @@ class Posts
      *
      * @param string $slug
      *
-     * @return Posts
+     * @return Post
      */
     public function setSlug($slug)
     {
@@ -272,7 +272,7 @@ class Posts
      *
      * @param string $content
      *
-     * @return Posts
+     * @return Post
      */
     public function setContent($content)
     {
@@ -296,7 +296,7 @@ class Posts
      *
      * @param string $excerpt
      *
-     * @return Posts
+     * @return Post
      */
     public function setExcerpt($excerpt)
     {
@@ -320,7 +320,7 @@ class Posts
      *
      * @param string $type
      *
-     * @return Posts
+     * @return Post
      */
     public function setType($type)
     {
@@ -344,7 +344,7 @@ class Posts
      *
      * @param string $format
      *
-     * @return Posts
+     * @return Post
      */
     public function setFormat($format)
     {
@@ -368,7 +368,7 @@ class Posts
      *
      * @param string $commentStatus
      *
-     * @return Posts
+     * @return Post
      */
     public function setCommentStatus($commentStatus)
     {
@@ -392,7 +392,7 @@ class Posts
      *
      * @param integer $commentCount
      *
-     * @return Posts
+     * @return Post
      */
     public function setCommentCount($commentCount)
     {
@@ -416,7 +416,7 @@ class Posts
      *
      * @param integer $views
      *
-     * @return Posts
+     * @return Post
      */
     public function setViews($views)
     {

@@ -7,11 +7,10 @@ use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
-* @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
-*/
+ * @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
+ */
 class PublicController extends Controller
 {
     /**
@@ -19,9 +18,9 @@ class PublicController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Posts');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findAll();
         return $this->render('public/index.html.twig',
-        array('posts' => $posts));
+                array('posts' => $posts));
     }
 }
