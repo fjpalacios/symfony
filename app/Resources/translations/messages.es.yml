@@ -1,0 +1,34 @@
+TITLE: Título
+
+# Navbar
+HOME: Inicio
+LANGUAGE: Idioma
+WELCOME: Hola
+ADMIN_PANEL: Administración
+LOGIN: Entrar
+LOGOUT: Salir
+
+# Login
+LOGIN_TITLE: Introduce tus datos
+USERNAME: Usuario
+PASSWORD: Contraseña
+REPEAT_PASSWORD: Repite la contraseña
+REMEMBER_LOGIN: Recuérdame
+LOGIN_BTN: Iniciar sesión
+
+# Add user
+ADDUSER_TITLE: Nuevo usuario
+EMAIL: Correo
+NAME: Nombre
+URL: URL
+BIO: Bio
+ROLES: Permisos
+User: Usuario
+Admin: Administrador
+Superadmin: Superadministrador
+USER_ADDED_PROPERLY: El usuario se añadió correctamente
+USER_ADDED_ERROR: Algo salió mal al añadir el nuevo usuario
+USER_ADDED_USERNAME_EXIST: El usuario ya existe en la base de datos
+USER_ADDED_EMAIL_EXIST: El correo ya existe en la base de datos
+ADD_BTN: Añadir
+RESET_BTN: Vaciar

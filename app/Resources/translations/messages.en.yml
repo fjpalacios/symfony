@@ -1,0 +1,34 @@
+TITLE: Title
+
+# Navbar
+HOME: Home
+LANGUAGE: Language
+WELCOME: Hello
+ADMIN_PANEL: Admin area
+LOGIN: Log in
+LOGOUT: Log out
+
+# Login
+LOGIN_TITLE: Enter your credentials
+USERNAME: Username
+PASSWORD: Password
+REPEAT_PASSWORD: Repeat password
+REMEMBER_LOGIN: Keep me logged in
+LOGIN_BTN: Sign in
+
+# Add user
+ADDUSER_TITLE: Add new user
+EMAIL: Email
+NAME: Name
+URL: URL
+BIO: Bio
+ROLES: Rols
+User: User
+Admin: Admin
+Superadmin: Superadmin
+USER_ADDED_PROPERLY: User added properly
+USER_ADDED_ERROR: Something went wrong when adding the new user
+USER_ADDED_USERNAME_EXIST: Username is already added to the database
+USER_ADDED_EMAIL_EXIST: Email is already added to the database
+ADD_BTN: Add
+RESET_BTN: Reset
