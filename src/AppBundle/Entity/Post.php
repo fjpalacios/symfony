@@ -52,9 +52,16 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="text")
+     * @ORM\Column(name="title_es", type="text")
      */
-    private $title;
+    private $titleEs;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title_en", type="text")
+     */
+    private $titleEn;
 
     /**
      * @var string
@@ -66,16 +73,30 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content_es", type="text")
      */
-    private $content;
+    private $contentEs;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="excerpt", type="text")
+     * @ORM\Column(name="content_en", type="text")
      */
-    private $excerpt;
+    private $contentEn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="excerpt_es", type="text")
+     */
+    private $excerptEs;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="excerpt_en", type="text")
+     */
+    private $excerptEn;
 
     /**
      * @var string
@@ -220,27 +241,51 @@ class Post
     }
 
     /**
-     * Set title
+     * Set title ES
      *
-     * @param string $title
+     * @param string $titleEs
      *
      * @return Post
      */
-    public function setTitle($title)
+    public function setTitleEs($titleEs)
     {
-        $this->title = $title;
+        $this->titleEs = $titleEs;
 
         return $this;
     }
 
     /**
-     * Get title
+     * Get title ES
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitleEs()
     {
-        return $this->title;
+        return $this->titleEs;
+    }
+
+    /**
+     * Set title EN
+     *
+     * @param string $titleEn
+     *
+     * @return Post
+     */
+    public function setTitleEn($titleEn)
+    {
+        $this->titleEn = $titleEn;
+
+        return $this;
+    }
+
+    /**
+     * Get title EN
+     *
+     * @return string
+     */
+    public function getTitleEn()
+    {
+        return $this->titleEn;
     }
 
     /**
@@ -268,51 +313,99 @@ class Post
     }
 
     /**
-     * Set content
+     * Set content ES
      *
-     * @param string $content
+     * @param string $contentEs
      *
      * @return Post
      */
-    public function setContent($content)
+    public function setContentEs($contentEs)
     {
-        $this->content = $content;
+        $this->contentEs = $contentEs;
 
         return $this;
     }
 
     /**
-     * Get content
+     * Get content ES
      *
      * @return string
      */
-    public function getContent()
+    public function getContentEs()
     {
-        return $this->content;
+        return $this->contentEs;
     }
 
     /**
-     * Set excerpt
+     * Set content EN
      *
-     * @param string $excerpt
+     * @param string $contentEn
      *
      * @return Post
      */
-    public function setExcerpt($excerpt)
+    public function setContentEn($contentEn)
     {
-        $this->excerpt = $excerpt;
+        $this->contentEn = $contentEn;
 
         return $this;
     }
 
     /**
-     * Get excerpt
+     * Get content EN
      *
      * @return string
      */
-    public function getExcerpt()
+    public function getContentEn()
     {
-        return $this->excerpt;
+        return $this->contentEn;
+    }
+
+    /**
+     * Set excerpt ES
+     *
+     * @param string $excerptEs
+     *
+     * @return Post
+     */
+    public function setExcerptEs($excerptEs)
+    {
+        $this->excerptEs = $excerptEs;
+
+        return $this;
+    }
+
+    /**
+     * Get excerpt ES
+     *
+     * @return string
+     */
+    public function getExcerptEs()
+    {
+        return $this->excerptEs;
+    }
+
+    /**
+     * Set excerpt EN
+     *
+     * @param string $excerptEn
+     *
+     * @return Post
+     */
+    public function setExcerptEn($excerptEn)
+    {
+        $this->excerptEn = $excerptEn;
+
+        return $this;
+    }
+
+    /**
+     * Get excerpt EN
+     *
+     * @return string
+     */
+    public function getExcerptEn()
+    {
+        return $this->excerptEn;
     }
 
     /**
