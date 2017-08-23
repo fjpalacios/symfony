@@ -40,8 +40,8 @@
     color: $white;
 }
 
-@media (max-width: 767px) {
-    .navbar-nav .nav-item {
+.navbar-nav .nav-item {
+    @include breakpoint-up(small) {
         padding-left: 10px;
     }
 }

@@ -1,7 +1,5 @@
 .content {
-    @include breakpoint(small) {
-        margin: auto;
-        width: 95%;
+    @include breakpoint-up(small) {
         background-color: $entry-background;
         border: 1px solid $entry-border;
         padding: 15px;
