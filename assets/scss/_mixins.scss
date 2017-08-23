@@ -1,3 +1,19 @@
+@mixin breakpoint($breakpoint) {
+    @if $breakpoint == "small" {
+        @media (min-width: 767px) {
+            @content;
+        }
+    } @else if $breakpoint == "medium" {
+        @media (min-width: 992px) {
+            @content;
+        }
+    } @else if $breakpoint == "large" {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    }
+}
+
 @mixin flexbox() {
     display: -webkit-box;
     display: -moz-box;
@@ -5,12 +21,14 @@
     display: -webkit-flex;
     display: flex;
 }
+
 @mixin flex-flow($flow) {
     -webkit-flex-flow: $flow;
     -moz-flex-flow: $flow;
     -ms-flex-flow: $flow;
     flex-flow: $flow;
 }
+
 @mixin justify-content($justify) {
     -webkit-justify-content: $justify;
     -moz-justify-content: $justify;
@@ -18,12 +36,14 @@
     justify-content: $justify;
     -ms-flex-pack: $justify;
 }
+
 @mixin align-items($align) {
     -webkit-align-items: $align;
     -moz-align-items: $align;
     -ms-align-items: $align;
     align-items: $align;
 }
+
 @mixin flex($values) {
     -webkit-box-flex: $values;
     -moz-box-flex: $values;
@@ -31,12 +51,14 @@
     -ms-flex: $values;
     flex: $values;
 }
+
 @mixin flex-shrink($shrink) {
     -webkit-flex-shrink: $shrink;
     -moz-flex-shrink: $shrink;
     -ms-flex-shrink: $shrink;
     flex-shrink: $shrink;
 }
+
 @mixin align-self($align) {
     -webkit-align-self: $align;
     -moz-align-self: $align;

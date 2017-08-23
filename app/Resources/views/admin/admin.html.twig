@@ -3,7 +3,7 @@
 {% block body_id "admin" %}
 
 {% block body %}
-    <div class="container mt-5 content--login page">
+    <div class="container mt-5 content--half page">
         {% for message in app.session.flashbag().get('status') %}
             <div class="alert alert-info" role="alert">
                 {{ message|trans }}

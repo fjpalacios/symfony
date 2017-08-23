@@ -1,9 +1,3 @@
-@media (min-width: 768px) {
-    body {
-        background-color: $background;
-    }
-}
-
 html, body {
     height: 100%;
 }
@@ -11,6 +5,9 @@ html, body {
 body {
     @include flexbox;
     @include flex-flow(column);
+    @include breakpoint(small) {
+        background-color: $background;
+    }
 }
 
 .page {
