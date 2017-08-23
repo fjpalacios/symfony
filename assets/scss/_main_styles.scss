@@ -5,7 +5,7 @@ html, body {
 body {
     @include flexbox;
     @include flex-flow(column);
-    @include breakpoint(small) {
+    @include breakpoint-up(small) {
         background-color: $background;
     }
 }
