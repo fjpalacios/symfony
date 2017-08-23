@@ -1,33 +1,42 @@
-@media (min-width: 768px) {
-    .content {
+.content {
+    @include breakpoint(small) {
         margin: auto;
         width: 95%;
         background-color: $entry-background;
         border: 1px solid $entry-border;
         padding: 15px;
         font-size: 17px;
-        &--login {
-            @extend .content;
-            max-width: 550px;
+    }
+    &--half {
+        @extend .content;
+        max-width: 550px;
+    }
+    a:not(.btn) {
+        color: $entry-link;
+        &:hover {
+            text-decoration: none;
+            color: $entry-link-hover;
         }
-        &--post {
-            @extend .content;
-            &__title {
-                a {
-                    color: $entry-title;
-                    &:hover {
-                        text-decoration: none;
-                        color: $entry-title-hover;
-                    }
-                }
+    }
+    .btn-primary {
+        background-color: $bootstrap-primary-color;
+        border-color: $bootstrap-primary-color;
+        &:hover {
+            background-color: $bootstrap-primary-color-hover;
+            border-color: $bootstrap-primary-color-hover;
+        }
+    }
+}
+
+.page {
+    h2, h3, h4, h5, h6 {
+        color: $entry-link;
+        a {
+            color: $entry-link;
+            &:hover {
+                text-decoration: none;
+                color: $entry-link-hover;
             }
-        }
-        h2, h3, h4, h5, h6 {
-            color: $entry-title;
-        }
-        .btn-primary {
-            background-color: $bootstrap-primary-color;
-            border-color: $bootstrap-primary-color;
         }
     }
 }
@@ -40,7 +49,6 @@
 .footer {
     margin-top: 1em;
     padding-top: 10px;
-    padding-bottom: 1px;
     background-color: $main-color;
     color: $white;
     padding-bottom: 10px;

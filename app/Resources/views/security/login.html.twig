@@ -3,7 +3,7 @@
 {% block body_id 'login' %}
 
 {% block body %}
-    <div class="container mt-5 content--login">
+    <div class="container mt-5 content--half page">
         {% if error %}
             <div class="alert alert-danger" role="alert">
                 {{ error.messageKey|trans(error.messageData, 'security') }}

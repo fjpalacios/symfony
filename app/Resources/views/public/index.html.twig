@@ -6,14 +6,14 @@
     <div class="container mt-5 page">
         {% for post in posts %}
             {% if post.type == 'page' %}
-                <h2 class="content--post__title h3">
+                <h2 class="h3">
                     {% if app.request.locale == 'es' %}
                         <a href="#">{{ post.titleEs }}</a>
                     {% else %}
                         <a href="#">{{ post.titleEn }}</a>
                     {% endif %}
                 </h2>
-                <div class="content--post">
+                <div class="content">
                     {% if app.request.locale == 'es' %}
                         {{ post.contentEs }}
                     {% else %}
