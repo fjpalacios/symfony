@@ -5,13 +5,15 @@
 {% block body %}
     <div class="container mt-5 page">
         {% for post in posts %}
-            {% if post.type == 'page' %}
+            {% if post.status == 'publish' %}
                 <h2 class="h3">
-                    {% if app.request.locale == 'es' %}
-                        <a href="#">{{ post.titleEs }}</a>
-                    {% else %}
-                        <a href="#">{{ post.titleEn }}</a>
-                    {% endif %}
+                    <a href="#">
+                        {% if app.request.locale == 'es' %}
+                            {{ post.titleEs }}
+                        {% else %}
+                            {{ post.titleEn }}
+                        {% endif %}
+                    </a>
                 </h2>
                 <div class="content">
                     {% if app.request.locale == 'es' %}

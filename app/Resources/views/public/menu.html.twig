@@ -41,6 +41,9 @@
                 <a class="dropdown-item" href="{{ path('admin',
                 {'_locale': app.request.locale }) }}">
                     {{ 'ADMIN_PANEL'|trans }}</a>
+                <a class="dropdown-item" href="{{ path('admin_posts_add',
+                {'_locale': app.request.locale }) }}">
+                    {{ 'ADMIN_POSTS_ADD'|trans }}</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ path('logout',
                 {'_locale': app.request.locale }) }}">

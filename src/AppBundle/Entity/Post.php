@@ -59,7 +59,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="title_en", type="text")
+     * @ORM\Column(name="title_en", type="text", nullable=true)
      */
     private $titleEn;
 
@@ -80,7 +80,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="content_en", type="text")
+     * @ORM\Column(name="content_en", type="text", nullable=true)
      */
     private $contentEn;
 
@@ -94,7 +94,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="excerpt_en", type="text")
+     * @ORM\Column(name="excerpt_en", type="text", nullable=true)
      */
     private $excerptEn;
 
@@ -108,9 +108,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="format", type="string", length=20)
+     * @ORM\Column(name="image", type="string", length=100, nullable=true)
      */
-    private $format;
+    private $image;
 
     /**
      * @var string
@@ -433,27 +433,27 @@ class Post
     }
 
     /**
-     * Set format
+     * Set image
      *
-     * @param string $format
+     * @param string $image
      *
      * @return Post
      */
-    public function setFormat($format)
+    public function setImage($image)
     {
-        $this->format = $format;
+        $this->format = $image;
 
         return $this;
     }
 
     /**
-     * Get format
+     * Get image
      *
      * @return string
      */
-    public function getFormat()
+    public function getImage()
     {
-        return $this->format;
+        return $this->image;
     }
 
     /**
