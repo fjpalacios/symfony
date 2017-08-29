@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-posts-add" %}
+
+{% block body %}
+    <div class="row justify-content-center page">
+        <div class="col-lg-7 mt-5 page">
+            {% for message in app.session.flashbag().get('status') %}
+                <div class="alert alert-info" role="alert">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            <h2 class="text-center h2 mb-4">
+                {{ 'POSTS_ADD_TITLE'|trans }}
+            </h2>
+            <form name="appbundle_post" method="post">
+                <div class="container content">
+                    <div class="form-group">
+                        {{ form_label(form.titleEs, 'POST_TITLE_ES') }}
+                        {{ form_widget(form.titleEs, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.contentEs, 'POST_CONTENT_ES') }}
+                        {{ form_widget(form.contentEs, { 'attr': {
+                            'class': 'form-control',
+                            'rows': 10} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.excerptEs, 'POST_EXCERPT_ES') }}
+                        {{ form_widget(form.excerptEs, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="container content mt-5">
+                    <div class="form-group">
+                        {{ form_label(form.titleEn, 'POST_TITLE_EN') }}
+                        {{ form_widget(form.titleEn, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.contentEn, 'POST_CONTENT_EN') }}
+                        {{ form_widget(form.contentEn, { 'attr': {
+                            'class': 'form-control',
+                            'rows': 10} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.excerptEn, 'POST_EXCERPT_EN') }}
+                        {{ form_widget(form.excerptEn, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="container content mt-5">
+                    <div class="form-group">
+                        {{ form_label(form.status, 'POST_STATUS') }}
+                        {{ form_widget(form.status, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.commentStatus, 'POST_COMMENT_STATUS') }}
+                        {{ form_widget(form.commentStatus, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.image, 'POST_IMAGE') }}
+                        {{ form_widget(form.image, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                {{ form_widget(form._token) }}
+                <div class="container buttons mt-5">
+                    <button type="submit" id="submit" name="submit"
+                            class="btn btn-primary">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        &nbsp; {{ 'ADD_BTN'|trans }}</button>
+                    <button type="reset" id="submit" name="submit"
+                            class="btn">
+                        <i class="fa fa-eraser" aria-hidden="true"></i>
+                        &nbsp; {{ 'RESET_BTN'|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

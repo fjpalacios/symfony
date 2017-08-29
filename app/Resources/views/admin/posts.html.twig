@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-posts" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        <div class="content">
+            <h2 class="text-center h2 mb-4">{{ 'POSTS_TITLE'|trans }}</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center">
+                        {{ 'POSTS_ITEM_TITLE'|trans }}
+                    </th>
+                    <th class="d-none d-sm-table-cell text-center">
+                        {{ 'POSTS_ITEM_PUBLISHED'|trans }}
+                    </th>
+                    <th class="d-none d-lg-table-cell text-center">
+                        <i class="fa fa-signal" aria-hidden="true"></i>
+                    </th>
+                    <th class="d-none d-xl-table-cell text-center">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                    </th>
+                    <th class="text-center">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                    <tr>
+                        {% if app.request.locale == 'es' %}
+                            <td>{{ post.titleEs }}</td>
+                        {% else %}
+                            <td>{{ post.titleEn }}</td>
+                        {% endif %}
+                        {% if post.status == 'publish' %}
+                            <td class="d-none d-sm-table-cell text-center">
+                                {{ post.modDate|date("d/m/Y") }}
+                            </td>
+                        {% else %}
+                            <td class="d-none d-sm-table-cell text-center">
+                                {{ post.status|trans }}
+                            </td>
+                        {% endif %}
+                        <td class="d-none d-lg-table-cell text-center">
+                            {{ post.views }}
+                        </td>
+                        <td class="d-none d-xl-table-cell text-center">
+                            {{ post.commentCount }}
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="btn btn-sm btn-info text-center">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            {% if is_granted('ROLE_ADMIN') or
+                            post.author == app.user.id %}
+                                <a href="#"
+                                   class="btn btn-sm btn-primary text-center">
+                                    <i class="fa fa-edit"
+                                       aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="#"
+                                   class="btn btn-sm btn-danger text-center">
+                                    <i class="fa fa-remove"
+                                       aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

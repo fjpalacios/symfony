@@ -1,34 +1,63 @@
-TITLE: Título
+TITLE: "Título"
+testing: "Esta es una página de prueba"
 
 # Navbar
-HOME: Inicio
-LANGUAGE: Idioma
-WELCOME: Hola
-ADMIN_PANEL: Administración
-LOGIN: Entrar
-LOGOUT: Salir
+HOME: "Inicio"
+USER_HOME: "Página de inicio"
+LANGUAGE: "Idioma"
+WELCOME: "Hola"
+ADMIN_PANEL: "Administración"
+LOGIN: "Entrar"
+LOGOUT: "Salir"
 
 # Login
-LOGIN_TITLE: Introduce tus datos
-USERNAME: Usuario
-PASSWORD: Contraseña
-REPEAT_PASSWORD: Repite la contraseña
-REMEMBER_LOGIN: Recuérdame
-LOGIN_BTN: Iniciar sesión
+LOGIN_TITLE: "Introduce tus datos"
+USERNAME: "Usuario"
+PASSWORD: "Contraseña"
+REPEAT_PASSWORD: "Repite la contraseña"
+REMEMBER_LOGIN: "Recuérdame"
+LOGIN_BTN: "Iniciar sesión"
 
 # Add user
-ADDUSER_TITLE: Nuevo usuario
-EMAIL: Correo
-NAME: Nombre
-URL: URL
-BIO: Bio
-ROLES: Permisos
-User: Usuario
-Admin: Administrador
-Superadmin: Superadministrador
-USER_ADDED_PROPERLY: El usuario se añadió correctamente
-USER_ADDED_ERROR: Algo salió mal al añadir el nuevo usuario
-USER_ADDED_USERNAME_EXIST: El usuario ya existe en la base de datos
-USER_ADDED_EMAIL_EXIST: El correo ya existe en la base de datos
-ADD_BTN: Añadir
-RESET_BTN: Vaciar
+ADDUSER_TITLE: "Nuevo usuario"
+EMAIL: "Correo"
+NAME: "Nombre"
+URL: "URL"
+BIO: "Bio"
+ROLES: "Permisos"
+User: "Usuario"
+Admin: "Administrador"
+Superadmin: "Superadministrador"
+USER_ADDED_PROPERLY: "El usuario se añadió correctamente"
+USER_ADDED_ERROR: "Algo salió mal al añadir el nuevo usuario"
+USER_ADDED_USERNAME_EXIST: "El usuario ya existe en la base de datos"
+USER_ADDED_EMAIL_EXIST: "El correo ya existe en la base de datos"
+ADD_BTN: "Añadir"
+RESET_BTN: "Limpiar"
+
+# Posts
+ADMIN_POSTS: "Artículos"
+POSTS_TITLE: "Artículos"
+ADMIN_POSTS_ADD: "Añadir artículo"
+POSTS_ITEM_TITLE: "Título"
+POSTS_ITEM_PUBLISHED: "Publicado"
+draft: "Borrador"
+
+# Posts add
+POSTS_ADD_TITLE: "Nuevo artículo"
+POST_TITLE_ES: "Título"
+POST_TITLE_EN: "Title"
+POST_CONTENT_ES: "Contenido"
+POST_CONTENT_EN: "Content"
+POST_EXCERPT_ES: "Extracto"
+POST_EXCERPT_EN: "Excerpt"
+POST_STATUS: "Estado"
+Draft: "Borrador"
+Publish: "Publicado"
+POST_COMMENT_STATUS: "Estado de los comentarios"
+Open: "Abiertos"
+Close: "Cerrados"
+POST_AUTHOR: "Autor"
+POST_IMAGE: "Imagen"
+POST_ADDED_PROPERLY: "El artículo se añadió correctamente"
+POST_ADDED_ERROR: "Algo salió mal al añadir el nuevo artículo"

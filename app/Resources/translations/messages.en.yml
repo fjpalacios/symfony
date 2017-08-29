@@ -1,34 +1,63 @@
-TITLE: Title
+TITLE: "Title"
+testing: "This is a test page"
 
 # Navbar
-HOME: Home
-LANGUAGE: Language
-WELCOME: Hello
-ADMIN_PANEL: Admin area
-LOGIN: Log in
-LOGOUT: Log out
+HOME: "Home"
+USER_HOME: "Home page"
+LANGUAGE: "Language"
+WELCOME: "Hello"
+ADMIN_PANEL: "Admin area"
+LOGIN: "Log in"
+LOGOUT: "Log out"
 
 # Login
-LOGIN_TITLE: Enter your credentials
-USERNAME: Username
-PASSWORD: Password
-REPEAT_PASSWORD: Repeat password
-REMEMBER_LOGIN: Keep me logged in
-LOGIN_BTN: Sign in
+LOGIN_TITLE: "Enter your credentials"
+USERNAME: "Username"
+PASSWORD: "Password"
+REPEAT_PASSWORD: "Repeat password"
+REMEMBER_LOGIN: "Keep me logged in"
+LOGIN_BTN: "Sign in"
 
 # Add user
-ADDUSER_TITLE: Add new user
-EMAIL: Email
-NAME: Name
-URL: URL
-BIO: Bio
-ROLES: Rols
-User: User
-Admin: Admin
-Superadmin: Superadmin
-USER_ADDED_PROPERLY: User added properly
-USER_ADDED_ERROR: Something went wrong when adding the new user
-USER_ADDED_USERNAME_EXIST: Username is already added to the database
-USER_ADDED_EMAIL_EXIST: Email is already added to the database
-ADD_BTN: Add
-RESET_BTN: Reset
+ADDUSER_TITLE: "Add new user"
+EMAIL: "Email"
+NAME: "Name"
+URL: "URL"
+BIO: "Bio"
+ROLES: "Rols"
+User: "User"
+Admin: "Admin"
+Superadmin: "Superadmin"
+USER_ADDED_PROPERLY: "User added properly"
+USER_ADDED_ERROR: "Something went wrong when adding the new user"
+USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
+USER_ADDED_EMAIL_EXIST: "Email is already added to the database"
+ADD_BTN: "Add"
+RESET_BTN: "Reset"
+
+# Posts
+ADMIN_POSTS: "Posts"
+POSTS_TITLE: "Posts"
+ADMIN_POSTS_ADD: "Add post"
+POSTS_ITEM_TITLE: "Title"
+POSTS_ITEM_PUBLISHED: "Published"
+draft: "Draft"
+
+# Post add
+POSTS_ADD_TITLE: "New post"
+POST_TITLE_ES: "Título"
+POST_TITLE_EN: "Title"
+POST_CONTENT_ES: "Contenido"
+POST_CONTENT_EN: "Content"
+POST_EXCERPT_ES: "Extracto"
+POST_EXCERPT_EN: "Excerpt"
+POST_STATUS: "Status"
+Draft: "Draft"
+Publish: "Publish"
+POST_COMMENT_STATUS: "Comment status"
+Open: "Open"
+Close: "Close"
+POST_AUTHOR: "Author"
+POST_IMAGE: "Image"
+POST_ADDED_PROPERLY: "Post added properly"
+POST_ADDED_ERROR: "Something went wrong when adding the new post"

@@ -14,8 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\DatetimeType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\ResetType;
 
 class UserType extends AbstractType
 {
@@ -25,25 +23,23 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('plainPassword', RepeatedType::class, array(
-                'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ))
-            ->add('name', TextType::class)
-            ->add('url', UrlType::class, array('required' => false))
-            ->add('bio', TextareaType::class, array('required' => false))
-            ->add('roles', ChoiceType::class, array(
-                'choices'  => array(
-                    'User' => "ROLE_USER",
-                    'Admin' => "ROLE_ADMIN",
-                    'Superadmin' => "ROLE_SUPER_ADMIN"),
-                'multiple' => true
-            ))
-            ->add('save', SubmitType::class)
-            ->add('clear', ResetType::class);
+                ->add('username', TextType::class)
+                ->add('email', EmailType::class)
+                ->add('plainPassword', RepeatedType::class, array(
+                        'type' => PasswordType::class,
+                        'first_options' => array('label' => 'Password'),
+                        'second_options' => array('label' => 'Repeat Password'),
+                ))
+                ->add('name', TextType::class)
+                ->add('url', UrlType::class, array('required' => false))
+                ->add('bio', TextareaType::class, array('required' => false))
+                ->add('roles', ChoiceType::class, array(
+                        'choices' => array(
+                                'User' => "ROLE_USER",
+                                'Admin' => "ROLE_ADMIN",
+                                'Superadmin' => "ROLE_SUPER_ADMIN"),
+                        'multiple' => true
+                ));
     }
 
     /**
@@ -52,7 +48,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User'
+                'data_class' => 'AppBundle\Entity\User'
         ));
     }
 
