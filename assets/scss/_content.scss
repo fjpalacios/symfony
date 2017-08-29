@@ -12,14 +12,6 @@
             color: $entry-link-hover;
         }
     }
-    .btn-primary {
-        background-color: $bootstrap-primary-color;
-        border-color: $bootstrap-primary-color;
-        &:hover {
-            background-color: $bootstrap-primary-color-hover;
-            border-color: $bootstrap-primary-color-hover;
-        }
-    }
 }
 
 .page {
@@ -38,6 +30,15 @@
 .buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.btn-primary {
+    background-color: $bootstrap-primary-color;
+    border-color: $bootstrap-primary-color;
+    &:hover {
+        background-color: $bootstrap-primary-color-hover;
+        border-color: $bootstrap-primary-color-hover;
+    }
 }
 
 .footer {
