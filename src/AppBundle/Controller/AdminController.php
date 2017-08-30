@@ -122,7 +122,7 @@ class AdminController extends Controller
      */
     public function postsRemoveAction(Request $request, $id)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'ONLY_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
         $em = $this->getDoctrine()->getManager();
         $postRepo = $em->getRepository('AppBundle:Post');
         $post = $postRepo->find($id);
