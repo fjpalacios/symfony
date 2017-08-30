@@ -71,3 +71,7 @@ POST_SLUG: "Enlace permanente"
 POST_EDITED_PROPERLY: "El artículo se editó correctamente"
 POST_EDITED_ERROR: "Algo salió mal al editar el nuevo artículo"
 EDIT_BTN: "Editar"
+
+# Post view
+BACK_BTN: "Volver"
+POST_EXCERPT: "Extracto"

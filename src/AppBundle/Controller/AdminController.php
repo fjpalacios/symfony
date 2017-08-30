@@ -175,4 +175,16 @@ class AdminController extends Controller
                 'id' => $id
         ));
     }
+
+    /**
+     * @Route("/posts/view/{id}", name="admin_posts_view")
+     */
+    public function postsViewAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $post = $postRepo->find($id);
+        return $this->render('admin/posts-view.html.twig', array(
+                'post' => $post));
+    }
 }

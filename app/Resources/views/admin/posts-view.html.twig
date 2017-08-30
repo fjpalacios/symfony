@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-posts-view" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        <h2 class="h3">
+            {% if app.request.locale == 'es' %}
+                {{ post.titleEs }}
+            {% else %}
+                {{ post.titleEn }}
+            {% endif %}
+        </h2>
+        <div class="content">
+            {% if app.request.locale == 'es' %}
+                {{ post.contentEs }}
+                <div class="mt-5">
+                    <h3 class="h5">{{ 'POST_EXCERPT'|trans }}</h3>
+                    {{ post.excerptEs }}
+                </div>
+            {% else %}
+                {{ post.contentEn }}
+                <div class="mt-5">
+                    <h3 class="h5">{{ 'POST_EXCERPT'|trans }}</h3>
+                    {{ post.excerptEn }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="buttons mt-4">
+            <a href="{{ path('admin_posts') }}" class="btn btn-primary">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                &nbsp; {{ 'BACK_BTN'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}
