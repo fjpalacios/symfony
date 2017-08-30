@@ -102,12 +102,16 @@ class AdminController extends Controller
             $post->setViews(0);
             $em->persist($post);
             $flush = $em->flush();
+            $id = $post->getId();
             if (!$flush) {
                 $status = 'POST_ADDED_PROPERLY';
             } else {
                 $status = 'POST_ADDED_ERROR';
             }
             $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_posts_edit', array(
+                    'id' => $id
+            ));
         }
         return $this->render('admin/posts-add.html.twig', array(
                 'form' => $form->createView()));
@@ -131,5 +135,44 @@ class AdminController extends Controller
         }
         $this->session->getFlashBag()->add('status', $status);
         return $this->redirectToRoute('admin_posts');
+    }
+
+    /**
+     * @Route("/posts/edit/{id}", name="admin_posts_edit")
+     */
+    public function postsEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $post = $postRepo->find($id);
+        $author = $post->getAuthor();
+        $status = $post->getStatus();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $post->setModDate(new \DateTime('now'));
+            if ($status == 'draft' && $form->get('status')->getData() != "draft") {
+                $post->setDate(new \DateTime('now'));
+            }
+            $slug = new Slugify();
+            $post->setAuthor($form->get('author')->getData()->getId());
+            $post->setSlug($slug->slugify($form->get('slug')->getData()));
+            $em->persist($post);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'POST_EDITED_PROPERLY';
+            } else {
+                $status = 'POST_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_posts_edit', array(
+                    'id' => $id
+            ));
+        }
+        return $this->render('admin/posts-edit.html.twig', array(
+                'form' => $form->createView(),
+                'author' => $author,
+                'id' => $id
+        ));
     }
 }

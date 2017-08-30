@@ -64,3 +64,10 @@ POST_AUTHOR: "Author"
 POST_IMAGE: "Image"
 POST_ADDED_PROPERLY: "Post added properly"
 POST_ADDED_ERROR: "Something went wrong when adding the new post"
+
+# Post edit
+POSTS_EDIT_TITLE: "Edit post"
+POST_SLUG: "Permanent link"
+POST_EDITED_PROPERLY: "Post edited properly"
+POST_EDITED_ERROR: "Something went wrong when editing the post"
+EDIT_BTN: "Edit"

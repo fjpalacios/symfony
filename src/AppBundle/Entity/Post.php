@@ -31,7 +31,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=60)
+     * @ORM\Column(name="author", type="integer")
      */
     private $author;
 

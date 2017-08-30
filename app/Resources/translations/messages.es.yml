@@ -64,3 +64,10 @@ POST_AUTHOR: "Autor"
 POST_IMAGE: "Imagen"
 POST_ADDED_PROPERLY: "El artículo se añadió correctamente"
 POST_ADDED_ERROR: "Algo salió mal al añadir el nuevo artículo"
+
+# Post edit
+POSTS_EDIT_TITLE: "Editar artículo"
+POST_SLUG: "Enlace permanente"
+POST_EDITED_PROPERLY: "El artículo se editó correctamente"
+POST_EDITED_ERROR: "Algo salió mal al editar el nuevo artículo"
+EDIT_BTN: "Editar"
