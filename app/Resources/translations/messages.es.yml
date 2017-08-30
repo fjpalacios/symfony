@@ -1,4 +1,5 @@
 TITLE: "Título"
+ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 testing: "Esta es una página de prueba"
 
 # Navbar
@@ -42,6 +43,8 @@ ADMIN_POSTS_ADD: "Añadir artículo"
 POSTS_ITEM_TITLE: "Título"
 POSTS_ITEM_PUBLISHED: "Publicado"
 draft: "Borrador"
+POST_REMOVED_PROPERLY: "El artículo se eliminó correctamente"
+POST_REMOVED_ERROR: "Algo salió mal al eliminar el artículo"
 
 # Posts add
 POSTS_ADD_TITLE: "Nuevo artículo"

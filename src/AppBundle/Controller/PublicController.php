@@ -19,7 +19,7 @@ class PublicController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findAll();
+        $posts = $repository->findBy(array(), array('date' => 'DESC'));
         return $this->render('public/index.html.twig',
                 array('posts' => $posts));
     }

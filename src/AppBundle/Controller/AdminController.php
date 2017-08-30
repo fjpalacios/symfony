@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function postsAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findAll();
+        $posts = $repository->findBy(array(), array('date' => 'DESC'));
         return $this->render('admin/posts.html.twig', array(
                 'posts' => $posts
         ));
@@ -111,5 +111,25 @@ class AdminController extends Controller
         }
         return $this->render('admin/posts-add.html.twig', array(
                 'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/posts/del/{id}", name="admin_posts_del")
+     */
+    public function postsRemoveAction(Request $request, $id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $post = $postRepo->find($id);
+        $em->remove($post);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'POST_REMOVED_PROPERLY';
+        } else {
+            $status = 'POST_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_posts');
     }
 }
