@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function postsAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findAll();
+        $posts = $repository->findBy(array(), array('date' => 'DESC'));
         return $this->render('admin/posts.html.twig', array(
                 'posts' => $posts
         ));
