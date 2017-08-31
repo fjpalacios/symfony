@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-5 page">
-        <h2 class="h3">
+        <h2>
             {% if app.request.locale == 'es' %}
                 {{ post.titleEs }}
             {% else %}
@@ -13,9 +13,9 @@
         </h2>
         <div class="content">
             {% if app.request.locale == 'es' %}
-                {{ post.contentEs }}
+                {{ post.contentEs|raw|md2html }}
             {% else %}
-                {{ post.contentEn }}
+                {{ post.contentEn|raw|md2html }}
             {% endif %}
         </div>
     </div>

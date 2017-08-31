@@ -24,6 +24,8 @@ Technologies used
 * [Sass](http://sass-lang.com/)
 * [FontAwesome](http://fontawesome.io/)
 * [Slugify](https://github.com/cocur/slugify)
+* [Parsedown](https://github.com/erusev/parsedown)
+* [highlight.js](https://github.com/isagalaev/highlight.js)
 
 License
 ---

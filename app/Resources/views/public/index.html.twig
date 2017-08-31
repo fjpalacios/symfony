@@ -6,7 +6,7 @@
     <div class="container mt-5 page">
         {% for post in posts %}
             {% if post.status == 'publish' %}
-                <h2 class="h3">
+                <h2>
                     <a href="{{ path('post', { 'slug': post.slug }) }}">
                         {% if app.request.locale == 'es' %}
                             {{ post.titleEs }}
@@ -17,9 +17,9 @@
                 </h2>
                 <div class="content">
                     {% if app.request.locale == 'es' %}
-                        {{ post.contentEs }}
+                        {{ post.contentEs|raw|md2html }}
                     {% else %}
-                        {{ post.contentEn }}
+                        {{ post.contentEn|raw|md2html }}
                     {% endif %}
                 </div>
             {% endif %}
