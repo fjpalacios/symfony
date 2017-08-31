@@ -120,12 +120,10 @@ class AdminController extends Controller
     /**
      * @Route("/posts/del/{id}", name="admin_posts_del")
      */
-    public function postsRemoveAction($id)
+    public function postsRemoveAction(Post $post)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
         $em = $this->getDoctrine()->getManager();
-        $postRepo = $em->getRepository('AppBundle:Post');
-        $post = $postRepo->find($id);
         $em->remove($post);
         $flush = $em->flush();
         if (!$flush) {
@@ -179,11 +177,8 @@ class AdminController extends Controller
     /**
      * @Route("/posts/view/{id}", name="admin_posts_view")
      */
-    public function postsViewAction($id)
+    public function postsViewAction(Post $post)
     {
-        $em = $this->getDoctrine()->getManager();
-        $postRepo = $em->getRepository('AppBundle:Post');
-        $post = $postRepo->find($id);
         return $this->render('admin/posts-view.html.twig', array(
                 'post' => $post));
     }
