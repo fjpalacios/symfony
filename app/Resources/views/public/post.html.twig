@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "post" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        <h2 class="h3">
+            {% if app.request.locale == 'es' %}
+                {{ post.titleEs }}
+            {% else %}
+                {{ post.titleEn }}
+            {% endif %}
+        </h2>
+        <div class="content">
+            {% if app.request.locale == 'es' %}
+                {{ post.contentEs }}
+            {% else %}
+                {{ post.contentEn }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
