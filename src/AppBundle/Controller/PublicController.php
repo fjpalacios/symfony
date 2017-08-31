@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,5 +23,14 @@ class PublicController extends Controller
         $posts = $repository->findBy(array(), array('date' => 'DESC'));
         return $this->render('public/index.html.twig',
                 array('posts' => $posts));
+    }
+
+    /**
+     * @Route("/{slug}", name="post")
+     */
+    public function postAction(Post $post)
+    {
+        return $this->render('public/post.html.twig', array(
+                'post' => $post));
     }
 }

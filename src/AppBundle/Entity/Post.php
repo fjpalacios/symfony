@@ -66,7 +66,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=200)
+     * @ORM\Column(name="slug", type="string", length=200, unique=true)
      */
     private $slug;
 
