@@ -25,6 +25,7 @@ Technologies used
 * [FontAwesome](http://fontawesome.io/)
 * [Slugify](https://github.com/cocur/slugify)
 * [Parsedown](https://github.com/erusev/parsedown)
+* [highlight.js](https://github.com/isagalaev/highlight.js)
 
 License
 ---

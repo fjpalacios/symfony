@@ -1,7 +1,10 @@
 'use strict'
 
-const $ = require('jquery')
-require('bootstrap')
+import $ from 'jquery'
+import 'bootstrap'
+import hljs from 'highlight.js'
+
+hljs.initHighlightingOnLoad()
 
 $(document).ready(function () {
   let menu = $('.menu')

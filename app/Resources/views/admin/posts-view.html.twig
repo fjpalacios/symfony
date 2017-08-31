@@ -13,13 +13,13 @@
         </h2>
         <div class="content">
             {% if app.request.locale == 'es' %}
-                {{ post.contentEs|md2html }}
+                {{ post.contentEs|raw|md2html }}
                 <div class="mt-5">
                     <h3 class="h5">{{ 'POST_EXCERPT'|trans }}</h3>
                     {{ post.excerptEs }}
                 </div>
             {% else %}
-                {{ post.contentEn|md2html }}
+                {{ post.contentEn|raw|md2html }}
                 <div class="mt-5">
                     <h3 class="h5">{{ 'POST_EXCERPT'|trans }}</h3>
                     {{ post.excerptEn }}

@@ -17,9 +17,9 @@
                 </h2>
                 <div class="content">
                     {% if app.request.locale == 'es' %}
-                        {{ post.contentEs|md2html }}
+                        {{ post.contentEs|raw|md2html }}
                     {% else %}
-                        {{ post.contentEn|md2html }}
+                        {{ post.contentEn|raw|md2html }}
                     {% endif %}
                 </div>
             {% endif %}
