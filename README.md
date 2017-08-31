@@ -24,6 +24,7 @@ Technologies used
 * [Sass](http://sass-lang.com/)
 * [FontAwesome](http://fontawesome.io/)
 * [Slugify](https://github.com/cocur/slugify)
+* [Parsedown](https://github.com/erusev/parsedown)
 
 License
 ---
