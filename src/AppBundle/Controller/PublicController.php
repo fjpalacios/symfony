@@ -17,7 +17,7 @@ class PublicController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findBy(array(), array('date' => 'DESC'));

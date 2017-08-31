@@ -72,7 +72,7 @@ class AdminController extends Controller
     /**
      * @Route("/posts", name="admin_posts")
      */
-    public function postsAction(Request $request)
+    public function postsAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findBy(array(), array('date' => 'DESC'));
@@ -120,7 +120,7 @@ class AdminController extends Controller
     /**
      * @Route("/posts/del/{id}", name="admin_posts_del")
      */
-    public function postsRemoveAction(Request $request, $id)
+    public function postsRemoveAction($id)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
         $em = $this->getDoctrine()->getManager();
@@ -179,7 +179,7 @@ class AdminController extends Controller
     /**
      * @Route("/posts/view/{id}", name="admin_posts_view")
      */
-    public function postsViewAction(Request $request, $id)
+    public function postsViewAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $postRepo = $em->getRepository('AppBundle:Post');
