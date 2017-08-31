@@ -24,6 +24,9 @@ pre {
         margin-right: -15px;
         margin-left: -15px;
     }
+    &:last-child {
+        margin-bottom: -15px;
+    }
 }
 
 h2 {
@@ -35,8 +38,8 @@ h3 {
 }
 
 h4 {
-     font-size: 1.25rem;
- }
+    font-size: 1.25rem;
+}
 
 h5, h6 {
     font-size: 1rem;
