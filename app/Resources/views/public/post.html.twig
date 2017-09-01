@@ -9,7 +9,8 @@
                 {{ post.titleEn }}
             {% elseif app.request.locale == 'en' and post.titleEs %}
                 {{ post.titleEs }}
-            {% elseif app.request.locale == 'es' and post.titleEs %}
+            {% endif %}
+            {% if app.request.locale == 'es' and post.titleEs %}
                 {{ post.titleEs }}
             {% elseif app.request.locale == 'es' and post.titleEn %}
                 {{ post.titleEn }}
@@ -26,7 +27,8 @@
                 {{ post.contentEn|raw|md2html }}
             {% elseif app.request.locale == 'en' and post.titleEs %}
                 {{ post.contentEs|raw|md2html }}
-            {% elseif app.request.locale == 'es' and post.titleEs %}
+            {% endif %}
+            {% if app.request.locale == 'es' and post.titleEs %}
                 {{ post.contentEs|raw|md2html }}
             {% elseif app.request.locale == 'es' and post.titleEn %}
                 {{ post.contentEn|raw|md2html }}
