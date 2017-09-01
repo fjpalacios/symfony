@@ -34,10 +34,15 @@
                 <tbody>
                 {% for post in posts %}
                     <tr>
-                        {% if app.request.locale == 'es' %}
+                        {% if app.request.locale == 'es' and post.titleEs %}
                             <td>{{ post.titleEs }}</td>
-                        {% else %}
+                        {% elseif app.request.locale == 'es' and post.titleEn %}
                             <td>{{ post.titleEn }}</td>
+                        {% endif %}
+                        {% if app.request.locale == 'en' and post.titleEn %}
+                            <td>{{ post.titleEn }}</td>
+                        {% elseif app.request.locale == 'en' and post.titleEs %}
+                            <td>{{ post.titleEs }}</td>
                         {% endif %}
                         {% if post.status == 'publish' %}
                             <td class="d-none d-sm-table-cell text-center">
