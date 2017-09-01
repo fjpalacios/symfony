@@ -5,20 +5,42 @@
 {% block body %}
     <div class="container mt-5 page">
         <h2>
-            {% if app.request.locale == 'es' %}
+            {% if app.request.locale == 'en' and post.titleEn %}
+                {{ post.titleEn }}
+            {% elseif app.request.locale == 'en' and post.titleEs %}
                 {{ post.titleEs }}
-            {% else %}
+            {% endif %}
+            {% if app.request.locale == 'es' and post.titleEs %}
+                {{ post.titleEs }}
+            {% elseif app.request.locale == 'es' and post.titleEn %}
                 {{ post.titleEn }}
             {% endif %}
         </h2>
         <div class="content">
-            {% if app.request.locale == 'es' %}
+            {% if app.request.locale == 'en' and not post.titleEn or
+            app.request.locale == 'es' and not post.titleEs %}
+                <div class="alert alert-danger" role="alert">
+                    {{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
+                </div>
+            {% elseif app.request.locale == 'en' and post.titleEn %}
+                {{ post.contentEn|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'POST_EXCERPT'|trans }}</h3>
+                    {{ post.excerptEn }}
+                </div>
+            {% elseif app.request.locale == 'en' and post.titleEs %}
                 {{ post.contentEs|raw|md2html }}
                 <div class="mt-5">
                     <h3>{{ 'POST_EXCERPT'|trans }}</h3>
                     {{ post.excerptEs }}
                 </div>
-            {% else %}
+            {% elseif app.request.locale == 'es' and post.titleEs %}
+                {{ post.contentEs|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'POST_EXCERPT'|trans }}</h3>
+                    {{ post.excerptEs }}
+                </div>
+            {% elseif app.request.locale == 'es' and post.titleEn %}
                 {{ post.contentEn|raw|md2html }}
                 <div class="mt-5">
                     <h3>{{ 'POST_EXCERPT'|trans }}</h3>
