@@ -18,5 +18,17 @@
                 {{ post.contentEn|raw|md2html }}
             {% endif %}
         </div>
+        {% if author.bio %}
+            <div class="content mt-4 author">
+                <div class="author__avatar">
+                    <img src="{{ gravatar( author.email ) }}"
+                         alt="{{ author.name }}"/>
+                </div>
+                <div class="author__bio">
+                    <h2>{{ author.name }}</h2>
+                    {{ author.bio|raw|md2html }}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

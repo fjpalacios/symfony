@@ -179,7 +179,12 @@ class AdminController extends Controller
      */
     public function postsViewAction(Post $post)
     {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $author = $userRepo->find($post->getAuthor());
         return $this->render('admin/posts-view.html.twig', array(
-                'post' => $post));
+                'post' => $post,
+                'author' => $author
+        ));
     }
 }

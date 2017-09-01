@@ -30,7 +30,12 @@ class PublicController extends Controller
      */
     public function postAction(Post $post)
     {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $author = $userRepo->find($post->getAuthor());
         return $this->render('public/post.html.twig', array(
-                'post' => $post));
+                'post' => $post,
+                'author' => $author
+        ));
     }
 }

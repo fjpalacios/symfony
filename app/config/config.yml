@@ -72,3 +72,9 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Gravatar configuration
+ornicar_gravatar:
+    rating: g
+    size: 90
+    default: mm

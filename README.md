@@ -26,6 +26,7 @@ Technologies used
 * [Slugify](https://github.com/cocur/slugify)
 * [Parsedown](https://github.com/erusev/parsedown)
 * [highlight.js](https://github.com/isagalaev/highlight.js)
+* [OrnicarGravatarBundle](https://github.com/henrikbjorn/GravatarBundle)
 
 License
 ---
