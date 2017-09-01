@@ -29,7 +29,7 @@
 
 .buttons {
     @include flexbox();
-    @include justify-content(space-netween);
+    @include justify-content(space-between);
 }
 
 .btn-primary {
