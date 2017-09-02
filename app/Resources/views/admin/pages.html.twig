@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-pages" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        <div class="content">
+            {% for message in app.session.flashbag().get('status') %}
+                <div class="alert alert-info" role="alert">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            <h2 class="text-center mb-4">{{ 'PAGES_TITLE'|trans }}</h2>
+            {% if pages %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th class="text-center">
+                        {{ 'PAGES_ITEM_TITLE'|trans }}
+                    </th>
+                    <th class="d-none d-sm-table-cell text-center">
+                        {{ 'PAGES_ITEM_PUBLISHED'|trans }}
+                    </th>
+                    <th class="d-none d-lg-table-cell text-center">
+                        <i class="fa fa-signal" aria-hidden="true"></i>
+                    </th>
+                    <th class="d-none d-xl-table-cell text-center">
+                        <i class="fa fa-comment" aria-hidden="true"></i>
+                    </th>
+                    <th class="text-center">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% endif %}
+                {% for page in pages %}
+                    <tr>
+                        {% if app.request.locale == 'es' and page.titleEs %}
+                            <td>{{ page.titleEs }}</td>
+                        {% elseif app.request.locale == 'es' and page.titleEn %}
+                            <td>{{ page.titleEn }}</td>
+                        {% endif %}
+                        {% if app.request.locale == 'en' and page.titleEn %}
+                            <td>{{ page.titleEn }}</td>
+                        {% elseif app.request.locale == 'en' and page.titleEs %}
+                            <td>{{ page.titleEs }}</td>
+                        {% endif %}
+                        {% if page.status == 'publish' %}
+                            <td class="d-none d-sm-table-cell text-center">
+                                {{ page.modDate|date("d/m/Y") }}
+                            </td>
+                        {% else %}
+                            <td class="d-none d-sm-table-cell text-center">
+                                {{ page.status|trans }}
+                            </td>
+                        {% endif %}
+                        <td class="d-none d-lg-table-cell text-center">
+                            {{ page.views }}
+                        </td>
+                        <td class="d-none d-xl-table-cell text-center">
+                            {{ page.commentCount }}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ path('admin_pages_view',
+                            { 'id': page.id }) }}"
+                               class="btn btn-sm btn-info text-center">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            {% if is_granted('ROLE_SUPER_ADMIN') or
+                            page.author == app.user.id %}
+                                <a href="{{ path('admin_pages_edit',
+                                { 'id': page.id }) }}"
+                                   class="btn btn-sm btn-primary text-center">
+                                    <i class="fa fa-edit"
+                                       aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                <a href="{{ path('admin_pages_del',
+                                { 'id': page.id }) }}"
+                                   class="btn btn-sm btn-danger text-center">
+                                    <i class="fa fa-remove"
+                                       aria-hidden="true"></i>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% if not pages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ 'PAGES_NOT_FOUND'|trans({
+                        '%link_start%': '<a href="'~path('admin_pages_add')~'">',
+                        '%link_end%': '</a>'})|raw }}
+                </div>
+                {% else %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

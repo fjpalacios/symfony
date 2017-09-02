@@ -8,6 +8,21 @@
             {'_locale': app.request.locale }) }}">
                 {{ 'HOME'|trans }}</a>
         </li>
+        {% for page in pages %}
+            <li class="nav-item
+                    {% if app.request.requestUri == '/'~app.request.locale~'/'~page.slug %}
+                    active
+                    {% endif %}">
+                <a class="nav-link"
+                   href="{{ path('post', { 'slug': page.slug }) }}">
+                    {% if app.request.locale == 'es' %}
+                        {{ page.titleEs }}
+                    {% else %}
+                        {{ page.titleEn }}
+                    {% endif %}
+                </a>
+            </li>
+        {% endfor %}
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -44,6 +59,9 @@
                 <a class="dropdown-item" href="{{ path('admin_posts_add',
                 {'_locale': app.request.locale }) }}">
                     {{ 'ADMIN_POSTS_ADD'|trans }}</a>
+                <a class="dropdown-item" href="{{ path('admin_pages_add',
+                {'_locale': app.request.locale }) }}">
+                    {{ 'ADMIN_PAGES_ADD'|trans }}</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ path('logout',
                 {'_locale': app.request.locale }) }}">

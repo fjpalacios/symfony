@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function postsAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findBy(array(), array('date' => 'DESC'));
+        $posts = $repository->findBy(array('type' => 'post'), array('date' => 'DESC'));
         return $this->render('admin/posts.html.twig', array(
                 'posts' => $posts
         ));
@@ -98,6 +98,7 @@ class AdminController extends Controller
             $post->setModDate(new \DateTime('now'));
             $post->setSlug($slug->slugify($post->getTitleEs()));
             $post->setType('post');
+            $post->setNavbar(0);
             $post->setCommentCount(0);
             $post->setViews(0);
             $em->persist($post);
@@ -155,6 +156,7 @@ class AdminController extends Controller
             $slug = new Slugify();
             $post->setAuthor($form->get('author')->getData()->getId());
             $post->setSlug($slug->slugify($form->get('slug')->getData()));
+            $post->setNavbar(0);
             $em->persist($post);
             $flush = $em->flush();
             if (!$flush) {
@@ -187,4 +189,129 @@ class AdminController extends Controller
                 'author' => $author
         ));
     }
+
+    /**
+     * @Route("/pages", name="admin_pages")
+     */
+    public function pagesAction(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $pages = $repository->findBy(array('type' => 'page'), array('titleEs' => 'ASC'));
+        } else {
+            $pages = $repository->findBy(array('type' => 'page'), array('titleEn' => 'ASC'));
+        }
+        return $this->render('admin/pages.html.twig', array(
+                'pages' => $pages
+        ));
+    }
+
+    /**
+     * @Route("/pages/add", name="admin_pages_add")
+     */
+    public function pagesAddAction(Request $request)
+    {
+        $page = new Post();
+        $form = $this->createForm(PostType::class, $page);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $userId = $this->getUser()->getId();
+            $slug = new Slugify();
+            $page->setAuthor($userId);
+            $page->setDate(new \DateTime('now'));
+            $page->setModDate(new \DateTime('now'));
+            $page->setSlug($slug->slugify($page->getTitleEs()));
+            $page->setType('page');
+            $page->setCommentCount(0);
+            $page->setViews(0);
+            $em->persist($page);
+            $flush = $em->flush();
+            $id = $page->getId();
+            if (!$flush) {
+                $status = 'PAGE_ADDED_PROPERLY';
+            } else {
+                $status = 'PAGE_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_posts_edit', array(
+                    'id' => $id
+            ));
+        }
+        return $this->render('admin/pages-add.html.twig', array(
+                'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/pages/del/{id}", name="admin_pages_del")
+     */
+    public function pagesRemoveAction(Post $post)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($post);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'PAGE_REMOVED_PROPERLY';
+        } else {
+            $status = 'PAGE_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_pages');
+    }
+
+    /**
+     * @Route("/pages/edit/{id}", name="admin_pages_edit")
+     */
+    public function pagesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $page = $postRepo->find($id);
+        $author = $page->getAuthor();
+        $status = $page->getStatus();
+        $form = $this->createForm(PostType::class, $page);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $page->setModDate(new \DateTime('now'));
+            if ($status == 'draft' && $form->get('status')->getData() != "draft") {
+                $page->setDate(new \DateTime('now'));
+            }
+            $slug = new Slugify();
+            $page->setAuthor($form->get('author')->getData()->getId());
+            $page->setSlug($slug->slugify($form->get('slug')->getData()));
+            $em->persist($page);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'PAGE_EDITED_PROPERLY';
+            } else {
+                $status = 'PAGE_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_pages_edit', array(
+                    'id' => $id
+            ));
+        }
+        return $this->render('admin/pages-edit.html.twig', array(
+                'form' => $form->createView(),
+                'author' => $author,
+                'id' => $id
+        ));
+    }
+
+    /**
+     * @Route("/pages/view/{id}", name="admin_pages_view")
+     */
+    public function pagesViewAction(Post $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $author = $userRepo->find($page->getAuthor());
+        return $this->render('admin/pages-view.html.twig', array(
+                'page' => $page,
+                'author' => $author
+        ));
+    }
+
 }

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-pages-edit" %}
+
+{% block body %}
+    <div class="row justify-content-center page">
+        <div class="col-lg-7 mt-5 page">
+            {% for message in app.session.flashbag().get('status') %}
+                <div class="alert alert-info" role="alert">
+                    {{ message|trans }}
+                </div>
+            {% endfor %}
+            <h2 class="text-center mb-4">
+                {{ 'PAGES_EDIT_TITLE'|trans }}
+            </h2>
+            <form name="appbundle_post" method="post">
+                <div class="container content">
+                    <div class="form-group">
+                        {{ form_label(form.titleEs, 'PAGE_TITLE_ES') }}
+                        {{ form_widget(form.titleEs, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.contentEs, 'PAGE_CONTENT_ES') }}
+                        {{ form_widget(form.contentEs, { 'attr': {
+                            'class': 'form-control',
+                            'rows': 10} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.excerptEs, 'PAGE_EXCERPT_ES') }}
+                        {{ form_widget(form.excerptEs, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="container content mt-5">
+                    <div class="form-group">
+                        {{ form_label(form.titleEn, 'PAGE_TITLE_EN') }}
+                        {{ form_widget(form.titleEn, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.contentEn, 'PAGE_CONTENT_EN') }}
+                        {{ form_widget(form.contentEn, { 'attr': {
+                            'class': 'form-control',
+                            'rows': 10} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.excerptEn, 'PAGE_EXCERPT_EN') }}
+                        {{ form_widget(form.excerptEn, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="container content mt-5">
+                    <div class="form-group">
+                        {{ form_label(form.author, 'PAGE_AUTHOR') }}
+                        {{ form_widget(form.author, { 'attr':
+                            {'class': 'form-control'},
+                            'value': author|number_format }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.status, 'PAGE_STATUS') }}
+                        {{ form_widget(form.status, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.navbar, 'PAGE_NAVBAR') }}
+                        {{ form_widget(form.navbar, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.slug, 'PAGE_SLUG') }}
+                        {{ form_widget(form.slug, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.commentStatus, 'PAGE_COMMENT_STATUS') }}
+                        {{ form_widget(form.commentStatus, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.image, 'PAGE_IMAGE') }}
+                        {{ form_widget(form.image, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+                {{ form_widget(form._token) }}
+                <div class="container buttons mt-5">
+                    <button type="submit" id="submit" name="submit"
+                            class="btn btn-primary">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        &nbsp; {{ 'EDIT_BTN'|trans }}</button>
+                    <button type="reset" id="submit" name="submit"
+                            class="btn">
+                        <i class="fa fa-eraser" aria-hidden="true"></i>
+                        &nbsp; {{ 'RESET_BTN'|trans }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -44,6 +44,8 @@ ADMIN_POSTS_ADD: "Añadir artículo"
 POSTS_ITEM_TITLE: "Título"
 POSTS_ITEM_PUBLISHED: "Publicado"
 draft: "Borrador"
+
+# Posts del
 POST_REMOVED_PROPERLY: "El artículo se eliminó correctamente"
 POST_REMOVED_ERROR: "Algo salió mal al eliminar el artículo"
 
@@ -70,9 +72,48 @@ POST_ADDED_ERROR: "Algo salió mal al añadir el nuevo artículo"
 POSTS_EDIT_TITLE: "Editar artículo"
 POST_SLUG: "Enlace permanente"
 POST_EDITED_PROPERLY: "El artículo se editó correctamente"
-POST_EDITED_ERROR: "Algo salió mal al editar el nuevo artículo"
+POST_EDITED_ERROR: "Algo salió mal al editar el artículo"
 EDIT_BTN: "Editar"
 
 # Post view
 BACK_BTN: "Volver"
 POST_EXCERPT: "Extracto"
+
+# Pages
+ADMIN_PAGES: "Páginas"
+PAGES_TITLE: "Páginas"
+ADMIN_PAGES_ADD: "Añadir página"
+PAGES_ITEM_TITLE: "Título"
+PAGES_ITEM_PUBLISHED: "Publicada"
+PAGES_NOT_FOUND: "Actualmente no hay ninguna página añadida, anímate y %link_start%añade una ahora%link_end%"
+
+# Page del
+PAGE_REMOVED_PROPERLY: "La página se eliminó correctamente"
+PAGE_REMOVED_ERROR: "Algo salió mal al eliminar la página"
+
+# Page add
+PAGES_ADD_TITLE: "Nueva página"
+PAGE_TITLE_ES: "Título"
+PAGE_TITLE_EN: "Title"
+PAGE_CONTENT_ES: "Contenido"
+PAGE_CONTENT_EN: "Content"
+PAGE_EXCERPT_ES: "Extracto"
+PAGE_EXCERPT_EN: "Excerpt"
+PAGE_STATUS: "Estado"
+PAGE_NAVBAR: "Mostrar en la barra de menú"
+No: "No"
+Yes: "Sí"
+PAGE_COMMENT_STATUS: "Estado de los comentarios"
+PAGE_AUTHOR: "Autor"
+PAGE_IMAGE: "Imagen"
+PAGE_ADDED_PROPERLY: "La página se añadió correctamente"
+PAGE_ADDED_ERROR: "Algo salió mal al añadir la nueva página"
+
+# Page edit
+PAGES_EDIT_TITLE: "Editar página"
+PAGE_SLUG: "Enlace permanente"
+PAGE_EDITED_PROPERLY: "La página se editó correctamente"
+PAGE_EDITED_ERROR: "Algo salió mal al editar la página"
+
+# Page view
+PAGE_EXCERPT: "Extracto"

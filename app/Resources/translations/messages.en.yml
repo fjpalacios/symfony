@@ -44,8 +44,10 @@ ADMIN_POSTS_ADD: "Add post"
 POSTS_ITEM_TITLE: "Title"
 POSTS_ITEM_PUBLISHED: "Published"
 draft: "Draft"
+
+# Posts del
 POST_REMOVED_PROPERLY: "Post removed properly"
-POST_REMOVED_ERROR: "Something went wrong when removing the new post"
+POST_REMOVED_ERROR: "Something went wrong when removing the post"
 
 # Post add
 POSTS_ADD_TITLE: "New post"
@@ -76,3 +78,42 @@ EDIT_BTN: "Edit"
 # Post view
 BACK_BTN: "Back"
 POST_EXCERPT: "Excerpt"
+
+# Pages
+ADMIN_PAGES: "Pages"
+PAGES_TITLE: "Pages"
+ADMIN_PAGES_ADD: "Add page"
+PAGES_ITEM_TITLE: "Title"
+PAGES_ITEM_PUBLISHED: "Published"
+PAGES_NOT_FOUND: "There are currently no pages added, do you want to %link_start%add one%link_end% now?"
+
+# Page del
+PAGE_REMOVED_PROPERLY: "Page removed properly"
+PAGE_REMOVED_ERROR: "Something went wrong when removing the page"
+
+# Page add
+PAGES_ADD_TITLE: "New page"
+PAGE_TITLE_ES: "Título"
+PAGE_TITLE_EN: "Title"
+PAGE_CONTENT_ES: "Contenido"
+PAGE_CONTENT_EN: "Content"
+PAGE_EXCERPT_ES: "Extracto"
+PAGE_EXCERPT_EN: "Excerpt"
+PAGE_STATUS: "Status"
+PAGE_NAVBAR: "Show in navbar"
+No: "No"
+Yes: "Yes"
+PAGE_COMMENT_STATUS: "Comment status"
+PAGE_AUTHOR: "Author"
+PAGE_IMAGE: "Image"
+PAGE_ADDED_PROPERLY: "Page added properly"
+PAGE_ADDED_ERROR: "Something went wrong when adding the new page"
+
+# Page edit
+PAGES_EDIT_TITLE: "Edit page"
+PAGE_SLUG: "Permanent link"
+PAGE_EDITED_PROPERLY: "Page edited properly"
+PAGE_EDITED_ERROR: "Something went wrong when editing the page"
+
+# Page view
+PAGE_EXCERPT: "Excerpt"
