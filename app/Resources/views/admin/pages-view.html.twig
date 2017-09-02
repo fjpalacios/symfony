@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-pages-view" %}
+
+{% block body %}
+    <div class="container mt-5 page">
+        <h2>
+            {% if app.request.locale == 'en' and page.titleEn %}
+                {{ page.titleEn }}
+            {% elseif app.request.locale == 'en' and page.titleEs %}
+                {{ page.titleEs }}
+            {% endif %}
+            {% if app.request.locale == 'es' and page.titleEs %}
+                {{ page.titleEs }}
+            {% elseif app.request.locale == 'es' and page.titleEn %}
+                {{ page.titleEn }}
+            {% endif %}
+        </h2>
+        <div class="content">
+            {% if app.request.locale == 'en' and not page.titleEn or
+            app.request.locale == 'es' and not page.titleEs %}
+                <div class="alert alert-danger" role="alert">
+                    {{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
+                </div>
+            {% endif %}
+            {% if app.request.locale == 'en' and page.titleEn %}
+                {{ page.contentEn|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'PAGE_EXCERPT'|trans }}</h3>
+                    {{ page.excerptEn }}
+                </div>
+            {% elseif app.request.locale == 'en' and page.titleEs %}
+                {{ page.contentEs|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'PAGE_EXCERPT'|trans }}</h3>
+                    {{ page.excerptEs }}
+                </div>
+            {% endif %}
+            {% if app.request.locale == 'es' and page.titleEs %}
+                {{ page.contentEs|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'PAGE_EXCERPT'|trans }}</h3>
+                    {{ page.excerptEs }}
+                </div>
+            {% elseif app.request.locale == 'es' and page.titleEn %}
+                {{ page.contentEn|raw|md2html }}
+                <div class="mt-5">
+                    <h3>{{ 'PAGE_EXCERPT'|trans }}</h3>
+                    {{ page.excerptEn }}
+                </div>
+            {% endif %}
+        </div>
+        {% if author.bio %}
+            <div class="content mt-4 author">
+                <div class="author__avatar">
+                    <img src="{{ gravatar( author.email ) }}"
+                         alt="{{ author.name }}"/>
+                </div>
+                <div class="author__bio">
+                    <h2>{{ author.name }}</h2>
+                    {{ author.bio|raw|md2html }}
+                </div>
+            </div>
+        {% endif %}
+        <div class="buttons mt-4">
+            <a href="{{ path('admin_pages') }}" class="btn btn-primary">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                &nbsp; {{ 'BACK_BTN'|trans }}</a>
+        </div>
+    </div>
+{% endblock %}

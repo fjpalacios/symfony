@@ -292,4 +292,19 @@ class AdminController extends Controller
                 'id' => $id
         ));
     }
+
+    /**
+     * @Route("/pages/view/{id}", name="admin_pages_view")
+     */
+    public function pagesViewAction(Post $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $author = $userRepo->find($page->getAuthor());
+        return $this->render('admin/pages-view.html.twig', array(
+                'page' => $page,
+                'author' => $author
+        ));
+    }
+
 }

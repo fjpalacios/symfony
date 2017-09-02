@@ -111,3 +111,7 @@ PAGES_EDIT_TITLE: "Editar página"
 PAGE_SLUG: "Enlace permanente"
 PAGE_EDITED_PROPERLY: "La página se editó correctamente"
 PAGE_EDITED_ERROR: "Algo salió mal al editar la página"
+
+# Page view
+BACK_BTN: "Volver"
+PAGE_EXCERPT: "Extracto"
