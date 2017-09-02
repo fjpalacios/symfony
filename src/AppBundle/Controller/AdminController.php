@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function postsAction()
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findBy(array(), array('date' => 'DESC'));
+        $posts = $repository->findBy(array('type' => 'post'), array('date' => 'DESC'));
         return $this->render('admin/posts.html.twig', array(
                 'posts' => $posts
         ));
@@ -185,6 +185,18 @@ class AdminController extends Controller
         return $this->render('admin/posts-view.html.twig', array(
                 'post' => $post,
                 'author' => $author
+        ));
+    }
+
+    /**
+     * @Route("/pages", name="admin_pages")
+     */
+    public function pagesAction()
+    {
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $pages = $repository->findBy(array('type' => 'page'), array('date' => 'DESC'));
+        return $this->render('admin/pages.html.twig', array(
+                'pages' => $pages
         ));
     }
 }

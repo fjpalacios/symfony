@@ -44,8 +44,10 @@ ADMIN_POSTS_ADD: "Add post"
 POSTS_ITEM_TITLE: "Title"
 POSTS_ITEM_PUBLISHED: "Published"
 draft: "Draft"
+
+# Posts del
 POST_REMOVED_PROPERLY: "Post removed properly"
-POST_REMOVED_ERROR: "Something went wrong when removing the new post"
+POST_REMOVED_ERROR: "Something went wrong when removing the post"
 
 # Post add
 POSTS_ADD_TITLE: "New post"
@@ -76,3 +78,11 @@ EDIT_BTN: "Edit"
 # Post view
 BACK_BTN: "Back"
 POST_EXCERPT: "Excerpt"
+
+# Pages
+ADMIN_PAGES: "Pages"
+PAGES_TITLE: "Pages"
+ADMIN_PAGES_ADD: "Add page"
+PAGES_ITEM_TITLE: "Title"
+PAGES_ITEM_PUBLISHED: "Published"
+PAGES_NOT_FOUND: "There are currently no pages added, do you want to %link_start%add one%link_end% now?"
