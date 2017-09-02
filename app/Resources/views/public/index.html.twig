@@ -5,24 +5,29 @@
 {% block body %}
     <div class="container mt-5 page">
         {% for post in posts %}
-            {% if post.status == 'publish' %}
-                <h2>
-                    <a href="{{ path('post', { 'slug': post.slug }) }}">
-                        {% if app.request.locale == 'es' %}
-                            {{ post.titleEs }}
-                        {% else %}
-                            {{ post.titleEn }}
-                        {% endif %}
-                    </a>
-                </h2>
-                <div class="content">
+            <h2>
+                <a href="{{ path('post', { 'slug': post.slug }) }}">
                     {% if app.request.locale == 'es' %}
-                        {{ post.contentEs|raw|md2html }}
+                        {{ post.titleEs }}
                     {% else %}
-                        {{ post.contentEn|raw|md2html }}
+                        {{ post.titleEn }}
                     {% endif %}
-                </div>
-            {% endif %}
+                </a>
+            </h2>
+            <div class="content">
+                {% if app.request.locale == 'es' %}
+                    {{ post.contentEs|raw|md2html }}
+                {% else %}
+                    {{ post.contentEn|raw|md2html }}
+                {% endif %}
+            </div>
         {% endfor %}
+        {% if not posts %}
+            <div class="alert alert-danger" role="alert">
+                {{ 'PUBLIC_POSTS_NOT_FOUND'|trans({
+                    '%link_start%': '<a href="'~path('admin_posts_add')~'">',
+                    '%link_end%': '</a>'})|raw }}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

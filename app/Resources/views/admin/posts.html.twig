@@ -11,6 +11,7 @@
                 </div>
             {% endfor %}
             <h2 class="text-center mb-4">{{ 'POSTS_TITLE'|trans }}</h2>
+            {% if posts %}
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -32,6 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% endif %}
                 {% for post in posts %}
                     <tr>
                         {% if app.request.locale == 'es' and post.titleEs %}
@@ -85,8 +87,16 @@
                         </td>
                     </tr>
                 {% endfor %}
+                {% if not posts %}
+                <div class="alert alert-danger" role="alert">
+                    {{ 'POSTS_NOT_FOUND'|trans({
+                        '%link_start%': '<a href="'~path('admin_posts_add')~'">',
+                        '%link_end%': '</a>'})|raw }}
+                </div>
+                {% else %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -44,6 +44,8 @@ ADMIN_POSTS_ADD: "Añadir artículo"
 POSTS_ITEM_TITLE: "Título"
 POSTS_ITEM_PUBLISHED: "Publicado"
 draft: "Borrador"
+POSTS_NOT_FOUND: "Actualmente no hay ningún artículo publicado, anímate y %link_start%añade uno ahora%link_end%."
+PUBLIC_POSTS_NOT_FOUND: "Actualmente no hay ningún artículo publicado, si tienes permisos puedes %link_start%añadir uno ahora%link_end%, si no tendrás que esperar hasta que se publique contenido nuevo."
 
 # Posts del
 POST_REMOVED_PROPERLY: "El artículo se eliminó correctamente"
@@ -85,7 +87,7 @@ PAGES_TITLE: "Páginas"
 ADMIN_PAGES_ADD: "Añadir página"
 PAGES_ITEM_TITLE: "Título"
 PAGES_ITEM_PUBLISHED: "Publicada"
-PAGES_NOT_FOUND: "Actualmente no hay ninguna página añadida, anímate y %link_start%añade una ahora%link_end%"
+PAGES_NOT_FOUND: "Actualmente no hay ninguna página añadida, anímate y %link_start%añade una ahora%link_end%."
 
 # Page del
 PAGE_REMOVED_PROPERLY: "La página se eliminó correctamente"
