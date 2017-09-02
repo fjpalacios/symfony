@@ -237,6 +237,24 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/pages/del/{id}", name="admin_pages_del")
+     */
+    public function pagesRemoveAction(Post $post)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($post);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'PAGE_REMOVED_PROPERLY';
+        } else {
+            $status = 'PAGE_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_pages');
+    }
+
+    /**
      * @Route("/pages/edit/{id}", name="admin_pages_edit")
      */
     public function pagesEditAction(Request $request, $id)

@@ -87,6 +87,10 @@ PAGES_ITEM_TITLE: "Title"
 PAGES_ITEM_PUBLISHED: "Published"
 PAGES_NOT_FOUND: "There are currently no pages added, do you want to %link_start%add one%link_end% now?"
 
+# Page del
+PAGE_REMOVED_PROPERLY: "Page removed properly"
+PAGE_REMOVED_ERROR: "Something went wrong when removing the page"
+
 # Page add
 PAGES_ADD_TITLE: "New page"
 PAGE_TITLE_ES: "Título"
