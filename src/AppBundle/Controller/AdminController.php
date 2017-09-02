@@ -201,6 +201,42 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/pages/add", name="admin_pages_add")
+     */
+    public function pagesAddAction(Request $request)
+    {
+        $page = new Post();
+        $form = $this->createForm(PostType::class, $page);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $userId = $this->getUser()->getId();
+            $slug = new Slugify();
+            $page->setAuthor($userId);
+            $page->setDate(new \DateTime('now'));
+            $page->setModDate(new \DateTime('now'));
+            $page->setSlug($slug->slugify($page->getTitleEs()));
+            $page->setType('page');
+            $page->setCommentCount(0);
+            $page->setViews(0);
+            $em->persist($page);
+            $flush = $em->flush();
+            $id = $page->getId();
+            if (!$flush) {
+                $status = 'PAGE_ADDED_PROPERLY';
+            } else {
+                $status = 'PAGE_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_posts_edit', array(
+                    'id' => $id
+            ));
+        }
+        return $this->render('admin/pages-add.html.twig', array(
+                'form' => $form->createView()));
+    }
+
+    /**
      * @Route("/pages/edit/{id}", name="admin_pages_edit")
      */
     public function pagesEditAction(Request $request, $id)
