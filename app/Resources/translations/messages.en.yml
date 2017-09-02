@@ -44,6 +44,8 @@ ADMIN_POSTS_ADD: "Add post"
 POSTS_ITEM_TITLE: "Title"
 POSTS_ITEM_PUBLISHED: "Published"
 draft: "Draft"
+POSTS_NOT_FOUND: "There are currently no posts added, do you want to %link_start%add one%link_end% now?"
+PUBLIC_POSTS_NOT_FOUND: "There are currently no posts added, if you have permissions you can %link_start%add one%link_end% now, if you do not have them you will have to wait until new content is published."
 
 # Posts del
 POST_REMOVED_PROPERLY: "Post removed properly"

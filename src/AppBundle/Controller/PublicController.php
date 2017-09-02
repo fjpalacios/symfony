@@ -20,7 +20,11 @@ class PublicController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->findBy(array(), array('date' => 'DESC'));
+        $posts = $repository->findBy(array(
+                'status' => 'publish',
+                'type' => 'post'), array(
+                'date' => 'DESC'
+        ));
         $locale = $request->getLocale();
         if ($locale == 'es') {
             $pages = $repository->findBy(array(

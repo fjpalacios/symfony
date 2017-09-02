@@ -17,12 +17,12 @@
 .page {
     h2, h3, h4, h5, h6 {
         color: $entry-link;
-        a {
-            color: $entry-link;
-            &:hover {
-                text-decoration: none;
-                color: $entry-link-hover;
-            }
+    }
+    a {
+        color: $entry-link;
+        &:hover {
+            text-decoration: none;
+            color: $entry-link-hover;
         }
     }
 }
