@@ -199,4 +199,43 @@ class AdminController extends Controller
                 'pages' => $pages
         ));
     }
+
+    /**
+     * @Route("/pages/edit/{id}", name="admin_pages_edit")
+     */
+    public function pagesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $page = $postRepo->find($id);
+        $author = $page->getAuthor();
+        $status = $page->getStatus();
+        $form = $this->createForm(PostType::class, $page);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $page->setModDate(new \DateTime('now'));
+            if ($status == 'draft' && $form->get('status')->getData() != "draft") {
+                $page->setDate(new \DateTime('now'));
+            }
+            $slug = new Slugify();
+            $page->setAuthor($form->get('author')->getData()->getId());
+            $page->setSlug($slug->slugify($form->get('slug')->getData()));
+            $em->persist($page);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'PAGE_EDITED_PROPERLY';
+            } else {
+                $status = 'PAGE_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_pages_edit', array(
+                    'id' => $id
+            ));
+        }
+        return $this->render('admin/pages-edit.html.twig', array(
+                'form' => $form->createView(),
+                'author' => $author,
+                'id' => $id
+        ));
+    }
 }
