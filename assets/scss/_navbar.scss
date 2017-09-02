@@ -42,8 +42,14 @@
 
 .navbar-nav .nav-item {
     @include breakpoint-up(small) {
-        padding-left: 10px;
+        margin-left: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
+    &:first-child {
+        margin-left: 0;
+    }
+    padding-left: 10px;
 }
 
 .navbar-custom .navbar-toggler-icon {

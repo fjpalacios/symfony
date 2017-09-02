@@ -98,6 +98,7 @@ class AdminController extends Controller
             $post->setModDate(new \DateTime('now'));
             $post->setSlug($slug->slugify($post->getTitleEs()));
             $post->setType('post');
+            $post->setNavbar(0);
             $post->setCommentCount(0);
             $post->setViews(0);
             $em->persist($post);
@@ -155,6 +156,7 @@ class AdminController extends Controller
             $slug = new Slugify();
             $post->setAuthor($form->get('author')->getData()->getId());
             $post->setSlug($slug->slugify($form->get('slug')->getData()));
+            $post->setNavbar(0);
             $em->persist($post);
             $flush = $em->flush();
             if (!$flush) {
@@ -191,10 +193,15 @@ class AdminController extends Controller
     /**
      * @Route("/pages", name="admin_pages")
      */
-    public function pagesAction()
+    public function pagesAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $pages = $repository->findBy(array('type' => 'page'), array('date' => 'DESC'));
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $pages = $repository->findBy(array('type' => 'page'), array('titleEs' => 'ASC'));
+        } else {
+            $pages = $repository->findBy(array('type' => 'page'), array('titleEn' => 'ASC'));
+        }
         return $this->render('admin/pages.html.twig', array(
                 'pages' => $pages
         ));

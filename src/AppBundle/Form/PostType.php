@@ -54,6 +54,13 @@ class PostType extends AbstractType
                                 'Close' => 'close'
                         ),
                         'multiple' => false
+                ))
+                ->add('navbar', ChoiceType::class, array(
+                        'choices' => array(
+                                'No' => 0,
+                                'Yes' => 1
+                        ),
+                        'multiple' => false
                 ));
     }
 

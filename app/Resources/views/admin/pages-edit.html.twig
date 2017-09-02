@@ -65,6 +65,11 @@
                             {'class': 'form-control'} }) }}
                     </div>
                     <div class="form-group">
+                        {{ form_label(form.navbar, 'PAGE_NAVBAR') }}
+                        {{ form_widget(form.navbar, { 'attr':
+                            {'class': 'form-control'} }) }}
+                    </div>
+                    <div class="form-group">
                         {{ form_label(form.slug, 'PAGE_SLUG') }}
                         {{ form_widget(form.slug, { 'attr':
                             {'class': 'form-control'} }) }}
