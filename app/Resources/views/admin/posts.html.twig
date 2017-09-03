@@ -48,7 +48,7 @@
                         {% endif %}
                         {% if post.status == 'publish' %}
                             <td class="d-none d-sm-table-cell text-center">
-                                {{ post.modDate|date("d/m/Y") }}
+                                {{ post.date|date("d/m/Y") }}
                             </td>
                         {% else %}
                             <td class="d-none d-sm-table-cell text-center">
