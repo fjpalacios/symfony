@@ -91,8 +91,9 @@ class AdminController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $userId = $this->getUser()->getId();
             $slug = new Slugify();
+            $userRepo = $em->getRepository('AppBundle:User');
+            $userId = $userRepo->find($this->getUser()->getId());
             $post->setAuthor($userId);
             $post->setDate(new \DateTime('now'));
             $post->setModDate(new \DateTime('now'));
@@ -154,7 +155,6 @@ class AdminController extends Controller
                 $post->setDate(new \DateTime('now'));
             }
             $slug = new Slugify();
-            $post->setAuthor($form->get('author')->getData()->getId());
             $post->setSlug($slug->slugify($form->get('slug')->getData()));
             $post->setNavbar(0);
             $em->persist($post);
@@ -217,8 +217,9 @@ class AdminController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $userId = $this->getUser()->getId();
             $slug = new Slugify();
+            $userRepo = $em->getRepository('AppBundle:User');
+            $userId = $userRepo->find($this->getUser()->getId());
             $page->setAuthor($userId);
             $page->setDate(new \DateTime('now'));
             $page->setModDate(new \DateTime('now'));
@@ -279,7 +280,6 @@ class AdminController extends Controller
                 $page->setDate(new \DateTime('now'));
             }
             $slug = new Slugify();
-            $page->setAuthor($form->get('author')->getData()->getId());
             $page->setSlug($slug->slugify($form->get('slug')->getData()));
             $em->persist($page);
             $flush = $em->flush();

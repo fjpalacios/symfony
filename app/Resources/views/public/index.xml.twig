@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>{{ 'TITLE'|trans }}</title>
+        <description>{{ 'DESC'|trans }}</description>
+        <pubDate>{{ 'now'|date('r', timezone='GMT') }}</pubDate>
+        <lastBuildDate>{{ (posts|last).date|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
+        <link>{{ url('home') }}</link>
+        <language>{{ app.request.locale }}</language>
+        {% for post in posts %}
+            <item>
+                {% if app.request.locale == 'es' %}
+                <title>{{ post.titleEs }}</title>
+                <description>{{ post.excerptEs }}</description>
+                {% else %}
+                    <title>{{ post.titleEn }}</title>
+                    <description>{{ post.excerptEn }}</description>
+                {% endif %}
+                <link>{{ url('post', {'slug': post.slug}) }}</link>
+                <guid>{{ url('post', {'slug': post.slug}) }}</guid>
+                <pubDate>{{ post.date|date(format='r', timezone='GMT') }}</pubDate>
+                <author>{{ post.author.name }}</author>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

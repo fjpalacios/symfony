@@ -1,4 +1,5 @@
 TITLE: "Title"
+DESC: "This is a temporary description"
 ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
 testing: "This is a test page"
