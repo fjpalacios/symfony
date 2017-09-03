@@ -31,7 +31,8 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 

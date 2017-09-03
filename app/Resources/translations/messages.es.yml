@@ -1,4 +1,5 @@
 TITLE: "Título"
+DESC: "Esta es una descripción provisional"
 ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
 testing: "Esta es una página de prueba"

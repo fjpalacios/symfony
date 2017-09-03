@@ -15,9 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 class PublicController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", defaults={"_format"="html"})
+     * @Route("/rss/", name="rss", defaults={"_format"="xml"})
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $_format)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findBy(array(
@@ -39,7 +40,7 @@ class PublicController extends Controller
                     'titleEn' => 'ASC'
             ));
         }
-        return $this->render('public/index.html.twig', array(
+        return $this->render('public/index.'.$_format.'.twig', array(
                 'posts' => $posts,
                 'pages' => $pages
         ));
