@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 {% if index is defined %}
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    {% for url in urls %}
-        <sitemap>
-            {% if url.loc|replace({hostname:''}) == url.loc %}
-                <loc>{{ hostname }}{{ url.loc }}</loc>
-            {% else %}
-                <loc>{{ url.loc }}</loc>
-            {% endif %}
-            {% if url.modDate is defined %}
-                <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
-            {% endif %}
-        </sitemap>
-    {% endfor %}
-    {% else %}
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-            {% for url in urls %}
-                <url>
-                    {% if url.loc|replace({hostname:''}) == url.loc %}
-                        <loc>{{ hostname }}{{ url.loc }}</loc>
-                    {% else %}
-                        <loc>{{ url.loc }}</loc>
-                    {% endif %}
-                    {% if url.modDate is defined %}
-                        <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
-                    {% endif %}
-                    {% if url.changefreq is defined %}
-                        <changefreq>{{ url.changefreq }}</changefreq>
-                    {% endif %}
-                    {% if url.priority is defined %}
-                        <priority>{{ url.priority }}</priority>
-                    {% endif %}
-                </url>
-            {% endfor %}
-        </urlset>
-    {% endif %}
+  {% for url in urls %}
+    <sitemap>
+      {% if url.loc|replace({hostname:''}) == url.loc %}
+        <loc>{{ hostname }}{{ url.loc }}</loc>
+      {% else %}
+        <loc>{{ url.loc }}</loc>
+      {% endif %}
+      {% if url.modDate is defined %}
+        <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
+      {% endif %}
+    </sitemap>
+  {% endfor %}
+  {% else %}
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      {% for url in urls %}
+        <url>
+          {% if url.loc|replace({hostname:''}) == url.loc %}
+            <loc>{{ hostname }}{{ url.loc }}</loc>
+          {% else %}
+            <loc>{{ url.loc }}</loc>
+          {% endif %}
+          {% if url.modDate is defined %}
+            <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
+          {% endif %}
+          {% if url.changefreq is defined %}
+            <changefreq>{{ url.changefreq }}</changefreq>
+          {% endif %}
+          {% if url.priority is defined %}
+            <priority>{{ url.priority }}</priority>
+          {% endif %}
+        </url>
+      {% endfor %}
+    </urlset>
+  {% endif %}
