@@ -1,23 +1,23 @@
 <header>
-    <section id="header" class="container-fluid px-0">
-        <div class="header">
-            <h1>
-                <a href="{{ path('home',
-                {'_locale': app.request.locale }) }}">{{ 'TITLE'|trans }}</a>
-            </h1>
-        </div>
-        <nav class="navbar navbar-expand-md navbar-custom py-0 menu">
-            <button class="navbar-toggler navbar-toggler-right" type="button"
-                    data-toggle="collapse" data-target="#navbarDropdown"
-                    aria-controls="navbarDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {% if '/admin' in app.request.uri and is_granted('ROLE_ADMIN') %}
-                {% include '/admin/menu.html.twig' %}
-            {% else %}
-                {% include '/public/menu.html.twig' %}
-            {% endif %}
-        </nav>
-    </section>
+  <section id="header" class="container-fluid px-0">
+    <div class="header">
+      <h1>
+        <a href="{{ path('home',
+        {'_locale': app.request.locale }) }}">{{ 'TITLE'|trans }}</a>
+      </h1>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-custom py-0 menu">
+      <button class="navbar-toggler navbar-toggler-right" type="button"
+              data-toggle="collapse" data-target="#navbarDropdown"
+              aria-controls="navbarDropdown" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if '/admin' in app.request.uri and is_granted('ROLE_ADMIN') %}
+        {% include '/admin/menu.html.twig' %}
+      {% else %}
+        {% include '/public/menu.html.twig' %}
+      {% endif %}
+    </nav>
+  </section>
 </header>
