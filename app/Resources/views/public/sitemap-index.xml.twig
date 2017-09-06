@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% for url in urls %}
-    <url>
+    <sitemap>
       {% if url.loc|replace({hostname:''}) == url.loc %}
         <loc>{{ hostname }}{{ url.loc }}</loc>
       {% else %}
@@ -10,12 +10,6 @@
       {% if url.modDate is defined %}
         <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
       {% endif %}
-      {% if url.changefreq is defined %}
-        <changefreq>{{ url.changefreq }}</changefreq>
-      {% endif %}
-      {% if url.priority is defined %}
-        <priority>{{ url.priority }}</priority>
-      {% endif %}
-    </url>
+    </sitemap>
   {% endfor %}
-</urlset>
+</sitemapindex>
