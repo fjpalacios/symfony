@@ -4,6 +4,14 @@ ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
 testing: "Esta es una página de prueba"
 
+# Roles
+ROLE_USER: "Usuario"
+User: "Usuario"
+ROLE_ADMIN: "Administrador"
+Admin: "Administrador"
+ROLE_SUPER_ADMIN: "Superadministrador"
+Superadmin: "Superadministrador"
+
 # Navbar
 HOME: "Inicio"
 USER_HOME: "Página de inicio"
@@ -28,9 +36,6 @@ NAME: "Nombre"
 URL: "URL"
 BIO: "Bio"
 ROLES: "Permisos"
-User: "Usuario"
-Admin: "Administrador"
-Superadmin: "Superadministrador"
 USER_ADDED_PROPERLY: "El usuario se añadió correctamente"
 USER_ADDED_ERROR: "Algo salió mal al añadir el nuevo usuario"
 USER_ADDED_USERNAME_EXIST: "El usuario ya existe en la base de datos"
@@ -120,3 +125,10 @@ PAGE_EDITED_ERROR: "Algo salió mal al editar la página"
 
 # Page view
 PAGE_EXCERPT: "Extracto"
+
+# User
+ADMIN_USERS: "Usuarios"
+USERS_TITLE: "Usuarios"
+USERS_ITEM_NAME: "Nombre"
+USERS_ITEM_ROLES: "Permisos"
+USERS_ITEM_ACTIONS: "Accciones"

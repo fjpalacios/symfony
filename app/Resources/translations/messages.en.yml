@@ -4,6 +4,14 @@ ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
 testing: "This is a test page"
 
+# Roles
+ROLE_USER: "User"
+User: "User"
+ROLE_ADMIN: "Admin"
+Admin: "Admin"
+ROLE_SUPER_ADMIN: "Superadmin"
+Superadmin: "Superadmin"
+
 # Navbar
 HOME: "Home"
 USER_HOME: "Home page"
@@ -27,10 +35,7 @@ EMAIL: "Email"
 NAME: "Name"
 URL: "URL"
 BIO: "Bio"
-ROLES: "Rols"
-User: "User"
-Admin: "Admin"
-Superadmin: "Superadmin"
+ROLES: "Roles"
 USER_ADDED_PROPERLY: "User added properly"
 USER_ADDED_ERROR: "Something went wrong when adding the new user"
 USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
@@ -120,3 +125,10 @@ PAGE_EDITED_ERROR: "Something went wrong when editing the page"
 
 # Page view
 PAGE_EXCERPT: "Excerpt"
+
+# User
+ADMIN_USERS: "Users"
+USERS_TITLE: "Users"
+USERS_ITEM_NAME: "Name"
+USERS_ITEM_ROLES: "Roles"
+USERS_ITEM_ACTIONS: "Actions"

@@ -314,4 +314,17 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Route("/users", name="admin_users")
+     */
+    public function usersAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $users = $userRepo->findBy(array(), array('id' => 'ASC'));
+        return $this->render('admin/users.html.twig', array(
+            'users' => $users
+        ));
+    }
+
 }

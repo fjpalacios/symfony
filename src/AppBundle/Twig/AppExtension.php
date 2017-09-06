@@ -3,23 +3,27 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Utils\Markdown;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Intl\Intl;
 
 class AppExtension extends \Twig_Extension
 {
     private $locales;
     private $parser;
+    private $doctrine;
 
-    public function __construct($locales, Markdown $parser)
+    public function __construct($locales, Markdown $parser, ManagerRegistry $doctrine)
     {
         $this->locales = $locales;
         $this->parser = $parser;
+        $this->doctrine = $doctrine;
     }
 
     public function getFunctions()
     {
         return [
                 new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
+                new \Twig_SimpleFunction('has_content', [$this, 'userHasPublishedContent'])
         ];
     }
 
@@ -55,5 +59,19 @@ class AppExtension extends \Twig_Extension
     public function markdownToHtml($content)
     {
         return $this->parser->toHtml($content);
+    }
+
+    /*
+     * Checks if given user id has (or not) published content
+     */
+    public function userHasPublishedContent($id)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $hasContent = $postRepo->findOneBy(array('author' => $id));
+        if ($hasContent) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
