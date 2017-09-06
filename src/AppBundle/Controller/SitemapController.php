@@ -28,10 +28,9 @@ class SitemapController extends Controller
                 'changefreq' => 'daily',
                 'priority' => '0.5'
         );
-        return $this->render('public/sitemap.xml.twig', array(
+        return $this->render('public/sitemap-index.xml.twig', array(
                 'urls' => $urls,
-                'hostname' => $hostname,
-                'index' => true
+                'hostname' => $hostname
         ));
     }
 
