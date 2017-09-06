@@ -1,58 +1,58 @@
 .sticky {
-    position: fixed;
-    top: 0;
-    z-index: 10000;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
 }
 
 .navbar {
-    background: $main-color;
-    min-height: 40px;
-    .active {
-        background-color: $main-color-highlight;
-        .nav-link {
-            color: $white;
-            &:hover {
-                color: $white;
-            }
-        }
-    }
+  background: $main-color;
+  min-height: 40px;
+  .active {
+    background-color: $main-color-highlight;
     .nav-link {
+      color: $white;
+      &:hover {
         color: $white;
-        &:hover {
-            color: $main-color-hover;
-        }
+      }
     }
-    .dropdown-menu {
-        background-color: $main-color;
-        border: 0;
-        a {
-            color: $white;
-            &:hover {
-                color: $main-color-hover;
-                background-color: $main-color;
-            }
-        }
-    }
-}
-
-.navbar-nav .nav-item {
+  }
+  .nav-link {
     color: $white;
+    &:hover {
+      color: $main-color-hover;
+    }
+  }
+  .dropdown-menu {
+    background-color: $main-color;
+    border: 0;
+    a {
+      color: $white;
+      &:hover {
+        color: $main-color-hover;
+        background-color: $main-color;
+      }
+    }
+  }
 }
 
 .navbar-nav .nav-item {
-    @include breakpoint-up(small) {
-        margin-left: 10px;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    &:first-child {
-        margin-left: 0;
-    }
-    padding-left: 10px;
+  color: $white;
+}
+
+.navbar-nav .nav-item {
+  @include breakpoint-up(small) {
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  &:first-child {
+    margin-left: 0;
+  }
+  padding-left: 10px;
 }
 
 .navbar-custom .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-    color: $white;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  color: $white;
 }

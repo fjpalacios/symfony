@@ -1,51 +1,51 @@
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    @include flexbox;
-    @include flex-flow(column);
-    @include breakpoint-up(small) {
-        background-color: $background;
-    }
+  @include flexbox;
+  @include flex-flow(column);
+  @include breakpoint-up(small) {
+    background-color: $background;
+  }
 }
 
 .page {
-    @include flex(1 0 auto);
+  @include flex(1 0 auto);
 }
 
 .container, .container-fluid {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
 }
 
 pre {
-    @include breakpoint-up(small) {
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-    &:last-child {
-        margin-bottom: -15px;
-    }
+  @include breakpoint-up(small) {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  &:last-child {
+    margin-bottom: -15px;
+  }
 }
 
 h2 {
-    font-size: 1.75rem;
+  font-size: 1.75rem;
 }
 
 h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 h4 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 h5, h6 {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 blockquote {
-    padding-left: 1.5rem;
-    border-left: 5px solid $main-color-hover;
+  padding-left: 1.5rem;
+  border-left: 5px solid $main-color-hover;
 }
