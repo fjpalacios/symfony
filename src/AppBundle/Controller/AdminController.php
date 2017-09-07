@@ -370,4 +370,29 @@ class AdminController extends Controller
             array("form" => $form->createView())
         );
     }
+
+    /**
+     * @Route("/users/del/{id}", name="admin_users_del")
+     */
+    public function usersRemoveAction($id)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $activeUserId = $userRepo->find($this->getUser()->getId());
+        $userId = $userRepo->find($id);
+        if ($userId != $activeUserId) {
+            $em->remove($userId);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'USER_REMOVED_PROPERLY';
+            } else {
+                $status = 'USER_REMOVED_ERROR';
+            }
+        } else {
+            $status = 'DONT_REMOVE_YOURSELF';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_users');
+    }
 }

@@ -118,7 +118,6 @@ USERS_TITLE: "Usuarios"
 ADMIN_USERS_ADD: "Añadir usuario"
 USERS_ITEM_NAME: "Nombre"
 USERS_ITEM_ROLES: "Permisos"
-USERS_ITEM_ACTIONS: "Accciones"
 
 # User add
 USERS_ADD_TITLE: "Nuevo usuario"
@@ -133,3 +132,8 @@ USER_ADDED_USERNAME_EXIST: "El usuario ya existe en la base de datos"
 USER_ADDED_EMAIL_EXIST: "El correo ya existe en la base de datos"
 ADD_BTN: "Añadir"
 RESET_BTN: "Limpiar"
+
+# User del
+USER_REMOVED_PROPERLY: "El usuario se eliminó correctamente"
+USER_REMOVED_ERROR: "Algo salió mal al eliminar el usuario"
+DONT_REMOVE_YOURSELF: "¿Por qué querrías eliminar tu propia cuenta?"

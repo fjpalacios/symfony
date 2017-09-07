@@ -118,7 +118,6 @@ USERS_TITLE: "Users"
 ADMIN_USERS_ADD: "Add user"
 USERS_ITEM_NAME: "Name"
 USERS_ITEM_ROLES: "Roles"
-USERS_ITEM_ACTIONS: "Actions"
 
 # User add
 USERS_ADD_TITLE: "Add new user"
@@ -133,3 +132,8 @@ USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
 USER_ADDED_EMAIL_EXIST: "Email is already added to the database"
 ADD_BTN: "Add"
 RESET_BTN: "Reset"
+
+#User del
+USER_REMOVED_PROPERLY: "User removed properly"
+USER_REMOVED_ERROR: "Something went wrong when removing the user"
+DONT_REMOVE_YOURSELF: "Why would you want to delete your own account?"
