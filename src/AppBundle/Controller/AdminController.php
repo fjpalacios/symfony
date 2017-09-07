@@ -346,25 +346,36 @@ class AdminController extends Controller
                     'username' => $form->get('username')->getData()
                 )
             );
-            if (!$userEmail) {
-                if (!$userUsername) {
-                    $password = $passwordEncoder->encodePassword($user,
-                        $user->getPlainPassword());
-                    $user->setPassword($password);
-                    $em->persist($user);
-                    $flush = $em->flush();
-                    if (!$flush) {
-                        $status = 'USER_ADDED_PROPERLY';
+            $userPassword = $form->get('plainPassword')->getData();
+            if ($userPassword) {
+                if (!$userEmail) {
+                    if (!$userUsername) {
+                        $password = $passwordEncoder->encodePassword($user,
+                            $user->getPlainPassword());
+                        $user->setPassword($password);
+                        $em->persist($user);
+                        $flush = $em->flush();
+                        $id = $user->getId();
+                        if (!$flush) {
+                            $status = 'USER_ADDED_PROPERLY';
+                        } else {
+                            $status = 'USER_ADDED_ERROR';
+                        }
                     } else {
-                        $status = 'USER_ADDED_ERROR';
+                        $status = 'USER_ADDED_USERNAME_EXIST';
                     }
                 } else {
-                    $status = 'USER_ADDED_USERNAME_EXIST';
+                    $status = 'USER_ADDED_EMAIL_EXIST';
                 }
             } else {
-                $status = 'USER_ADDED_EMAIL_EXIST';
+                $status = 'USER_ADDED_ERROR_PASSWORD';
             }
             $this->session->getFlashBag()->add('status', $status);
+            if (isset($id)) {
+                return $this->redirectToRoute('admin_users_edit', array(
+                    'id' => $id
+                ));
+            }
         }
         return $this->render('admin/users-add.html.twig',
             array("form" => $form->createView())
@@ -394,5 +405,46 @@ class AdminController extends Controller
         }
         $this->session->getFlashBag()->add('status', $status);
         return $this->redirectToRoute('admin_users');
+    }
+
+    /**
+     * @Route("/users/edit/{id}", name="admin_users_edit")
+     */
+    public function usersEditAction(Request $request, $id,
+                                    UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $user = $userRepo->find($id);
+        $roles = $user->getRoles();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('plainPassword')->getData()) {
+                $password = $passwordEncoder->encodePassword($user,
+                    $user->getPlainPassword());
+                $user->setPassword($password);
+            }
+            if ($form->get('roles')->getData()) {
+                $user->setRoles($form->get('roles')->getData());
+            } else {
+                $user->setRoles($roles);
+            }
+            $em->persist($user);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'USER_EDITED_PROPERLY';
+            } else {
+                $status = 'USER_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_users_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/users-edit.html.twig', array(
+            'form' => $form->createView(),
+            'id' => $id
+        ));
     }
 }

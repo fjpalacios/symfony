@@ -128,12 +128,20 @@ BIO: "Bio"
 ROLES: "Roles"
 USER_ADDED_PROPERLY: "User added properly"
 USER_ADDED_ERROR: "Something went wrong when adding the new user"
+USER_ADDED_ERROR_PASSWORD: "In order to add a user you must enter a password"
 USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
 USER_ADDED_EMAIL_EXIST: "Email is already added to the database"
 ADD_BTN: "Add"
 RESET_BTN: "Reset"
 
-#User del
+# User del
 USER_REMOVED_PROPERLY: "User removed properly"
 USER_REMOVED_ERROR: "Something went wrong when removing the user"
 DONT_REMOVE_YOURSELF: "Why would you want to delete your own account?"
+
+# User edit
+USERS_EDIT_TITLE: "Edit user"
+GENERATE_NEW_PASSWORD: "Generate new password"
+USER_EDITED_PROPERLY: "User edited properly"
+USER_EDITED_ERROR: "Something went wrong when editing the user"
+CANCEL_PASSWORD: "Cancel"
