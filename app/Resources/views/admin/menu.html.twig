@@ -66,6 +66,12 @@
              {% endif %}" href="{{ path('admin_users',
         {'_locale': app.request.locale }) }}">
           {{ 'ADMIN_USERS'|trans }}</a>
+        <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_users_add' %}
+             active
+             {% endif %}" href="{{ path('admin_users_add',
+        {'_locale': app.request.locale }) }}">
+          {{ 'ADMIN_USERS_ADD'|trans }}</a>
       </div>
     </li>
   </ul>

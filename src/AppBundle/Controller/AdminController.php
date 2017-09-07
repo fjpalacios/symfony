@@ -327,4 +327,47 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Route("/users/add", name="admin_users_add")
+     */
+    public function usersAddAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $userRepo = $em->getRepository('AppBundle:User');
+            $userEmail = $userRepo->findOneBy(array(
+                    'email' => $form->get('email')->getData()
+                )
+            );
+            $userUsername = $userRepo->findOneBy(array(
+                    'username' => $form->get('username')->getData()
+                )
+            );
+            if (!$userEmail) {
+                if (!$userUsername) {
+                    $password = $passwordEncoder->encodePassword($user,
+                        $user->getPlainPassword());
+                    $user->setPassword($password);
+                    $em->persist($user);
+                    $flush = $em->flush();
+                    if (!$flush) {
+                        $status = 'USER_ADDED_PROPERLY';
+                    } else {
+                        $status = 'USER_ADDED_ERROR';
+                    }
+                } else {
+                    $status = 'USER_ADDED_USERNAME_EXIST';
+                }
+            } else {
+                $status = 'USER_ADDED_EMAIL_EXIST';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+        }
+        return $this->render('admin/users-add.html.twig',
+            array("form" => $form->createView())
+        );
+    }
 }
