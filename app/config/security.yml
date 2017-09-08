@@ -24,6 +24,8 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+                success_handler: security.authentication.customized_success_handler
+                default_target_path: home
             logout:
                 path: logout
                 target: /
