@@ -43,3 +43,9 @@ services:
 
     AppBundle\Twig\AppExtension:
         $locales: '%app.locales%'
+
+    security.authentication.customized_success_handler:
+        class: AppBundle\Services\LoginSuccessHandler
+        arguments: ["@router", "@security.authorization_checker"]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
