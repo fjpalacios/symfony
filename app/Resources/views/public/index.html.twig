@@ -3,25 +3,8 @@
 {% block body_id "public" %}
 
 {% block body %}
-  <div class="container mt-5 page">
-    {% for post in posts %}
-      <h2>
-        <a href="{{ path('post', { 'slug': post.slug }) }}">
-          {% if app.request.locale == 'es' %}
-            {{ post.titleEs }}
-          {% else %}
-            {{ post.titleEn }}
-          {% endif %}
-        </a>
-      </h2>
-      <div class="content">
-        {% if app.request.locale == 'es' %}
-          {{ post.contentEs|raw|md2html }}
-        {% else %}
-          {{ post.contentEn|raw|md2html }}
-        {% endif %}
-      </div>
-    {% endfor %}
+  <div class="container page">
+    {% include('public/_content.html.twig') %}
     {% if not posts %}
       <div class="alert alert-danger" role="alert">
         {{ 'PUBLIC_POSTS_NOT_FOUND'|trans({
