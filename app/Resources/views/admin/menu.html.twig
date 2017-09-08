@@ -52,6 +52,28 @@
           {{ 'ADMIN_PAGES_ADD'|trans }}</a>
       </div>
     </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#"
+         id="langDropdown" data-toggle="dropdown"
+         aria-haspopup="true"
+         aria-expanded="false">
+        {{ 'ADMIN_USERS'|trans }}</a>
+      <div class="dropdown-menu m-0 rounded-0"
+           aria-labelledby="langDropdown">
+        <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_users' %}
+             active
+             {% endif %}" href="{{ path('admin_users',
+        {'_locale': app.request.locale }) }}">
+          {{ 'ADMIN_USERS'|trans }}</a>
+        <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_users_add' %}
+             active
+             {% endif %}" href="{{ path('admin_users_add',
+        {'_locale': app.request.locale }) }}">
+          {{ 'ADMIN_USERS_ADD'|trans }}</a>
+      </div>
+    </li>
   </ul>
   <ul class="navbar-nav">
     <li class="nav-item dropdown">

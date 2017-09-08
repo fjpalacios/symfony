@@ -4,6 +4,14 @@ ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
 testing: "This is a test page"
 
+# Roles
+ROLE_USER: "User"
+User: "User"
+ROLE_ADMIN: "Admin"
+Admin: "Admin"
+ROLE_SUPER_ADMIN: "Superadmin"
+Superadmin: "Superadmin"
+
 # Navbar
 HOME: "Home"
 USER_HOME: "Home page"
@@ -20,23 +28,6 @@ PASSWORD: "Password"
 REPEAT_PASSWORD: "Repeat password"
 REMEMBER_LOGIN: "Keep me logged in"
 LOGIN_BTN: "Sign in"
-
-# Add user
-ADDUSER_TITLE: "Add new user"
-EMAIL: "Email"
-NAME: "Name"
-URL: "URL"
-BIO: "Bio"
-ROLES: "Rols"
-User: "User"
-Admin: "Admin"
-Superadmin: "Superadmin"
-USER_ADDED_PROPERLY: "User added properly"
-USER_ADDED_ERROR: "Something went wrong when adding the new user"
-USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
-USER_ADDED_EMAIL_EXIST: "Email is already added to the database"
-ADD_BTN: "Add"
-RESET_BTN: "Reset"
 
 # Posts
 ADMIN_POSTS: "Posts"
@@ -120,3 +111,37 @@ PAGE_EDITED_ERROR: "Something went wrong when editing the page"
 
 # Page view
 PAGE_EXCERPT: "Excerpt"
+
+# User
+ADMIN_USERS: "Users"
+USERS_TITLE: "Users"
+ADMIN_USERS_ADD: "Add user"
+USERS_ITEM_NAME: "Name"
+USERS_ITEM_ROLES: "Roles"
+
+# User add
+USERS_ADD_TITLE: "Add new user"
+EMAIL: "Email"
+NAME: "Name"
+URL: "URL"
+BIO: "Bio"
+ROLES: "Roles"
+USER_ADDED_PROPERLY: "User added properly"
+USER_ADDED_ERROR: "Something went wrong when adding the new user"
+USER_ADDED_ERROR_PASSWORD: "In order to add a user you must enter a password"
+USER_ADDED_USERNAME_EXIST: "Username is already added to the database"
+USER_ADDED_EMAIL_EXIST: "Email is already added to the database"
+ADD_BTN: "Add"
+RESET_BTN: "Reset"
+
+# User del
+USER_REMOVED_PROPERLY: "User removed properly"
+USER_REMOVED_ERROR: "Something went wrong when removing the user"
+DONT_REMOVE_YOURSELF: "Why would you want to delete your own account?"
+
+# User edit
+USERS_EDIT_TITLE: "Edit user"
+GENERATE_NEW_PASSWORD: "Generate new password"
+USER_EDITED_PROPERLY: "User edited properly"
+USER_EDITED_ERROR: "Something went wrong when editing the user"
+CANCEL_PASSWORD: "Cancel"

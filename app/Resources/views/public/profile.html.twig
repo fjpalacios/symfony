@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "profiles" %}
+
+{% block body %}
+  <div class="container page mt-5">
+    {% include('public/_user-profile.html.twig') %}
+    {% include('public/_content.html.twig') %}
+  </div>
+{% endblock %}

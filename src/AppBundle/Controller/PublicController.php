@@ -71,8 +71,42 @@ class PublicController extends Controller
         }
         return $this->render('public/post.html.twig', array(
                 'post' => $post,
-                'author' => $author,
+                'user' => $author,
                 'pages' => $pages
+        ));
+    }
+
+    /**
+     * @Route("/profile/{username}", name="profile")
+     */
+    public function profileAction(Request $request, User $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $posts = $postRepo->findBy(array(
+            'author' => $user->getId(),
+            'type' => 'post',
+            'status' => 'publish'), array(
+            'date' => 'DESC'
+        ));
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEs' => 'ASC'
+            ));
+        } else {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEn' => 'ASC'
+            ));
+        }
+        return $this->render('public/profile.html.twig', array(
+            'posts' => $posts,
+            'user' => $user,
+            'pages' => $pages
         ));
     }
 }

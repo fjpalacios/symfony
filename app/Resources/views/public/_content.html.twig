@@ -1,0 +1,37 @@
+<div class="row mt-5">
+  {% for post in posts %}
+    <div class="col-md-6 mb-4">
+      <div class="list">
+        <a href="{{ path('post', { 'slug': post.slug }) }}">
+          <img src="{{ asset('images/test-image.jpg') }}" alt="">
+          <div class="list__content">
+            <h4 class="list__title">
+              {% if app.request.locale == 'en' and post.titleEn %}
+                {{ post.titleEn }}
+              {% elseif app.request.locale == 'en' and post.titleEs %}
+                {{ post.titleEs }}
+              {% endif %}
+              {% if app.request.locale == 'es' and post.titleEs %}
+                {{ post.titleEs }}
+              {% elseif app.request.locale == 'es' and post.titleEn %}
+                {{ post.titleEn }}
+              {% endif %}
+            </h4>
+            <p class="list__text">
+              {% if app.request.locale == 'en' and post.titleEn %}
+                {{ post.excerptEn }}
+              {% elseif app.request.locale == 'en' and post.titleEs %}
+                {{ post.excerptEs }}
+              {% endif %}
+              {% if app.request.locale == 'es' and post.titleEs %}
+                {{ post.excerptEs }}
+              {% elseif app.request.locale == 'es' and post.titleEn %}
+                {{ post.excerptEn }}
+              {% endif %}
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>

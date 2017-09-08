@@ -88,3 +88,11 @@
   -ms-align-self: $align;
   align-self: $align;
 }
+
+@mixin transition($values) {
+  -webkit-transition: $values;
+  -moz-transition: $values;
+  -ms-transition: $values;
+  -o-transition: $values;
+  transition: $values;
+}

@@ -4,6 +4,14 @@ ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
 testing: "Esta es una página de prueba"
 
+# Roles
+ROLE_USER: "Usuario"
+User: "Usuario"
+ROLE_ADMIN: "Administrador"
+Admin: "Administrador"
+ROLE_SUPER_ADMIN: "Superadministrador"
+Superadmin: "Superadministrador"
+
 # Navbar
 HOME: "Inicio"
 USER_HOME: "Página de inicio"
@@ -20,23 +28,6 @@ PASSWORD: "Contraseña"
 REPEAT_PASSWORD: "Repite la contraseña"
 REMEMBER_LOGIN: "Recuérdame"
 LOGIN_BTN: "Iniciar sesión"
-
-# Add user
-ADDUSER_TITLE: "Nuevo usuario"
-EMAIL: "Correo"
-NAME: "Nombre"
-URL: "URL"
-BIO: "Bio"
-ROLES: "Permisos"
-User: "Usuario"
-Admin: "Administrador"
-Superadmin: "Superadministrador"
-USER_ADDED_PROPERLY: "El usuario se añadió correctamente"
-USER_ADDED_ERROR: "Algo salió mal al añadir el nuevo usuario"
-USER_ADDED_USERNAME_EXIST: "El usuario ya existe en la base de datos"
-USER_ADDED_EMAIL_EXIST: "El correo ya existe en la base de datos"
-ADD_BTN: "Añadir"
-RESET_BTN: "Limpiar"
 
 # Posts
 ADMIN_POSTS: "Artículos"
@@ -120,3 +111,37 @@ PAGE_EDITED_ERROR: "Algo salió mal al editar la página"
 
 # Page view
 PAGE_EXCERPT: "Extracto"
+
+# User
+ADMIN_USERS: "Usuarios"
+USERS_TITLE: "Usuarios"
+ADMIN_USERS_ADD: "Añadir usuario"
+USERS_ITEM_NAME: "Nombre"
+USERS_ITEM_ROLES: "Permisos"
+
+# User add
+USERS_ADD_TITLE: "Nuevo usuario"
+EMAIL: "Correo"
+NAME: "Nombre"
+URL: "URL"
+BIO: "Bio"
+ROLES: "Permisos"
+USER_ADDED_PROPERLY: "El usuario se añadió correctamente"
+USER_ADDED_ERROR: "Algo salió mal al añadir el nuevo usuario"
+USER_ADDED_ERROR_PASSWORD: "Para poder crear un usuario debes introducir una contraseña"
+USER_ADDED_USERNAME_EXIST: "El usuario ya existe en la base de datos"
+USER_ADDED_EMAIL_EXIST: "El correo ya existe en la base de datos"
+ADD_BTN: "Añadir"
+RESET_BTN: "Limpiar"
+
+# User del
+USER_REMOVED_PROPERLY: "El usuario se eliminó correctamente"
+USER_REMOVED_ERROR: "Algo salió mal al eliminar el usuario"
+DONT_REMOVE_YOURSELF: "¿Por qué querrías eliminar tu propia cuenta?"
+
+# User edit
+USERS_EDIT_TITLE: "Editar usuario"
+GENERATE_NEW_PASSWORD: "Generar nueva contraseña"
+USER_EDITED_PROPERLY: "El usuario se editó correctamente"
+USER_EDITED_ERROR: "Algo salió mal al editar el usuario"
+CANCEL_PASSWORD: "Cancelar"

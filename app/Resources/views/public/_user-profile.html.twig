@@ -1,0 +1,12 @@
+<div class="content user">
+  <div class="user__avatar">
+    <img src="{{ gravatar( user.email ) }}"
+         alt="{{ user.name }}"/>
+  </div>
+  <div class="user__bio">
+    <a href="{{ path('profile', { 'username': user.username }) }}">
+      <h2>{{ user.name }}</h2>
+    </a>
+    {{ user.bio|raw|md2html }}
+  </div>
+</div>
