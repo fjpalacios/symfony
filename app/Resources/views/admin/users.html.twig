@@ -35,7 +35,8 @@
               {{ user.roles|join(', ')|trans }}
             </td>
             <td class="text-center">
-              <a href="#"
+              <a href="{{ path('profile',
+              { 'username': user.username }) }}"
                  class="btn btn-sm btn-info text-center">
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </a>

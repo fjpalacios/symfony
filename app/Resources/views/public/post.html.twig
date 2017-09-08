@@ -16,7 +16,7 @@
         {{ post.titleEn }}
       {% endif %}
     </h2>
-    <div class="content">
+    <div class="content mb-4">
       {% if app.request.locale == 'en' and not post.titleEn or
       app.request.locale == 'es' and not post.titleEs %}
         <div class="alert alert-danger" role="alert">
@@ -34,17 +34,8 @@
         {{ post.contentEn|raw|md2html }}
       {% endif %}
     </div>
-    {% if author.bio %}
-      <div class="content mt-4 author">
-        <div class="author__avatar">
-          <img src="{{ gravatar( author.email ) }}"
-               alt="{{ author.name }}"/>
-        </div>
-        <div class="author__bio">
-          <h2>{{ author.name }}</h2>
-          {{ author.bio|raw|md2html }}
-        </div>
-      </div>
+    {% if user.bio and post.type != 'page' %}
+      {% include('/public/_user-profile.html.twig') %}
     {% endif %}
   </div>
 {% endblock %}
