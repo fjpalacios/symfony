@@ -76,7 +76,7 @@ class AdminController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findBy(array('type' => 'post'), array('date' => 'DESC'));
-        return $this->render('admin/posts.html.twig', array(
+        return $this->render('admin/posts/posts.html.twig', array(
                 'posts' => $posts
         ));
     }
@@ -115,7 +115,7 @@ class AdminController extends Controller
                     'id' => $id
             ));
         }
-        return $this->render('admin/posts-add.html.twig', array(
+        return $this->render('admin/posts/posts-add.html.twig', array(
                 'form' => $form->createView()));
     }
 
@@ -169,7 +169,7 @@ class AdminController extends Controller
                     'id' => $id
             ));
         }
-        return $this->render('admin/posts-edit.html.twig', array(
+        return $this->render('admin/posts/posts-edit.html.twig', array(
                 'form' => $form->createView(),
                 'author' => $author,
                 'id' => $id
@@ -184,7 +184,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('AppBundle:User');
         $author = $userRepo->find($post->getAuthor());
-        return $this->render('admin/posts-view.html.twig', array(
+        return $this->render('admin/posts/posts-view.html.twig', array(
                 'post' => $post,
                 'author' => $author
         ));
@@ -202,7 +202,7 @@ class AdminController extends Controller
         } else {
             $pages = $repository->findBy(array('type' => 'page'), array('titleEn' => 'ASC'));
         }
-        return $this->render('admin/pages.html.twig', array(
+        return $this->render('admin/pages/pages.html.twig', array(
                 'pages' => $pages
         ));
     }
@@ -240,7 +240,7 @@ class AdminController extends Controller
                     'id' => $id
             ));
         }
-        return $this->render('admin/pages-add.html.twig', array(
+        return $this->render('admin/pages/pages-add.html.twig', array(
                 'form' => $form->createView()));
     }
 
@@ -293,7 +293,7 @@ class AdminController extends Controller
                     'id' => $id
             ));
         }
-        return $this->render('admin/pages-edit.html.twig', array(
+        return $this->render('admin/pages/pages-edit.html.twig', array(
                 'form' => $form->createView(),
                 'author' => $author,
                 'id' => $id
@@ -308,7 +308,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('AppBundle:User');
         $author = $userRepo->find($page->getAuthor());
-        return $this->render('admin/pages-view.html.twig', array(
+        return $this->render('admin/pages/pages-view.html.twig', array(
                 'page' => $page,
                 'author' => $author
         ));
@@ -322,7 +322,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $userRepo = $em->getRepository('AppBundle:User');
         $users = $userRepo->findBy(array(), array('id' => 'ASC'));
-        return $this->render('admin/users.html.twig', array(
+        return $this->render('admin/users/users.html.twig', array(
             'users' => $users
         ));
     }
@@ -377,7 +377,7 @@ class AdminController extends Controller
                 ));
             }
         }
-        return $this->render('admin/users-add.html.twig',
+        return $this->render('admin/users/users-add.html.twig',
             array("form" => $form->createView())
         );
     }
@@ -442,7 +442,7 @@ class AdminController extends Controller
                 'id' => $id
             ));
         }
-        return $this->render('admin/users-edit.html.twig', array(
+        return $this->render('admin/users/users-edit.html.twig', array(
             'form' => $form->createView(),
             'id' => $id
         ));

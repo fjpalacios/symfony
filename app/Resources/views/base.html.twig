@@ -10,9 +10,9 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
   </head>
   <body id="{% block body_id %}{% endblock %}">
-    {% include 'header.html.twig' %}
+    {% include('_header.html.twig') %}
     {% block body %}{% endblock %}
-    {% include 'footer.html.twig' %}
+    {% include('_footer.html.twig') %}
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js.js') }}"></script>
   </body>
