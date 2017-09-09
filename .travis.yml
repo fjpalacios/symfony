@@ -31,8 +31,12 @@ before-install:
 install:
     - composer install
     - cp app/config/parameters.yml.dist app/config/parameters.yml
-    - php bin/console doctrine:database:create
-    - php bin/console doctrine:schema:create
+    - ./bin/console doctrine:database:create
+    - ./bin/console doctrine:schema:create
+    - ./bin/console doctrine:fixtures:load
 
 script:
     - ./vendor/bin/simple-phpunit -v
+    - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
+    - ./bin/console lint:twig app/Resources
+    - ./bin/console lint:yaml app/config
