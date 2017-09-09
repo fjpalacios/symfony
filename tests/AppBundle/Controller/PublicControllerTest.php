@@ -2,12 +2,10 @@
 
 namespace Tests\AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class PublicControllerTest extends WebTestCase
 {
@@ -17,7 +15,7 @@ class PublicControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'bob',
             'PHP_AUTH_PW' => '123456',
         ]);
-        $crawler = $client->request('GET', '/es/');
+        $client->request('GET', '/es/');
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -25,7 +23,7 @@ class PublicControllerTest extends WebTestCase
     public function testLogin()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/es/login/');
+        $client->request('GET', '/es/login/');
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -33,7 +31,7 @@ class PublicControllerTest extends WebTestCase
     public function testSitemap()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/sitemap.xml');
+        $client->request('GET', '/sitemap.xml');
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -41,7 +39,25 @@ class PublicControllerTest extends WebTestCase
     public function testRss()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/es/rss/');
+        $client->request('GET', '/es/rss/');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+    }
+
+    public function testPost()
+    {
+        $client = static::createClient();
+        $blogPost = $client->getContainer()->get('doctrine')
+            ->getRepository(Post::class)->find(1);
+        $client->request('GET', sprintf('/es/%s', $blogPost->getSlug()));
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+    }
+
+    public function testProfile()
+    {
+        $client = static::createClient();
+        $client->request('GET', '/es/profile/alice');
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -52,7 +68,7 @@ class PublicControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'alice',
             'PHP_AUTH_PW' => '123456',
         ]);
-        $crawler = $client->request('GET', '/es/admin/');
+        $client->request('GET', '/es/admin/');
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -63,7 +79,7 @@ class PublicControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'bob',
             'PHP_AUTH_PW' => '123456',
         ]);
-        $crawler = $client->request('GET', '/es/admin/');
+        $client->request('GET', '/es/admin/');
         $this->assertSame(Response::HTTP_FORBIDDEN,
             $client->getResponse()->getStatusCode());
     }
