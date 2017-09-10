@@ -30,9 +30,9 @@ before-install:
 install:
     - composer install
     - cp app/config/parameters.yml.dist app/config/parameters.yml
-    - ./bin/console doctrine:database:create
-    - ./bin/console doctrine:schema:create
-    - ./bin/console doctrine:fixtures:load --append
+    - ./bin/console doctrine:database:create --env=test
+    - ./bin/console doctrine:schema:create --env=test
+    - ./bin/console doctrine:fixtures:load -n --env=test
 
 script:
     - ./vendor/bin/simple-phpunit -v

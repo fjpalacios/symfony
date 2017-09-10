@@ -19,3 +19,10 @@ security:
     firewalls:
         main:
             http_basic: ~
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        memory: true
+        path: "%kernel.project_dir%/test.sqlite"
+        charset: UTF8

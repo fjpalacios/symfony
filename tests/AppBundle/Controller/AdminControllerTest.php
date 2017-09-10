@@ -38,6 +38,8 @@ class AdminControllerTest extends WebTestCase
             'PHP_AUTH_PW' => '123456',
         ]);
         $crawler = $client->request('GET', '/es/admin/posts/add');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
             'appbundle_post[titleEs]' => $postTitleEs,
             'appbundle_post[contentEs]' => $postContentEs,
@@ -66,6 +68,8 @@ class AdminControllerTest extends WebTestCase
             'PHP_AUTH_PW' => '123456',
         ]);
         $crawler = $client->request('GET', '/es/admin/posts/edit/1');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
             'appbundle_post[titleEn]' => $newBlogPostTitle,
         ));
@@ -82,9 +86,9 @@ class AdminControllerTest extends WebTestCase
             'PHP_AUTH_PW' => '123456',
         ]);
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/es/admin/posts/del/2');
+        $crawler = $client->request('GET', '/es/admin/posts/del/1');
         $post = $client->getContainer()->get('doctrine')
-            ->getRepository(Post::class)->find(2);
+            ->getRepository(Post::class)->find(1);
         $this->assertNull($post);
     }
 
@@ -101,6 +105,8 @@ class AdminControllerTest extends WebTestCase
         $newUserBio = 'Testing Bio';
         $newUserUrl = 'hhtps://sargantanacode.es/';
         $crawler = $client->request('GET', '/es/admin/users/add');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
             'appbundle_user[plainPassword][first]' => $newUserPassword,
             'appbundle_user[plainPassword][second]' => $newUserPassword,
@@ -127,13 +133,15 @@ class AdminControllerTest extends WebTestCase
             'PHP_AUTH_USER' => 'alice',
             'PHP_AUTH_PW' => '123456',
         ]);
-        $crawler = $client->request('GET', '/es/admin/users/edit/4');
+        $crawler = $client->request('GET', '/es/admin/users/edit/2');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
             'appbundle_user[username]' => $newUsername,
         ));
         $client->submit($form);
         $post = $client->getContainer()->get('doctrine')
-            ->getRepository(User::class)->find(4);
+            ->getRepository(User::class)->find(2);
         $this->assertSame($newUsername, $post->getUsername());
     }
 
@@ -144,9 +152,9 @@ class AdminControllerTest extends WebTestCase
             'PHP_AUTH_PW' => '123456',
         ]);
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/es/admin/users/del/4');
+        $crawler = $client->request('GET', '/es/admin/users/del/2');
         $user = $client->getContainer()->get('doctrine')
-            ->getRepository(User::class)->find(4);
+            ->getRepository(User::class)->find(2);
         $this->assertNull($user);
     }
 }

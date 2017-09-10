@@ -25,6 +25,7 @@ This application is being developed from scratch using the [Symfony](https://sym
 * [Parsedown](https://github.com/erusev/parsedown)
 * [highlight.js](https://github.com/isagalaev/highlight.js)
 * [OrnicarGravatarBundle](https://github.com/henrikbjorn/GravatarBundle)
+* [DAMADoctrineTestBundle](https://github.com/dmaicher/doctrine-test-bundle)
 
 # Contributing
 Read the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information about to
