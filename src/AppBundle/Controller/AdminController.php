@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
+use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
@@ -459,5 +461,31 @@ class AdminController extends Controller
         return $this->render('admin/categories/categories.html.twig', array(
             'categories' => $categories
         ));
+    }
+
+    /**
+     * @Route("/categories/add", name="admin_categories_add")
+     */
+    public function categoriesAddAction(Request $request)
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = new Slugify();
+            $category->setSlug($slug->slugify($category->getName()));
+            $em->persist($category);
+            $flush = $em->flush();
+            $id = $category->getId();
+            if (!$flush) {
+                $status = 'CATEGORY_ADDED_PROPERLY';
+            } else {
+                $status = 'CATEGORY_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+        }
+        return $this->render('admin/categories/categories-add.html.twig', array(
+            'form' => $form->createView()));
     }
 }

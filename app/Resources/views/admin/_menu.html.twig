@@ -73,6 +73,12 @@
              {% endif %}" href="{{ path('admin_categories',
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_CATEGORIES'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_categories_add' %}
+             active
+             {% endif %}" href="{{ path('admin_categories_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -135,6 +141,9 @@
           <a class="dropdown-item" href="{{ path('admin_pages_add',
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_PAGES_ADD'|trans }}</a>
+          <a class="dropdown-item" href="{{ path('admin_categories_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ path('logout',
           {'_locale': app.request.locale }) }}">

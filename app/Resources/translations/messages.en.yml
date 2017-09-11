@@ -154,3 +154,12 @@ CATEGORIES_ITEM_IMAGE: "Image"
 CATEGORIES_ITEM_NAME: "Name"
 CATEGORIES_ITEM_DESC: "Description"
 CATEGORIES_NOT_FOUND: "There are currently no categories added, do you want to %link_start%add one%link_end% now?"
+
+# Category add
+CATEGORIES_ADD_TITLE: "Add new category"
+CATEGORY_NAME: "Category name"
+CATEGORY_DESC_ES: "Descripción"
+CATEGORY_DESC_EN: "Description"
+CATEGORY:IMAGE: "Image"
+CATEGORY_ADDED_PROPERLY: "Category added properly"
+CATEGORY_ADDED_ERROR: "Something went wrong when adding the new category"
