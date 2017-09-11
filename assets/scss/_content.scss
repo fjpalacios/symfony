@@ -109,8 +109,11 @@
     vertical-align: middle;
   }
   img {
-    border-radius: 50%;
     height: 50px;
+    background-color: $white;
+    padding: 3px;
+    border: 1px solid $gray;
+    border-radius: 50%;
   }
 }
 

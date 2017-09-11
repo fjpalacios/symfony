@@ -160,6 +160,12 @@ CATEGORIES_ADD_TITLE: "Añadir nueva categoría"
 CATEGORY_NAME: "Nombre de la categoría"
 CATEGORY_DESC_ES: "Descripción"
 CATEGORY_DESC_EN: "Description"
-CATEGORY:IMAGE: "Imagen"
+CATEGORY_IMAGE: "Imagen"
 CATEGORY_ADDED_PROPERLY: "La categoría se añadió correctamente"
 CATEGORY_ADDED_ERROR: "Algo salió mal al añadir la nueva categoría"
+
+# Category edit
+CATEGORIES_EDIT_TITLE: "Editar categoría"
+CATEGORY_SLUG: "Enlace permanente"
+CATEGORY_EDITED_PROPERLY: "La categoría se editó correctamente"
+CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
