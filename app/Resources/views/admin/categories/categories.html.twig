@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "admin-categories" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">{{ 'CATEGORIES_TITLE'|trans }}</h2>
+      {% if categories %}
+      <table class="table table-striped table-categories">
+        <thead>
+        <tr>
+          <th class="d-none d-lg-table-cell text-center">
+            {{ 'CATEGORIES_ITEM_IMAGE'|trans }}
+          </th>
+          <th class="text-center">
+            {{ 'CATEGORIES_ITEM_NAME'|trans }}
+          </th>
+          <th class="d-none d-sm-table-cell text-center">
+            {{ 'CATEGORIES_ITEM_DESC'|trans }}
+          </th>
+          <th class="text-center">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% endif %}
+        {% for category in categories %}
+          <tr>
+            <td class="d-none d-lg-table-cell text-center">
+              <img src="{{ asset('images/test-category.jpg') }}" alt="">
+            </td>
+            <td class="d-none d-sm-table-cell text-center">
+              {{ category.name }}
+            </td>
+            {% if app.request.locale == 'es' and category.descriptionEs %}
+              <td>{{ category.descriptionEs }}</td>
+            {% elseif app.request.locale == 'es' and category.descriptionEn %}
+              <td>{{ category.descriptionEn }}</td>
+            {% endif %}
+            {% if app.request.locale == 'en' and category.descriptionEn %}
+              <td>{{ category.descriptionEn }}</td>
+            {% elseif app.request.locale == 'en' and category.descriptionEs %}
+              <td>{{ category.descriptionEs }}</td>
+            {% endif %}
+            <td class="text-center">
+              <a href="#"
+                 class="btn btn-sm btn-info text-center">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </a>
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="#"
+                   class="btn btn-sm btn-primary text-center">
+                  <i class="fa fa-edit"
+                     aria-hidden="true"></i>
+                </a>
+                <a href="#"
+                   class="btn btn-sm btn-danger text-center">
+                  <i class="fa fa-remove"
+                     aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        {% if not categories %}
+        <div class="alert alert-danger" role="alert">
+          {{ 'CATEGORIES_NOT_FOUND'|trans({
+            '%link_start%': '<a href="#">',
+            '%link_end%': '</a>'})|raw }}
+        </div>
+        {% else %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

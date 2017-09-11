@@ -109,6 +109,13 @@ class Post
     /**
      * @var string
      *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     */
+    private $category;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="navbar", type="boolean", options={"default" : 0})
      */
     private $navbar;
@@ -438,6 +445,30 @@ class Post
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Post
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**

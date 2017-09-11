@@ -145,3 +145,12 @@ GENERATE_NEW_PASSWORD: "Generar nueva contraseña"
 USER_EDITED_PROPERLY: "El usuario se editó correctamente"
 USER_EDITED_ERROR: "Algo salió mal al editar el usuario"
 CANCEL_PASSWORD: "Cancelar"
+
+# Categories
+ADMIN_CATEGORIES: "Categorías"
+CATEGORIES_TITLE: "Categorías"
+ADMIN_CATEGORIES_ADD: "Añadir categoría"
+CATEGORIES_ITEM_IMAGE: "Imagen"
+CATEGORIES_ITEM_NAME: "Nombre"
+CATEGORIES_ITEM_DESC: "Descripción"
+CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría añadida, anímate y %link_start%añade una ahora%link_end%."

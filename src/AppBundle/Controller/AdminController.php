@@ -447,4 +447,17 @@ class AdminController extends Controller
             'id' => $id
         ));
     }
+
+    /**
+     * @Route("/categories", name="admin_categories")
+     */
+    public function categoriesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepo = $em->getRepository('AppBundle:Category');
+        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
+        return $this->render('admin/categories/categories.html.twig', array(
+            'categories' => $categories
+        ));
+    }
 }
