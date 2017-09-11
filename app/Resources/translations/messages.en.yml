@@ -169,3 +169,7 @@ CATEGORIES_EDIT_TITLE: "Edit category"
 CATEGORY_SLUG: "Permanent link"
 CATEGORY_EDITED_PROPERLY: "Category edited properly"
 CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
+
+# Category del
+CATEGORY_REMOVED_PROPERLY: "Category removed properly"
+CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"

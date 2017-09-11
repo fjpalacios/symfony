@@ -493,6 +493,24 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/categories/del/{id}", name="admin_categories_del")
+     */
+    public function categoriesRemoveAction(Category $category)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'CATEGORY_REMOVED_PROPERLY';
+        } else {
+            $status = 'CATEGORY_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_categories');
+    }
+
+    /**
      * @Route("/categories/edit/{id}", name="admin_categories_edit")
      */
     public function categoriesEditAction(Request $request, $id)
