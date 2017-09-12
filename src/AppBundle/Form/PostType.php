@@ -55,6 +55,13 @@ class PostType extends AbstractType
                         ),
                         'multiple' => false
                 ))
+                ->add('category', EntityType::class, array(
+                        'class' => 'AppBundle:Category',
+                        'choice_label' => 'name',
+                        'choice_value' => 'id',
+                        'placeholder' => 'CHOOSE_A_CATEGORY',
+                        'multiple' => false
+                ))
                 ->add('navbar', ChoiceType::class, array(
                         'choices' => array(
                                 'No' => 0,
