@@ -69,11 +69,23 @@ class PublicController extends Controller
                     'titleEn' => 'ASC'
             ));
         }
-        return $this->render('public/post.html.twig', array(
+        $categoryRepo = $em->getRepository('AppBundle:Category');
+        $categories = $categoryRepo->findAll();
+        $slug = $request->attributes->get('slug');
+        if ($slug == 'categorias') {
+            return $this->render('public/categories.html.twig', array(
+                'pages' => $pages,
+                'categories' => $categories
+            ));
+        } elseif ($slug == 'login') {
+            return $this->redirectToRoute('login');
+        } else {
+            return $this->render('public/post.html.twig', array(
                 'post' => $post,
                 'user' => $author,
                 'pages' => $pages
-        ));
+            ));
+        }
     }
 
     /**

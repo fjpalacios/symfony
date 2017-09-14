@@ -23,7 +23,8 @@ class AppExtension extends \Twig_Extension
     {
         return [
                 new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
-                new \Twig_SimpleFunction('has_content', [$this, 'userHasPublishedContent'])
+                new \Twig_SimpleFunction('has_content', [$this, 'userHasPublishedContent']),
+                new \Twig_SimpleFunction('has_posts', [$this, 'categoryHasPosts']),
         ];
     }
 
@@ -62,12 +63,30 @@ class AppExtension extends \Twig_Extension
     }
 
     /*
-     * Checks if given user id has (or not) published content
+     * Checks if a given user id has (or not) published content
      */
     public function userHasPublishedContent($id)
     {
         $postRepo = $this->doctrine->getRepository('AppBundle:Post');
         $hasContent = $postRepo->findOneBy(array('author' => $id));
+        if ($hasContent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+     * Checks if a given category id has (or not) published posts
+     */
+    public function categoryHasPosts($id)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $hasContent = $postRepo->findOneBy(array(
+                'category' => $id,
+                'status' => 'publish'
+            )
+        );
         if ($hasContent) {
             return true;
         } else {
