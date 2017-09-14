@@ -1,3 +1,22 @@
 <footer class="footer mt-5">
-  <p>{{ 'testing'|trans }}</p
+  <p>{{ 'GITHUB'|trans({
+      '%link_start%': '<a href="https://github.com/sargantanacode/sargantanacode">',
+      '%link_end%': '</a>'})|raw }}</p>
+  <ul class="footer__list">
+    <li>
+      <a href="https://www.facebook.com/sargantanacode">
+        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/sargantanacode">
+        <i class="fa fa-github-square" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/sargantanacode">
+        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
 </footer>

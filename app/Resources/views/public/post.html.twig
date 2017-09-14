@@ -6,7 +6,15 @@
   <div class="container mt-5 page">
     <div class="content mb-4">
       {% if post.type == 'post' %}
-        <span class="category-badge">{{ post.category.name }}</span>
+        <span class="date-badge">
+          {{ post.date|date("d/m/Y") }}
+        </span>
+        <span class="category-badge">
+          <a href="{{ path('category', { 'slug': post.category.slug }) }}"
+             class="badge-link">
+          {{ post.category.name }}
+          </a>
+        </span>
         <img src="{{ asset('images/test-image.jpg') }}" alt=""
              class="post-header">
       {% endif %}

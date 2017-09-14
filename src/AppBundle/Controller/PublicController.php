@@ -73,6 +73,12 @@ class PublicController extends Controller
         $categoryRepo = $em->getRepository('AppBundle:Category');
         $categories = $categoryRepo->findAll();
         $slug = $request->attributes->get('slug');
+        if (!$this->get('security.authorization_checker')
+            ->isGranted('ROLE_ADMIN')) {
+            $postView = $postRepo->find($post->getId());
+            $postView->setViews($postView->getViews() + 1);
+            $em->flush();
+        }
         if ($slug == 'categorias') {
             return $this->render('public/categories.html.twig', array(
                 'pages' => $pages,

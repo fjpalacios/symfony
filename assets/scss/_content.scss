@@ -30,7 +30,7 @@
   h2, h3, h4, h5, h6 {
     color: $entry-link;
   }
-  a:not(.btn) {
+  a:not(.btn, .badge-link) {
     color: $entry-link;
     &:hover {
       text-decoration: none;
@@ -137,6 +137,7 @@
 }
 
 .category-badge {
+  @include background-opacity($main-color, 0.7);
   position: absolute;
   white-space: nowrap;
   vertical-align: middle;
@@ -144,7 +145,27 @@
   right: 25px;
   top: 10px;
   padding: 3px 7px;
-  background-color: $main-color;
+  color: $white;
+  font-size: 13px;
+  border-radius: 10px;
+  a {
+    color: $white;
+    &:hover {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}
+
+.date-badge {
+  @include background-opacity($main-color, 0.7);
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  left: 25px;
+  top: 10px;
+  padding: 3px 7px;
   color: $white;
   font-size: 13px;
   border-radius: 10px;

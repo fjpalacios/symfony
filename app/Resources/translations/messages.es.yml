@@ -2,6 +2,7 @@ TITLE: "Título"
 DESC: "Esta es una descripción provisional"
 ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
+GITHUB: "El código fuente de esta página es público, lo puedes encnontrar en %link_start%nuestro repositorio de GitHub%link_end%"
 testing: "Esta es una página de prueba"
 
 # Roles

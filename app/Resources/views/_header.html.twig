@@ -1,10 +1,9 @@
 <header>
   <section id="header" class="container-fluid px-0">
     <div class="header">
-      <h1>
-        <a href="{{ path('home',
-        {'_locale': app.request.locale }) }}">{{ 'TITLE'|trans }}</a>
-      </h1>
+        <a href="{{ path('home', {'_locale': app.request.locale }) }}">
+          {{ include('_logo.html.twig') }}
+        </a>
     </div>
       {% if '/admin' in app.request.uri and is_granted('ROLE_ADMIN') %}
         {% include('admin/_menu.html.twig') %}

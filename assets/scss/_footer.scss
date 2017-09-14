@@ -1,0 +1,23 @@
+.footer {
+  padding: 15px;
+  a {
+    color: $main-color-hover;
+    &:hover {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+  &__list {
+    list-style-type: none;
+    text-align: center;
+    font-size: 35px;
+    margin: 5px auto 0 auto;
+    li {
+      display: inline;
+      margin-right: 3%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
