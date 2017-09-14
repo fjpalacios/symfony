@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
+use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
@@ -445,6 +447,96 @@ class AdminController extends Controller
         return $this->render('admin/users/users-edit.html.twig', array(
             'form' => $form->createView(),
             'id' => $id
+        ));
+    }
+
+    /**
+     * @Route("/categories", name="admin_categories")
+     */
+    public function categoriesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepo = $em->getRepository('AppBundle:Category');
+        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
+        return $this->render('admin/categories/categories.html.twig', array(
+            'categories' => $categories
+        ));
+    }
+
+    /**
+     * @Route("/categories/add", name="admin_categories_add")
+     */
+    public function categoriesAddAction(Request $request)
+    {
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = new Slugify();
+            $category->setSlug($slug->slugify($category->getName()));
+            $em->persist($category);
+            $flush = $em->flush();
+            $id = $category->getId();
+            if (!$flush) {
+                $status = 'CATEGORY_ADDED_PROPERLY';
+            } else {
+                $status = 'CATEGORY_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_categories_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/categories/categories-add.html.twig', array(
+            'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/categories/del/{id}", name="admin_categories_del")
+     */
+    public function categoriesRemoveAction(Category $category)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'CATEGORY_REMOVED_PROPERLY';
+        } else {
+            $status = 'CATEGORY_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_categories');
+    }
+
+    /**
+     * @Route("/categories/edit/{id}", name="admin_categories_edit")
+     */
+    public function categoriesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepo = $em->getRepository('AppBundle:Category');
+        $category = $categoryRepo->find($id);
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = new Slugify();
+            $category->setSlug($slug->slugify($form->get('slug')->getData()));
+            $em->persist($category);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'CATEGORY_EDITED_PROPERLY';
+            } else {
+                $status = 'CATEGORY_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_categories_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/categories/categories-edit.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 }

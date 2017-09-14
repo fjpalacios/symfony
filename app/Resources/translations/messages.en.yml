@@ -51,6 +51,8 @@ POST_CONTENT_ES: "Contenido"
 POST_CONTENT_EN: "Content"
 POST_EXCERPT_ES: "Extracto"
 POST_EXCERPT_EN: "Excerpt"
+POST_CATEGORY: "Category"
+CHOOSE_A_CATEGORY: "Choose a category"
 POST_STATUS: "Status"
 Draft: "Draft"
 Publish: "Publish"
@@ -145,3 +147,32 @@ GENERATE_NEW_PASSWORD: "Generate new password"
 USER_EDITED_PROPERLY: "User edited properly"
 USER_EDITED_ERROR: "Something went wrong when editing the user"
 CANCEL_PASSWORD: "Cancel"
+
+# Categories
+ADMIN_CATEGORIES: "Categories"
+CATEGORIES_TITLE: "Categories"
+ADMIN_CATEGORIES_ADD: "Add category"
+CATEGORIES_ITEM_IMAGE: "Image"
+CATEGORIES_ITEM_NAME: "Name"
+CATEGORIES_ITEM_DESC: "Description"
+CATEGORIES_NOT_FOUND: "There are currently no categories added, do you want to %link_start%add one%link_end% now?"
+PUBLIC_CATEGORIES_NOT_FOUND: "There are currently no categories added, if you have permissions you can %link_start%add one%link_end% now."
+
+# Category add
+CATEGORIES_ADD_TITLE: "Add new category"
+CATEGORY_NAME: "Category name"
+CATEGORY_DESC_ES: "Descripción"
+CATEGORY_DESC_EN: "Description"
+CATEGORY_IMAGE: "Image"
+CATEGORY_ADDED_PROPERLY: "Category added properly"
+CATEGORY_ADDED_ERROR: "Something went wrong when adding the new category"
+
+# Category edit
+CATEGORIES_EDIT_TITLE: "Edit category"
+CATEGORY_SLUG: "Permanent link"
+CATEGORY_EDITED_PROPERLY: "Category edited properly"
+CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
+
+# Category del
+CATEGORY_REMOVED_PROPERLY: "Category removed properly"
+CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"

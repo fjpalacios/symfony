@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Controller;
 
 use AppBundle\DataFixtures\FixturesTrait;
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -155,6 +156,65 @@ class AdminControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/es/admin/users/del/2');
         $user = $client->getContainer()->get('doctrine')
             ->getRepository(User::class)->find(2);
+        $this->assertNull($user);
+    }
+
+    public function testAddCategory()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'charlie',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $newCategoryName = 'category' . mt_rand();
+        $newDescriptionEs = 'Nueva categoría de prueba';
+        $newDescriptionEn = 'New test category';
+        $crawler = $client->request('GET', '/es/admin/categories/add');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_category[name]' => $newCategoryName,
+            'appbundle_category[descriptionEs]' => $newDescriptionEs,
+            'appbundle_category[descriptionEn]' => $newDescriptionEn
+        ));
+        $client->submit($form);
+        $category = $client->getContainer()->get('doctrine')
+            ->getRepository(Category::class)->findOneBy(array(
+                'name' => $newCategoryName,
+            ));
+        $this->assertNotNull($category);
+        $this->assertSame($newCategoryName, $category->getName());
+        $this->assertSame($newDescriptionEn, $category->getDescriptionEn());
+    }
+
+    public function testEditCategory()
+    {
+        $newCategoryName = 'category' . mt_rand();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'charlie',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $crawler = $client->request('GET', '/es/admin/categories/edit/1');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_category[name]' => $newCategoryName
+        ));
+        $client->submit($form);
+        $category = $client->getContainer()->get('doctrine')
+            ->getRepository(Category::class)->find(1);
+        $this->assertSame($newCategoryName, $category->getName());
+    }
+
+    public function testDeleteCategory()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'alice',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/es/admin/categories/del/1');
+        $user = $client->getContainer()->get('doctrine')
+            ->getRepository(Category::class)->find(1);
         $this->assertNull($user);
     }
 }

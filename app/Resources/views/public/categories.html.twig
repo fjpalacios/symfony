@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "categories" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="row">
+      {% for category in categories %}
+        {% if has_posts(category.id) %}
+          <div class="col-12 col-sm-6 col-md-3 mb-4">
+            <div class="list">
+              <a href="{{ path('category', { 'slug': category.slug }) }}">
+                <img src="{{ asset('images/test-category.jpg') }}" alt=""
+                     class="list__image">
+                <div class="list__content">
+                  <h4 class="list__title">{{ category.name }}</h4>
+                  <p class="list__text">
+                    {% if app.request.locale == 'en' and category.descriptionEn %}
+                      {{ category.descriptionEn }}
+                    {% elseif app.request.locale == 'en' and category.descriptionEs %}
+                      {{ category.descriptionEs }}
+                    {% endif %}
+                    {% if app.request.locale == 'es' and category.descriptionEs %}
+                      {{ category.descriptionEs }}
+                    {% elseif app.request.locale == 'es' and category.descriptionEn %}
+                      {{ category.descriptionEn }}
+                    {% endif %}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if not categories %}
+      <div class="alert alert-danger" role="alert">
+        {{ 'PUBLIC_CATEGORIES_NOT_FOUND'|trans({
+          '%link_start%': '<a href="'~path('admin_categories_add')~'">',
+          '%link_end%': '</a>'})|raw }}
+      </div>
+    {% endif %}
+  </div>
+  </div>
+{% endblock %}

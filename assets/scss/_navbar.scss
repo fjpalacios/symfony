@@ -8,6 +8,7 @@
 .navbar {
   background: $main-color;
   min-height: 40px;
+  z-index: 999;
   .active {
     background-color: $main-color-highlight;
     .nav-link {

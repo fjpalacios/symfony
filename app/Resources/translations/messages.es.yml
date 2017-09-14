@@ -51,6 +51,8 @@ POST_CONTENT_ES: "Contenido"
 POST_CONTENT_EN: "Content"
 POST_EXCERPT_ES: "Extracto"
 POST_EXCERPT_EN: "Excerpt"
+POST_CATEGORY: "Categoría"
+CHOOSE_A_CATEGORY: "Elige una categoría"
 POST_STATUS: "Estado"
 Draft: "Borrador"
 Publish: "Publicado"
@@ -145,3 +147,32 @@ GENERATE_NEW_PASSWORD: "Generar nueva contraseña"
 USER_EDITED_PROPERLY: "El usuario se editó correctamente"
 USER_EDITED_ERROR: "Algo salió mal al editar el usuario"
 CANCEL_PASSWORD: "Cancelar"
+
+# Categories
+ADMIN_CATEGORIES: "Categorías"
+CATEGORIES_TITLE: "Categorías"
+ADMIN_CATEGORIES_ADD: "Añadir categoría"
+CATEGORIES_ITEM_IMAGE: "Imagen"
+CATEGORIES_ITEM_NAME: "Nombre"
+CATEGORIES_ITEM_DESC: "Descripción"
+CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría añadida, anímate y %link_start%añade una ahora%link_end%."
+PUBLIC_CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría publicada, si tienes permisos puedes %link_start%añadir una ahora%link_end%."
+
+# Category add
+CATEGORIES_ADD_TITLE: "Añadir nueva categoría"
+CATEGORY_NAME: "Nombre de la categoría"
+CATEGORY_DESC_ES: "Descripción"
+CATEGORY_DESC_EN: "Description"
+CATEGORY_IMAGE: "Imagen"
+CATEGORY_ADDED_PROPERLY: "La categoría se añadió correctamente"
+CATEGORY_ADDED_ERROR: "Algo salió mal al añadir la nueva categoría"
+
+# Category edit
+CATEGORIES_EDIT_TITLE: "Editar categoría"
+CATEGORY_SLUG: "Enlace permanente"
+CATEGORY_EDITED_PROPERLY: "La categoría se editó correctamente"
+CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
+
+# Category del
+CATEGORY_REMOVED_PROPERLY: "La categoría se eliminó correctamente"
+CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"

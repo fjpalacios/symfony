@@ -32,6 +32,7 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setModDate(new \DateTime('now - ' . $i . 'days'));
             $post->setSlug($slug->slugify($post->getTitleEs()));
             $post->setType($this->getRandomType());
+            $post->setCategory($this->getReference('category'));
             $post->setNavbar(0);
             $post->setCommentStatus('open');
             $post->setCommentCount(0);
@@ -46,7 +47,8 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
     public function getDependencies()
     {
         return [
-            UserFixtures::class
+            UserFixtures::class,
+            CategoryFixtures::class
         ];
     }
 

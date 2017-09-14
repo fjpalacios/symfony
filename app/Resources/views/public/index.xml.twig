@@ -45,6 +45,7 @@
         <guid>{{ url('post', {'slug': post.slug}) }}</guid>
         <pubDate>{{ post.date|date(format='r', timezone='GMT') }}</pubDate>
         <author>{{ post.author.name }}</author>
+        <category>{{ post.category.name }}</category>
       </item>
     {% endfor %}
   </channel>

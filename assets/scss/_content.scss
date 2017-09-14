@@ -6,6 +6,24 @@
     font-size: 17px;
     color: $font-color;
   }
+  .post-body {
+    img {
+      @include breakpoint-up(small) {
+        margin: 0 -15px 15px -15px;
+        width: calc(100% + #{30px});
+      }
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  img.post-header {
+    @include breakpoint-up(small) {
+      margin: -15px -15px 15px -15px;
+      width: calc(100% + #{30px});
+    }
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
 
 .page {
@@ -39,14 +57,14 @@
   padding: 15px;
 }
 
-.user {
+.user, .category {
   @include breakpoint-up(small) {
     @include flex-direction(row);
   }
   @include flexbox();
   @include justify-content(space-netween);
   @include flex-direction(column);
-  &__avatar {
+  &__avatar, &__image {
     @include breakpoint-up(small) {
       @include justify-content(center);
       margin-right: 3%;
@@ -62,9 +80,10 @@
       padding: 3px;
       border: 1px solid $gray;
       border-radius: 50%;
+      width: 90px;
     }
   }
-  &__bio {
+  &__bio, &__desc {
     @include breakpoint-down(small) {
       margin-top: 10%;
     }
@@ -102,6 +121,33 @@
       color: $font-color;
     }
   }
+}
+
+.table-categories {
+  td {
+    vertical-align: middle;
+  }
+  img {
+    height: 50px;
+    background-color: $white;
+    padding: 3px;
+    border: 1px solid $gray;
+    border-radius: 50%;
+  }
+}
+
+.category-badge {
+  position: absolute;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-align: center;
+  right: 25px;
+  top: 10px;
+  padding: 3px 7px;
+  background-color: $main-color;
+  color: $white;
+  font-size: 13px;
+  border-radius: 10px;
 }
 
 .footer {
