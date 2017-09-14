@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id "categories" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content category">
+      <div class="category__avatar">
+        <img src="{{ asset('images/test-category.jpg') }}"
+             alt="{{ category.name }}"/>
+      </div>
+      <div class="category__desc">
+        <h2>{{ category.name }}</h2>
+        {% if app.request.locale == 'en' and category.descriptionEn %}
+          {{ category.descriptionEn }}
+        {% elseif app.request.locale == 'en' and category.descriptionEs %}
+          {{ category.descriptionEs }}
+        {% endif %}
+        {% if app.request.locale == 'es' and category.descriptionEs %}
+          {{ category.descriptionEs }}
+        {% elseif app.request.locale == 'es' and category.descriptionEn %}
+          {{ category.descriptionEn }}
+        {% endif %}
+      </div>
+    </div>
+    {% include('public/_content.html.twig') %}
+  </div>
+{% endblock %}

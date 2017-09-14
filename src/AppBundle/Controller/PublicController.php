@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Post;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
@@ -118,6 +119,40 @@ class PublicController extends Controller
         return $this->render('public/profile.html.twig', array(
             'posts' => $posts,
             'user' => $user,
+            'pages' => $pages
+        ));
+    }
+
+    /**
+     * @Route("/category/{slug}", name="category")
+     */
+    public function categoryAction(Request $request, Category $category)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $posts = $postRepo->findBy(array(
+            'category' => $category->getId(),
+            'type' => 'post',
+            'status' => 'publish'), array(
+            'date' => 'DESC'
+        ));
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEs' => 'ASC'
+            ));
+        } else {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEn' => 'ASC'
+            ));
+        }
+        return $this->render('public/category.html.twig', array(
+            'posts' => $posts,
+            'category' => $category,
             'pages' => $pages
         ));
     }

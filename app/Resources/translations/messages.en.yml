@@ -156,6 +156,7 @@ CATEGORIES_ITEM_IMAGE: "Image"
 CATEGORIES_ITEM_NAME: "Name"
 CATEGORIES_ITEM_DESC: "Description"
 CATEGORIES_NOT_FOUND: "There are currently no categories added, do you want to %link_start%add one%link_end% now?"
+PUBLIC_CATEGORIES_NOT_FOUND: "There are currently no categories added, if you have permissions you can %link_start%add one%link_end% now."
 
 # Category add
 CATEGORIES_ADD_TITLE: "Add new category"
