@@ -50,7 +50,7 @@
               <td>{{ category.descriptionEs }}</td>
             {% endif %}
             <td class="text-center">
-              <a href="#"
+              <a href="{{ path('category', { 'slug': category.slug }) }}"
                  class="btn btn-sm btn-info text-center">
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </a>
