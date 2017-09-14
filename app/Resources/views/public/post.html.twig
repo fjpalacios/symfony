@@ -5,9 +5,11 @@
 {% block body %}
   <div class="container mt-5 page">
     <div class="content mb-4">
-      <span class="category-badge">{{ post.category.name }}</span>
-      <img src="{{ asset('images/test-image.jpg') }}" alt=""
-           class="post-header">
+      {% if post.type == 'post' %}
+        <span class="category-badge">{{ post.category.name }}</span>
+        <img src="{{ asset('images/test-image.jpg') }}" alt=""
+             class="post-header">
+      {% endif %}
       <h2 class="post-title">
         {% if app.request.locale == 'en' and post.titleEn %}
           {{ post.titleEn }}
