@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+  {% if app.request.locale == 'en' and post.titleEn %}
+    {{ post.titleEn }} — SargantanaCode
+  {% elseif app.request.locale == 'en' and post.titleEs %}
+    {{ post.titleEs }} — SargantanaCode
+  {% endif %}
+  {% if app.request.locale == 'es' and post.titleEs %}
+    {{ post.titleEs }} — SargantanaCode
+  {% elseif app.request.locale == 'es' and post.titleEn %}
+    {{ post.titleEn }} — SargantanaCode
+  {% endif %}
+{% endblock %}
+
 {% block body_id "post" %}
 
 {% block body %}

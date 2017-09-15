@@ -1,9 +1,26 @@
-TITLE: "Título"
 DESC: "Esta es una descripción provisional"
 ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
 GITHUB: "El código fuente de esta página es público, lo puedes encnontrar en %link_start%nuestro repositorio de GitHub%link_end%"
-testing: "Esta es una página de prueba"
+
+# Titles
+TITLE: "Título"
+CATEGORIES_LIST_TITLE: "Listado de categorías"
+ADMIN_PANEL_TITLE: "Panel de administración"
+ADMIN_CATEGORIES_TITLE: "Categorías"
+ADMIN_CATEGORIES_ADD_TITLE: "Nueva categoría"
+ADMIN_CATEGORIES_EDIT_TITLE: "Editar categoría"
+ADMIN_PAGES_TITLE: "Páginas"
+ADMIN_PAGES_ADD_TITLE: "Nueva página"
+ADMIN_PAGES_EDIT_TITLE: "Editar página"
+ADMIN_PAGES_VIEW_TITLE: "Ver página"
+ADMIN_POSTS_TITLE: "Artículos"
+ADMIN_POSTS_ADD_TITLE: "Nuevo artículo"
+ADMIN_POSTS_EDIT_TITLE: "Editar artículo"
+ADMIN_POSTS_VIEW_TITLE: "Ver artículo"
+ADMIN_USERS_TITLE: "Usuarios"
+ADMIN_USERS_ADD_TITLE: "Nuevo usuario"
+ADMIN_USERS_EDIT_TITLE: "Editar usuario"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -160,7 +177,7 @@ CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría añadida, anímate 
 PUBLIC_CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría publicada, si tienes permisos puedes %link_start%añadir una ahora%link_end%."
 
 # Category add
-CATEGORIES_ADD_TITLE: "Añadir nueva categoría"
+CATEGORIES_ADD_TITLE: "Nueva categoría"
 CATEGORY_NAME: "Nombre de la categoría"
 CATEGORY_DESC_ES: "Descripción"
 CATEGORY_DESC_EN: "Description"
