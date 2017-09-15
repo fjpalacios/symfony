@@ -7,16 +7,15 @@
   @include flex-flow(column wrap);
   @include align-items(center);
   @include justify-content(center);
-  h1 {
-    border-bottom: solid 1px;
-    padding-bottom: 6px;
-    margin: 0;
-    a {
-      color: $white;
-      text-decoration: none;
+  a {
+    text-align: center;
+    .logo {
+      margin: 10px auto 0 auto;
+      height: 3rem;
+      max-width: 90%;
+      fill: $white;
       &:hover {
-        color: $main-color-hover;
-        text-decoration: none;
+        fill: $main-color-hover;
       }
     }
   }

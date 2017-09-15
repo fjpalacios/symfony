@@ -3,6 +3,7 @@
     <div class="col-md-6 mb-4">
       <div class="list">
         <a href="{{ path('post', { 'slug': post.slug }) }}">
+          <span class="date-badge">{{ post.date|date("d/m/Y") }}</span>
           <span class="category-badge">{{ post.category.name }}</span>
           <img src="{{ asset('images/test-image.jpg') }}" alt="">
           <div class="list__content">

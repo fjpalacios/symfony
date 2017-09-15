@@ -96,3 +96,8 @@
   -o-transition: $values;
   transition: $values;
 }
+
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color;
+  background: rgba($color, $opacity);
+}
