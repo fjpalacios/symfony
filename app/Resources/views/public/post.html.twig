@@ -28,8 +28,11 @@
           {{ post.category.name }}
           </a>
         </span>
-        <img src="{{ asset('images/test-image.jpg') }}" alt=""
-             class="post-header">
+        {% if post.image is not null %}
+          <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+               alt="{{ post.titleEs }}"
+               class="post-header">
+        {% endif %}
       {% endif %}
       <h2 class="post-title">
         {% if app.request.locale == 'en' and post.titleEn %}

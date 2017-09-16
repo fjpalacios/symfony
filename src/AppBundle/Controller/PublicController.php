@@ -71,7 +71,7 @@ class PublicController extends Controller
             ));
         }
         $categoryRepo = $em->getRepository('AppBundle:Category');
-        $categories = $categoryRepo->findAll();
+        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
         $slug = $request->attributes->get('slug');
         if (!$this->get('security.authorization_checker')
             ->isGranted('ROLE_ADMIN')) {

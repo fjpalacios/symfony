@@ -22,7 +22,8 @@ class CategoryType extends AbstractType
             ->add('descriptionEs', TextareaType::class)
             ->add('descriptionEn', TextareaType::class)
             ->add('image', FileType::class, array(
-                'required' => false
+                'required' => false,
+                'data_class' => null
             ));
     }
 
