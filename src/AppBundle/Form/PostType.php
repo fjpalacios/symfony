@@ -46,7 +46,8 @@ class PostType extends AbstractType
                         'required' => false
                 ))
                 ->add('image', FileType::class, array(
-                        'required' => false
+                        'required' => false,
+                        'data_class' => null
                 ))
                 ->add('commentStatus', ChoiceType::class, array(
                         'choices' => array(

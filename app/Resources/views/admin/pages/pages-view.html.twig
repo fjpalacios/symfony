@@ -54,18 +54,6 @@
         </div>
       {% endif %}
     </div>
-    {% if author.bio %}
-      <div class="content mt-4 author">
-        <div class="author__avatar">
-          <img src="{{ gravatar( author.email ) }}"
-               alt="{{ author.name }}"/>
-        </div>
-        <div class="author__bio">
-          <h2>{{ author.name }}</h2>
-          {{ author.bio|raw|md2html }}
-        </div>
-      </div>
-    {% endif %}
     <div class="buttons mt-4">
       <a href="{{ path('admin_pages') }}" class="btn btn-primary">
         <i class="fa fa-arrow-left" aria-hidden="true"></i>

@@ -13,32 +13,35 @@
           <title>{{ post.titleEs }}</title>
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
-            <![CDATA[{{ post.contentEs|raw|md2html }}]]>
+            <![CDATA[<img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            {{ post.contentEs|raw|md2html }}
+            ]]>
           </content:encoded>
         {% elseif app.request.locale == 'es' and post.titleEn %}
           <title>{{ post.titleEn }}</title>
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
-            <![CDATA[
-                            {{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-                            {{ post.contentEn|raw|md2html }}
-                        ]]>
+            <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
+            <img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            {{ post.contentEn|raw|md2html }}
+            ]]>
           </content:encoded>
         {% endif %}
         {% if app.request.locale == 'en' and post.titleEn %}
           <title>{{ post.titleEn }}</title>
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
-            <![CDATA[{{ post.contentEn|raw|md2html }}]]>
+            <![CDATA[<img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            {{ post.contentEn|raw|md2html }}]]>
           </content:encoded>
         {% elseif app.request.locale == 'en' and post.titleEs %}
           <title>{{ post.titleEs }}</title>
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
-            <![CDATA[
-                            {{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-                            {{ post.contentEs|raw|md2html }}
-                        ]]>
+            <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
+            <img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            {{ post.contentEs|raw|md2html }}
+            ]]>
           </content:encoded>
         {% endif %}
         <link>{{ url('post', {'slug': post.slug}) }}</link>

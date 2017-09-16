@@ -11,6 +11,7 @@ use AppBundle\Entity\User;
 use Cocur\Slugify\Slugify;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -104,6 +105,12 @@ class AdminController extends Controller
             $post->setNavbar(0);
             $post->setCommentCount(0);
             $post->setViews(0);
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $post->setImage($fileName);
+            }
             $em->persist($post);
             $flush = $em->flush();
             $id = $post->getId();
@@ -127,6 +134,12 @@ class AdminController extends Controller
     public function postsRemoveAction(Post $post)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $image = $post->getImage();
+        if ($image) {
+            $fs = new Filesystem();
+            $fs->remove($this->get('kernel')->getRootDir() .
+                '/../web/uploads/' . $image);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($post);
         $flush = $em->flush();
@@ -149,6 +162,7 @@ class AdminController extends Controller
         $post = $postRepo->find($id);
         $author = $post->getAuthor();
         $status = $post->getStatus();
+        $image = $post->getImage();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -159,6 +173,19 @@ class AdminController extends Controller
             $slug = new Slugify();
             $post->setSlug($slug->slugify($form->get('slug')->getData()));
             $post->setNavbar(0);
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $post->setImage($fileName);
+                if ($image) {
+                    $fs = new Filesystem();
+                    $fs->remove($this->get('kernel')->getRootDir() .
+                        '/../web/uploads/' . $image);
+                }
+            } else {
+                $post->setImage($image);
+            }
             $em->persist($post);
             $flush = $em->flush();
             if (!$flush) {
@@ -174,7 +201,8 @@ class AdminController extends Controller
         return $this->render('admin/posts/posts-edit.html.twig', array(
                 'form' => $form->createView(),
                 'author' => $author,
-                'id' => $id
+                'id' => $id,
+                'post' => $post
         ));
     }
 
@@ -188,7 +216,7 @@ class AdminController extends Controller
         $author = $userRepo->find($post->getAuthor());
         return $this->render('admin/posts/posts-view.html.twig', array(
                 'post' => $post,
-                'author' => $author
+                'user' => $author
         ));
     }
 
@@ -307,12 +335,8 @@ class AdminController extends Controller
      */
     public function pagesViewAction(Post $page)
     {
-        $em = $this->getDoctrine()->getManager();
-        $userRepo = $em->getRepository('AppBundle:User');
-        $author = $userRepo->find($page->getAuthor());
         return $this->render('admin/pages/pages-view.html.twig', array(
-                'page' => $page,
-                'author' => $author
+                'page' => $page
         ));
     }
 
@@ -475,6 +499,12 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $slug = new Slugify();
             $category->setSlug($slug->slugify($category->getName()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $category->setImage($fileName);
+            }
             $em->persist($category);
             $flush = $em->flush();
             $id = $category->getId();
@@ -498,6 +528,12 @@ class AdminController extends Controller
     public function categoriesRemoveAction(Category $category)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $image = $category->getImage();
+        if ($image) {
+            $fs = new Filesystem();
+            $fs->remove($this->get('kernel')->getRootDir() .
+                '/../web/uploads/' . $image);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($category);
         $flush = $em->flush();
@@ -518,11 +554,25 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $categoryRepo = $em->getRepository('AppBundle:Category');
         $category = $categoryRepo->find($id);
+        $image = $category->getImage();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $slug = new Slugify();
             $category->setSlug($slug->slugify($form->get('slug')->getData()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $category->setImage($fileName);
+                if ($image) {
+                    $fs = new Filesystem();
+                    $fs->remove($this->get('kernel')->getRootDir() .
+                        '/../web/uploads/' . $image);
+                }
+            } else {
+                $category->setImage($image);
+            }
             $em->persist($category);
             $flush = $em->flush();
             if (!$flush) {

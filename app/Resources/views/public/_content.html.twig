@@ -5,7 +5,10 @@
         <a href="{{ path('post', { 'slug': post.slug }) }}">
           <span class="date-badge">{{ post.date|date("d/m/Y") }}</span>
           <span class="category-badge">{{ post.category.name }}</span>
-          <img src="{{ asset('images/test-image.jpg') }}" alt="">
+          {% if post.image is not null %}
+            <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+                 alt="{{ post.titleEs }}">
+          {% endif %}
           <div class="list__content">
             <h4 class="list__title">
               {% if app.request.locale == 'en' and post.titleEn %}

@@ -17,7 +17,7 @@
       <h2 class="text-center mb-4">
         {{ 'POSTS_ADD_TITLE'|trans }}
       </h2>
-      <form name="appbundle_post" method="post">
+      {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
         <div class="container content">
           <div class="form-group">
             {{ form_label(form.titleEs, 'POST_TITLE_ES') }}
@@ -89,7 +89,10 @@
             <i class="fa fa-eraser" aria-hidden="true"></i>
             &nbsp; {{ 'RESET_BTN'|trans }}</button>
         </div>
-      </form>
+      {% do form.author.setRendered %}
+      {% do form.slug.setRendered %}
+      {% do form.navbar.setRendered %}
+      {{ form_end(form) }}
     </div>
   </div>
 {% endblock %}

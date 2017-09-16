@@ -17,7 +17,7 @@
       <h2 class="text-center mb-4">
         {{ 'CATEGORIES_ADD_TITLE'|trans }}
       </h2>
-      <form name="appbundle_post" method="post">
+      {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
         <div class="container content">
           <div class="form-group">
             {{ form_label(form.name, 'CATEGORY_NAME') }}
@@ -51,7 +51,8 @@
             <i class="fa fa-eraser" aria-hidden="true"></i>
             &nbsp; {{ 'RESET_BTN'|trans }}</button>
         </div>
-      </form>
+      {% do form.slug.setRendered %}
+      {{ form_end(form) }}
     </div>
   </div>
 {% endblock %}

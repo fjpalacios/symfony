@@ -9,10 +9,12 @@
 {% block body %}
   <div class="container mt-5 page">
     <div class="content category">
-      <div class="category__avatar">
-        <img src="{{ asset('images/test-category.jpg') }}"
-             alt="{{ category.name }}"/>
-      </div>
+      {% if category.image is not null %}
+        <div class="category__avatar">
+          <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+               alt="{{ category.name }}"/>
+        </div>
+      {% endif %}
       <div class="category__desc">
         <h2>{{ category.name }}</h2>
         {% if app.request.locale == 'en' and category.descriptionEn %}

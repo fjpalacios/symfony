@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-{{ 'CATEGORIES_LIST_TITLE'|trans }} — SargantanaCode
+  {{ 'CATEGORIES_LIST_TITLE'|trans }} — SargantanaCode
 {% endblock %}
 
 {% block body_id "categories" %}
@@ -14,8 +14,11 @@
           <div class="col-12 col-sm-6 col-md-3 mb-4">
             <div class="list">
               <a href="{{ path('category', { 'slug': category.slug }) }}">
-                <img src="{{ asset('images/test-category.jpg') }}" alt=""
-                     class="list__image">
+                {% if category.image is not null %}
+                  <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+                       alt="{{ category.name }}"
+                       class="list__image">
+                {% endif %}
                 <div class="list__content">
                   <h4 class="list__title">{{ category.name }}</h4>
                   <p class="list__text">
