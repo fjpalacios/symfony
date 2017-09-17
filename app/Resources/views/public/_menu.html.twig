@@ -73,6 +73,20 @@
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
           <div class="dropdown-divider"></div>
+          {% if post.type is defined %}
+            {% if post.type == 'post' %}
+              <span class="edit-badge">
+                <a class="dropdown-item" href="{{ path('admin_posts_edit',
+                { 'id': post.id }) }}">{{ 'POST_EDIT'|trans }}</a>
+              </span>
+            {% else %}
+              <span class="edit-badge">
+                <a class="dropdown-item" href="{{ path('admin_pages_edit',
+                { 'id': post.id }) }}">{{ 'PAGE_EDIT'|trans }}</a>
+              </span>
+            {% endif %}
+            <div class="dropdown-divider"></div>
+          {% endif %}
           <a class="dropdown-item" href="{{ path('logout',
           {'_locale': app.request.locale }) }}">
             {{ 'LOGOUT'|trans }}</a>

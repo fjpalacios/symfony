@@ -114,7 +114,7 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $postRepo = $em->getRepository('AppBundle:Post');
-        $posts = $postRepo->getPaginatedProfile($page, $user->getId(), 1);
+        $posts = $postRepo->getPaginatedProfile($page, $user->getId());
         $totalItems = count($posts);
         $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
         $locale = $request->getLocale();

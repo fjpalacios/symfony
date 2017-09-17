@@ -1,7 +1,7 @@
 DESC: "This is a temporary description"
 ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
-GITHUB: "The source code for this page is public, you can find it on %link_start%our GitHub repository%link_end%"
+GITHUB: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
 
 # Titles
 TITLE: "Title"
@@ -38,6 +38,8 @@ WELCOME: "Hello"
 ADMIN_PANEL: "Admin area"
 LOGIN: "Log in"
 LOGOUT: "Log out"
+POST_EDIT: "Edit post"
+PAGE_EDIT: "Edit page"
 
 # Login
 LOGIN_TITLE: "Enter your credentials"
