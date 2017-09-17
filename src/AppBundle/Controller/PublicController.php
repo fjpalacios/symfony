@@ -23,12 +23,14 @@ class PublicController extends Controller
     public function indexAction(Request $request, $_format, $page)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
-        $posts = $repository->getPaginatedIndex($page);
         $route = $request->attributes->get('_route');
-        $totalItems = count($posts);
         if ($route == 'rss') {
+            $posts = $repository->getPaginatedIndex($page, Post::RSS_NUM_ITEMS);
+            $totalItems = count($posts);
             $pagesCount = ceil($totalItems / Post::RSS_NUM_ITEMS);
         } else {
+            $posts = $repository->getPaginatedIndex($page);
+            $totalItems = count($posts);
             $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
         }
         $locale = $request->getLocale();
