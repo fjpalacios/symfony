@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post
 {
+    const NUM_ITEMS = 10;
+    const RSS_NUM_ITEMS = 30;
+
     /**
      * @var int
      *
