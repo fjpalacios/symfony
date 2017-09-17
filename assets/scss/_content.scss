@@ -30,7 +30,7 @@
   h2, h3, h4, h5, h6 {
     color: $entry-link;
   }
-  a:not(.btn, .badge-link) {
+  a:not(.btn, .badge-link, .page-link) {
     color: $entry-link;
     &:hover {
       text-decoration: none;
@@ -50,6 +50,17 @@
   &:hover {
     background-color: $bootstrap-primary-color-hover;
     border-color: $bootstrap-primary-color-hover;
+  }
+}
+
+.pagination {
+  .page-item.active .page-link {
+    color: $white;
+    background-color: $bootstrap-primary-color;
+    border-color: $bootstrap-primary-color;
+  }
+  .page-link {
+    color: $bootstrap-primary-color;
   }
 }
 

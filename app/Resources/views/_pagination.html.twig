@@ -1,0 +1,69 @@
+{% if app.request.attributes.get('_route') == 'home' or
+app.request.attributes.get('_route') == 'paginated_home' %}
+  {% set paginator_path = 'paginated_home' %}
+  {% set route = 'home' %}
+{% else %}
+  {% set paginator_path = 'paginated_profile' %}
+  {% set route = 'profile' %}
+{% endif %}
+<nav aria-label="Pagination">
+  <ul class="pagination justify-content-center mt-5">
+    {% if page > 1 %}
+      <li class="page-item">
+        {% if route == 'profile' %}
+          <a href="{{ path(paginator_path, {'page': page-1,
+            'username': username }) }}"
+             class="page-link">&laquo;</a>
+        {% else %}
+          <a href="{{ path(paginator_path, {'page': page-1 }) }}"
+             class="page-link">&laquo;</a>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link">&laquo;</a>
+      </li>
+    {% endif %}
+    {% for i in 1..pagesCount %}
+      {% if i == page %}
+        {% if route == 'profile' %}
+          <li class="page-item active"><a
+              href="{{ path('paginated_profile', {'page': i,
+                'username': username }) }}"
+              class="page-link">{{ i }}</a></li>
+        {% else %}
+          <li class="page-item active"><a
+              href="{{ path(paginator_path, {'page': i }) }}"
+              class="page-link">{{ i }}</a></li>
+        {% endif %}
+      {% else %}
+        {% if route == 'profile' %}
+          <li class="page-item"><a
+              href="{{ path('paginated_profile', {'page': i,
+                'username': username }) }}"
+              class="page-link">{{ i }}</a></li>
+        {% else %}
+          <li class="page-item"><a
+              href="{{ path(paginator_path, {'page': i }) }}"
+              class="page-link">{{ i }}</a></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if page < pagesCount %}
+      <li class="page-item">
+        {% if route == 'profile' %}
+          <a href="{{ path('paginated_profile', {'page': page+1,
+            'username': username }) }}"
+             class="page-link">&raquo;</a>
+        {% else %}
+          <a href="{{ path(paginator_path, {'page': page+1 }) }}"
+             class="page-link">&raquo;</a>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a href="#" class="page-link">&raquo;</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
