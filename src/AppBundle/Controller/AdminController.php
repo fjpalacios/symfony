@@ -73,7 +73,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/posts", name="admin_posts")
+     * @Route("/posts/", name="admin_posts")
      */
     public function postsAction()
     {
@@ -221,7 +221,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/pages", name="admin_pages")
+     * @Route("/pages/", name="admin_pages")
      */
     public function pagesAction(Request $request)
     {
@@ -341,7 +341,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/users", name="admin_users")
+     * @Route("/users/", name="admin_users")
      */
     public function usersAction()
     {
@@ -475,7 +475,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/categories", name="admin_categories")
+     * @Route("/categories/", name="admin_categories")
      */
     public function categoriesAction()
     {

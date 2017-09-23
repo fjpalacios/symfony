@@ -68,7 +68,7 @@
   padding: 15px;
 }
 
-.user, .category {
+.user, .category, .comment {
   @include breakpoint-up(small) {
     @include flex-direction(row);
   }
@@ -81,10 +81,7 @@
       margin-right: 3%;
     }
     @include breakpoint-down(small) {
-      order: 2;
-      text-align: center;
-      margin-top: 3%;
-      margin-bottom: 5%;
+      display: none;
     }
     img {
       background-color: $white;
@@ -94,12 +91,40 @@
       width: 90px;
     }
   }
-  &__bio, &__desc {
+  &__bio, &__desc, &__content {
     @include breakpoint-down(small) {
       margin-top: 10%;
     }
     h2 {
       display: inherit;
+    }
+  }
+  &__header {
+    @include flexbox();
+    @include justify-content(space-between);
+  }
+  &__content {
+    width: 100%;
+  }
+  &__reply {
+    float: right;
+    color: $white;
+    a {
+      font-size: 9px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+ul.no-padding {
+  list-style-type: none;
+  padding-left: 0;
+  ul {
+    @include breakpoint-up(small) {
+      margin-left: 5%;
     }
   }
 }

@@ -196,3 +196,14 @@ CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "La categoría se eliminó correctamente"
 CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"
+
+# Comments
+COMMENT_ADDED_PROPERLY: "El comentario se añadió correctamente"
+COMMENT_ADDED_ERROR: "Algo salió mal al añadir el comentario"
+COMMENT_SPAM_DETECTED: "El comentario fue detectado automáticamente como spam, será revisado manualmente para descartar un falso positivo"
+COMMENTS_ADD_TITLE: "Nuevo comentario"
+COMMENTS_LIST_TITLE: "Comentarios"
+COMMENT_AUTHOR: "Nombre"
+COMMENT_EMAIL: "Correo electrónico"
+COMMENT_URL: "Página web"
+COMMENT_COMMENT: "Comentario"

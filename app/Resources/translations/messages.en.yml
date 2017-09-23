@@ -196,3 +196,14 @@ CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "Category removed properly"
 CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"
+
+# Comments
+COMMENT_ADDED_PROPERLY: "Comment added properly"
+COMMENT_ADDED_ERROR: "Something went wrong when adding the comment"
+COMMENT_SPAM_DETECTED: "Your comment was automatically detected as spam, it will be manually checked to rule out a false positive"
+COMMENTS_ADD_TITLE: "New comment"
+COMMENTS_LIST_TITLE: "Comments"
+COMMENT_AUTHOR: "Name"
+COMMENT_EMAIL: "Email"
+COMMENT_URL: "Website"
+COMMENT_COMMENT: "Comment"

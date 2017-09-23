@@ -22,7 +22,7 @@ matrix:
         - php: 7.1.8
 
 env:
-    - SYMFONY_VERSION="3.3.*" DB=mariadb
+    - SYMFONY_VERSION="3.3.*" DB=sqlite
 
 before-install:
     - composer self-update
