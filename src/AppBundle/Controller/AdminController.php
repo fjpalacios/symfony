@@ -604,7 +604,7 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/comments/pnding/", name="admin_comments_pending")
+     * @Route("/comments/pending/", name="admin_comments_pending")
      */
     public function commentsPendingAction()
     {
