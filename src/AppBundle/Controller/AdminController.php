@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Comment;
 use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\PostType;
@@ -614,5 +615,23 @@ class AdminController extends Controller
         return $this->render('admin/comments/comments-pending.html.twig', array(
             'comments' => $comments
         ));
+    }
+
+    /**
+     * @Route("/comments/del/{id}", name="admin_comments_del")
+     */
+    public function commentsRemoveAction(Request $request, Comment $comment)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'COMMENT_REMOVED_PROPERLY';
+        } else {
+            $status = 'COMMENT_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirect($request->headers->get('referer'));
     }
 }

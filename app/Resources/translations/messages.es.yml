@@ -224,3 +224,7 @@ COMMENTS_NOT_FOUND: "Actualmente no hay comentarios, ten paciencia pronto llegar
 COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 ADMIN_COMMENTS_PENDING: "Comentarios pendientes"
 COMMENTS_PENDING_NOT_FOUND: "Hoy es un buen día, no hay comentarios detectados como spam"
+
+# Comment del
+COMMENT_REMOVED_PROPERLY: "El comentario se eliminó correctamente"
+COMMENT_REMOVED_ERROR: "Algo salió mal al eliminar el comentario"
