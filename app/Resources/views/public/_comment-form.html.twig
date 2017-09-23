@@ -46,6 +46,7 @@
             class="btn">
       <i class="fa fa-eraser" aria-hidden="true"></i>
       &nbsp; {{ 'RESET_BTN'|trans }}</button>
+    {% do form.status.setRendered %}
     {{ form_end(form) }}
   </div>
 </div>

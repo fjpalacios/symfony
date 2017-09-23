@@ -6,6 +6,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
 use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
+use AppBundle\Form\CommentType;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
@@ -618,6 +619,23 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/comments/approve/{id}", name="admin_comments_approve")
+     */
+    public function commentsApproveAction(Request $request, Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment->setStatus('approved');
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'COMMENT_APPROVED_PROPERLY';
+        } else {
+            $status = 'COMMENT_APPROVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
      * @Route("/comments/del/{id}", name="admin_comments_del")
      */
     public function commentsRemoveAction(Request $request, Comment $comment)
@@ -636,19 +654,30 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/comments/approve/{id}", name="admin_comments_approve")
+     * @Route("/comments/edit/{id}", name="admin_comments_edit")
      */
-    public function commentsApproveAction(Request $request, Comment $comment)
+    public function commentsEditAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $comment->setStatus('approved');
-        $flush = $em->flush();
-        if (!$flush) {
-            $status = 'COMMENT_APPROVED_PROPERLY';
-        } else {
-            $status = 'COMMENT_APPROVED_ERROR';
+        $commentRepo = $em->getRepository('AppBundle:Comment');
+        $comment = $commentRepo->find($id);
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($comment);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'COMMENT_EDITED_PROPERLY';
+            } else {
+                $status = 'COMMENT_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_comments_edit', array(
+                'id' => $id
+            ));
         }
-        $this->session->getFlashBag()->add('status', $status);
-        return $this->redirect($request->headers->get('referer'));
+        return $this->render('admin/comments/comments-edit.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }

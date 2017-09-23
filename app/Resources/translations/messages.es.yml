@@ -232,3 +232,11 @@ COMMENT_REMOVED_ERROR: "Algo salió mal al eliminar el comentario"
 # Comment approve
 COMMENT_APPROVED_PROPERLY: "El comentario se aprobó correctamente"
 COMMENT_APPROVED_ERROR: "Algo salió mal al aprobar el comentario"
+
+# Comment edit
+COMMENTS_EDIT_TITLE: "Editar comentario"
+COMMENT_STATUS: "Estado"
+COMMENT_STATUS_APPROVE: "Aprobado"
+COMMENT_STATUS_PENDING: "Pendiente"
+COMMENT_EDITED_PROPERLY: "El comentario se editó correctamente"
+COMMENT_EDITED_ERROR: "Algo salió mal al editar el comentario"

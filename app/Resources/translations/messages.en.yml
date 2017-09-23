@@ -232,3 +232,11 @@ COMMENT_REMOVED_ERROR: "Something went wrong when removing the comment"
 # Comment approve
 COMMENT_APPROVED_PROPERLY: "Comment approved properly"
 COMMENT_APPROVED_ERROR: "Something went wrong when approving the comment"
+
+# Comment edit
+COMMENTS_EDIT_TITLE: "Edit comment"
+COMMENT_STATUS: "Status"
+COMMENT_STATUS_APPROVE: "Approved"
+COMMENT_STATUS_PENDING: "Pending"
+COMMENT_EDITED_PROPERLY: "Comment edited properly"
+COMMENT_EDITED_ERROR: "Something went wrong when editing the comment"

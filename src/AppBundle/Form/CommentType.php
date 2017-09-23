@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +26,14 @@ class CommentType extends AbstractType
             ->add('url', TextType::class, array(
                 'required' => false
             ))
-            ->add('comment', TextareaType::class);
+            ->add('comment', TextareaType::class)
+            ->add('status', ChoiceType::class, array(
+                'choices' => array(
+                    'COMMENT_STATUS_PENDING' => 'pending',
+                    'COMMENT_STATUS_APPROVE' => 'approved'
+                ),
+                'multiple' => false
+            ));
     }
 
     /**
