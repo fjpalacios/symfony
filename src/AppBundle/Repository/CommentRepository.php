@@ -35,4 +35,20 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    public function getCommentsPendingWithRelatedPost()
+    {
+        $em = $this->getEntityManager();
+        $connection = $em->getConnection();
+            $statement = $connection
+                ->prepare('
+                SELECT title_es, title_en, slug, comment.*
+                FROM post INNER JOIN comment on
+                post.id = comment.post_id
+                WHERE comment.status = "pending"
+                ORDER BY comment.date DESC
+            ');
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 }

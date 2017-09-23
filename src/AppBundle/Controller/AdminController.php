@@ -602,4 +602,17 @@ class AdminController extends Controller
             'comments' => $comments
         ));
     }
+
+    /**
+     * @Route("/comments/pnding/", name="admin_comments_pending")
+     */
+    public function commentsPendingAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentRepo = $em->getRepository('AppBundle:Comment');
+        $comments = $commentRepo->getCommentsPendingWithRelatedPost();
+        return $this->render('admin/comments/comments-pending.html.twig', array(
+            'comments' => $comments
+        ));
+    }
 }

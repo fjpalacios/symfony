@@ -51,6 +51,12 @@
              {% endif %}" href="{{ path('admin_comments',
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_COMMENTS'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_comments_pending' %}
+             active
+             {% endif %}" href="{{ path('admin_comments_pending',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_COMMENTS_PENDING'|trans }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">

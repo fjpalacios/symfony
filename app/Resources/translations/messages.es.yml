@@ -23,6 +23,7 @@ ADMIN_USERS_ADD_TITLE: "Nuevo usuario"
 ADMIN_USERS_EDIT_TITLE: "Editar usuario"
 ADMIN_COMMENTS_TITLE: "Comentarios"
 ADMIN_COMMENTS_EDIT_TITLE: "Editar comentario"
+ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -218,3 +219,8 @@ COMMENTS_AUTHOR: "Autor"
 COMMENTS_COMMENT: "Comentario"
 COMMENTS_POST: "Artículo"
 COMMENTS_NOT_FOUND: "Actualmente no hay comentarios, ten paciencia pronto llegarán"
+
+# Comments pending
+COMMENTS_PENDING_TITLE: "Comentarios pendientes"
+ADMIN_COMMENTS_PENDING: "Comentarios pendientes"
+COMMENTS_PENDING_NOT_FOUND: "Hoy es un buen día, no hay comentarios detectados como spam"

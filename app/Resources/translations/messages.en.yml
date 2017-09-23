@@ -23,6 +23,7 @@ ADMIN_USERS_ADD_TITLE: "New user"
 ADMIN_USERS_EDIT_TITLE: "Edit user"
 ADMIN_COMMENTS_TITLE: "Comments"
 ADMIN_COMMENTS_EDIT_TITLE: "Edit comment"
+ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
 
 # Roles
 ROLE_USER: "User"
@@ -218,3 +219,8 @@ COMMENTS_AUTHOR: "Author"
 COMMENTS_COMMENT: "Comment"
 COMMENTS_POST: "Post"
 COMMENTS_NOT_FOUND: "There are currently no comments added, be patient they are coming"
+
+# Comments pending
+COMMENTS_PENDING_TITLE: "Pending comments"
+ADMIN_COMMENTS_PENDING: "Pending comments"
+COMMENTS_PENDING_NOT_FOUND: "Today is a happy day, no spam comments detected"
