@@ -228,3 +228,7 @@ COMMENTS_PENDING_NOT_FOUND: "Hoy es un buen día, no hay comentarios detectados 
 # Comment del
 COMMENT_REMOVED_PROPERLY: "El comentario se eliminó correctamente"
 COMMENT_REMOVED_ERROR: "Algo salió mal al eliminar el comentario"
+
+# Comment approve
+COMMENT_APPROVED_PROPERLY: "El comentario se aprobó correctamente"
+COMMENT_APPROVED_ERROR: "Algo salió mal al aprobar el comentario"

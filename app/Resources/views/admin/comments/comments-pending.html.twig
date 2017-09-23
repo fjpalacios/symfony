@@ -62,7 +62,7 @@
               {{ comment.comment }}
             </td>
             <td class="text-center">
-              <a href="#"
+              <a href="{{ path('admin_comments_approve', {'id': comment.id}) }}"
                  class="btn btn-sm btn-primary text-center">
                 <i class="fa fa-thumbs-up" aria-hidden="true"></i>
               </a>
@@ -77,7 +77,7 @@
           </tr>
         {% endfor %}
         {% if not comments %}
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-info" role="alert">
           {{ 'COMMENTS_PENDING_NOT_FOUND'|trans }}
         </div>
         {% else %}

@@ -634,4 +634,21 @@ class AdminController extends Controller
         $this->session->getFlashBag()->add('status', $status);
         return $this->redirect($request->headers->get('referer'));
     }
+
+    /**
+     * @Route("/comments/approve/{id}", name="admin_comments_approve")
+     */
+    public function commentsApproveAction(Request $request, Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment->setStatus('approved');
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'COMMENT_APPROVED_PROPERLY';
+        } else {
+            $status = 'COMMENT_APPROVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirect($request->headers->get('referer'));
+    }
 }

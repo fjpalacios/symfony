@@ -228,3 +228,7 @@ COMMENTS_PENDING_NOT_FOUND: "Today is a happy day, no spam comments detected"
 # Comment del
 COMMENT_REMOVED_PROPERLY: "Comment removed properly"
 COMMENT_REMOVED_ERROR: "Something went wrong when removing the comment"
+
+# Comment approve
+COMMENT_APPROVED_PROPERLY: "Comment approved properly"
+COMMENT_APPROVED_ERROR: "Something went wrong when approving the comment"
