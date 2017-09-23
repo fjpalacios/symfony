@@ -597,7 +597,7 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $commentRepo = $em->getRepository('AppBundle:Comment');
-        $comments = $commentRepo->findBy(array(), array('date' => 'DESC'));
+        $comments = $commentRepo->getCommentsWithRelatedPost();
         return $this->render('admin/comments/comments.html.twig', array(
             'comments' => $comments
         ));
