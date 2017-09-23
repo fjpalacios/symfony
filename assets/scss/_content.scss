@@ -105,6 +105,9 @@
   }
   &__content {
     width: 100%;
+    p + .comment__reply {
+        margin-top: -10px;
+    }
   }
   &__reply {
     float: right;

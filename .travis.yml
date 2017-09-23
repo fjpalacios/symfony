@@ -7,9 +7,6 @@ branches:
 dist: trusty
 sudo: false
 
-addons:
-    mariadb: '10.2.8'
-
 cache:
     directories:
         - $HOME/.composer/cache/files

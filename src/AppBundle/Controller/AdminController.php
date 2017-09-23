@@ -589,4 +589,17 @@ class AdminController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @Route("/comments/", name="admin_comments")
+     */
+    public function commentsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentRepo = $em->getRepository('AppBundle:Comment');
+        $comments = $commentRepo->findBy(array(), array('date' => 'DESC'));
+        return $this->render('admin/comments/comments.html.twig', array(
+            'comments' => $comments
+        ));
+    }
 }
