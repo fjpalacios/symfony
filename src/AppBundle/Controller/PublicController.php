@@ -111,44 +111,61 @@ class PublicController extends Controller
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setDate(new \DateTime('now'));
-            $wpApi = $this->container
-                ->getParameter('wordpress_api_key');
-            $wpUrl = $this->container
-                ->getParameter('wordpress_blog_url');
-            $akismet = new Akismet($wpUrl ,$wpApi);
-            $akismet->setCommentAuthorEmail($comment->getEmail());
-            $akismet->setCommentContent($comment->getComment());
-            if($akismet->isCommentSpam()) {
-                $comment->setStatus('pending');
-            } else {
-                $comment->setStatus('approved');
-            }
-            $comment->setPostId($post->getId());
-            $comment->setIp($request->getClientIp());
-            $em->persist($comment);
-            $flush = $em->flush();
-            $id = $comment->getId();
-            if (!$flush) {
-                if($akismet->isCommentSpam()) {
-                    $status = 'COMMENT_SPAM_DETECTED';
+            $commentAuthor = $form->get('author')->getData();
+            $commentEmail = $form->get('email')->getData();
+            $commentComment = $form->get('comment')->getData();
+            if ($commentAuthor) {
+                if ($commentEmail) {
+                    if ($commentComment) {
+                        $comment->setDate(new \DateTime('now'));
+                        $wpApi = $this->container
+                            ->getParameter('wordpress_api_key');
+                        $wpUrl = $this->container
+                            ->getParameter('wordpress_blog_url');
+                        $akismet = new Akismet($wpUrl ,$wpApi);
+                        $akismet->setCommentAuthorEmail($comment->getEmail());
+                        $akismet->setCommentContent($comment->getComment());
+                        if($akismet->isCommentSpam()) {
+                            $comment->setStatus('pending');
+                        } else {
+                            $comment->setStatus('approved');
+                        }
+                        $comment->setPostId($post->getId());
+                        $comment->setIp($request->getClientIp());
+                        $em->persist($comment);
+                        $flush = $em->flush();
+                        $id = $comment->getId();
+                        if (!$flush) {
+                            if($akismet->isCommentSpam()) {
+                                $status = 'COMMENT_SPAM_DETECTED';
+                            } else {
+                                $status = 'COMMENT_ADDED_PROPERLY';
+                                $this->session->getFlashBag()->add('status', $status);
+                                return $this->redirectToRoute('post', array(
+                                    'slug' => $slug,
+                                    '_fragment' => 'comment-' . $id
+                                ));
+                            }
+                        } else {
+                            $status = 'COMMENT_ADDED_ERROR';
+                        }
+                    } else {
+                        $status = 'COMMENT_ADDED_ERROR_COMMENT';
+                    }
                 } else {
-                 $status = 'COMMENT_ADDED_PROPERLY';
+                    $status = 'COMMENT_ADDED_ERROR_EMAIL';
                 }
             } else {
-                $status = 'COMMENT_ADDED_ERROR';
+                $status = 'COMMENT_ADDED_ERROR_AUTHOR';
             }
             $this->session->getFlashBag()->add('status', $status);
-            if($akismet->isCommentSpam()) {
-                return $this->redirectToRoute('post', array(
-                    'slug' => $slug
-                ));
-            } else {
-                return $this->redirectToRoute('post', array(
-                    'slug' => $slug,
-                    '_fragment' => 'comment-' . $id
-                ));
-            }
+            return $this->render('public/post.html.twig', array(
+                'post' => $post,
+                'user' => $author,
+                'pages' => $pages,
+                'comments' => $comments,
+                'form' => $form->createView()
+            ));
         }
         if ($slug == 'categorias') {
             return $this->render('public/categories.html.twig', array(
