@@ -672,9 +672,7 @@ class AdminController extends Controller
                 $status = 'COMMENT_EDITED_ERROR';
             }
             $this->session->getFlashBag()->add('status', $status);
-            return $this->redirectToRoute('admin_comments_edit', array(
-                'id' => $id
-            ));
+            return $this->redirectToRoute('admin_comments');
         }
         return $this->render('admin/comments/comments-edit.html.twig', array(
             'form' => $form->createView()

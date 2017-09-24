@@ -39,6 +39,10 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        admin_email: '%admin_email%'
+        from_email: '%from_email%'
+        from_name: '%from_name%'
 
 # Doctrine Configuration
 doctrine:
@@ -69,6 +73,8 @@ doctrine:
 swiftmailer:
     transport: '%mailer_transport%'
     host: '%mailer_host%'
+    port: '%mailer_port%'
+    encryption: '%mailer_encryption%'
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
@@ -78,3 +84,10 @@ ornicar_gravatar:
     rating: g
     size: 90
     default: mm
+
+# Emails configuration
+hautzi_system_mail:
+    defaults:
+        from:
+            email: web@sargantanacode.es
+            name:  SargantanaCode

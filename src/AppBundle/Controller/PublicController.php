@@ -136,9 +136,26 @@ class PublicController extends Controller
                         $flush = $em->flush();
                         $id = $comment->getId();
                         if (!$flush) {
-                            if($akismet->isCommentSpam()) {
+                            $env = $this->container->get('kernel')->getEnvironment();
+                            $currentUserId = $this->get('security.token_storage')->getToken()->getUser();
+                            $currentUserEmail = $userRepo->find($currentUserId)->getEmail();
+                            if ($akismet->isCommentSpam()) {
+                                if ($env != 'test' && $comment->getEmail() != $currentUserEmail) {
+                                    $this->container->get('system_mailer')
+                                        ->send('App:new-comment-spam', array(
+                                            'comment' => $comment,
+                                            'post' => $post
+                                        ), 'es');
+                                }
                                 $status = 'COMMENT_SPAM_DETECTED';
                             } else {
+                                if ($env != 'test' && $comment->getEmail() != $currentUserEmail) {
+                                    $this->container->get('system_mailer')
+                                        ->send('App:new-comment', array(
+                                            'comment' => $comment,
+                                            'post' => $post
+                                        ), 'es');
+                                }
                                 $status = 'COMMENT_ADDED_PROPERLY';
                                 $this->session->getFlashBag()->add('status', $status);
                                 return $this->redirectToRoute('post', array(
@@ -254,7 +271,8 @@ class PublicController extends Controller
         ));
     }
 
-    public function getCommentChildAction($id) {
+    public function getCommentChildAction($id)
+    {
         $em = $this->getDoctrine()->getManager();
         $commentRepo = $em->getRepository('AppBundle:Comment');
         $comments = $commentRepo->findBy(array(
