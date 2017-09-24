@@ -111,6 +111,7 @@ class PublicController extends Controller
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $env = $this->container->get('kernel')->getEnvironment();
             $commentAuthor = $form->get('author')->getData();
             $commentEmail = $form->get('email')->getData();
             $commentComment = $form->get('comment')->getData();
@@ -118,15 +119,19 @@ class PublicController extends Controller
                 if ($commentEmail) {
                     if ($commentComment) {
                         $comment->setDate(new \DateTime('now'));
-                        $wpApi = $this->container
-                            ->getParameter('wordpress_api_key');
-                        $wpUrl = $this->container
-                            ->getParameter('wordpress_blog_url');
-                        $akismet = new Akismet($wpUrl ,$wpApi);
-                        $akismet->setCommentAuthorEmail($comment->getEmail());
-                        $akismet->setCommentContent($comment->getComment());
-                        if($akismet->isCommentSpam()) {
-                            $comment->setStatus('pending');
+                        if ($env != 'test') {
+                            $wpApi = $this->container
+                                ->getParameter('wordpress_api_key');
+                            $wpUrl = $this->container
+                                ->getParameter('wordpress_blog_url');
+                            $akismet = new Akismet($wpUrl, $wpApi);
+                            $akismet->setCommentAuthorEmail($comment->getEmail());
+                            $akismet->setCommentContent($comment->getComment());
+                            if ($akismet->isCommentSpam()) {
+                                $comment->setStatus('pending');
+                            } else {
+                                $comment->setStatus('approved');
+                            }
                         } else {
                             $comment->setStatus('approved');
                         }
@@ -136,11 +141,14 @@ class PublicController extends Controller
                         $flush = $em->flush();
                         $id = $comment->getId();
                         if (!$flush) {
-                            $env = $this->container->get('kernel')->getEnvironment();
-                            $currentUserId = $this->get('security.token_storage')->getToken()->getUser();
-                            $currentUserEmail = $userRepo->find($currentUserId)->getEmail();
-                            if ($akismet->isCommentSpam()) {
-                                if ($env != 'test' && $comment->getEmail() != $currentUserEmail) {
+                            $securityContext = $this->container->get('security.authorization_checker');
+                            $currentUserEmail = '';
+                            if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                                $currentUserId = $this->get('security.token_storage')->getToken()->getUser();
+                                $currentUserEmail = $userRepo->find($currentUserId)->getEmail();
+                            }
+                            if ($env != 'test' && $akismet->isCommentSpam()) {
+                                if ($comment->getEmail() != $currentUserEmail) {
                                     $this->container->get('system_mailer')
                                         ->send('App:new-comment-spam', array(
                                             'comment' => $comment,

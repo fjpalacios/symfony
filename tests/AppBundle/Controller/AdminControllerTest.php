@@ -4,6 +4,7 @@ namespace Tests\AppBundle\Controller;
 
 use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -215,6 +216,38 @@ class AdminControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/es/admin/categories/del/1');
         $user = $client->getContainer()->get('doctrine')
             ->getRepository(Category::class)->find(1);
+        $this->assertNull($user);
+    }
+
+    public function testEditComment()
+    {
+        $newCommentComment = 'Comment' . mt_rand();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'charlie',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $crawler = $client->request('GET', '/es/admin/comments/edit/1');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_comment[comment]' => $newCommentComment
+        ));
+        $client->submit($form);
+        $comment = $client->getContainer()->get('doctrine')
+            ->getRepository(Comment::class)->find(1);
+        $this->assertSame($newCommentComment, $comment->getComment());
+    }
+
+    public function testDeleteComment()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'alice',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/es/admin/comments/del/1');
+        $user = $client->getContainer()->get('doctrine')
+            ->getRepository(Comment::class)->find(1);
         $this->assertNull($user);
     }
 }

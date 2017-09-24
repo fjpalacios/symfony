@@ -107,4 +107,14 @@ MARKDOWN;
         }
         return $summary;
     }
+
+    private function getRandomCommentContent()
+    {
+        $phrases = $this->getPhrases();
+
+        $numPhrases = mt_rand(2, 15);
+        shuffle($phrases);
+
+        return implode(' ', array_slice($phrases, 0, $numPhrases - 1));
+    }
 }
