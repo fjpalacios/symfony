@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_COMMENTS_PENDING_TITLE'|trans }} — SargantanaCode
+{% endblock %}
+
+{% block body_id "admin-comments-pending" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">{{ 'COMMENTS_PENDING_TITLE'|trans }}</h2>
+      {% if comments %}
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th class="d-none d-sm-table-cell">
+            {{ 'COMMENTS_AUTHOR'|trans }}
+          </th>
+          <th class="w-75">
+            {{ 'COMMENTS_COMMENT'|trans }}
+          </th>
+          <th class="text-center col-sm-2">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% endif %}
+        {% for comment in comments %}
+          <tr>
+            <td class="d-none d-sm-table-cell">
+              {% if comment.url %}
+                <a href="{{ comment.url }}">{{ comment.author }}</a>
+              {% else %}
+                {{ comment.author }}
+              {% endif %}
+              <br/>
+              <a href="{{ 'mailto:' ~ comment.email }}">{{ comment.email }}</a>
+              <br/>
+              {{ comment.ip }}
+              <br/>
+              {{ comment.date|date('d-m-y') }}
+              <br/>
+              {{ comment.date|date('H:m:s') }}
+            </td>
+            <td>
+              <a href="{{ path('post', {'slug': comment.slug }) }}">
+                {% if app.request.locale == 'es' and comment.title_es %}
+                  {{ comment.title_es }}
+                {% elseif app.request.locale == 'es' and comment.title_en %}
+                  {{ comment.title_en }}
+                {% endif %}
+                {% if app.request.locale == 'en' and comment.title_en %}
+                  {{ comment.title_en }}
+                {% elseif app.request.locale == 'en' and comment.title_es %}
+                  {{ comment.title_es }}
+                {% endif %}
+              </a>
+              <hr/>
+              {{ comment.comment }}
+            </td>
+            <td class="text-center">
+              <a href="{{ path('admin_comments_approve', {'id': comment.id}) }}"
+                 class="btn btn-sm btn-primary text-center">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+              </a>
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('admin_comments_del', {'id': comment.id}) }}"
+                   class="btn btn-sm btn-danger text-center">
+                  <i class="fa fa-thumbs-down"
+                     aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        {% if not comments %}
+        <div class="alert alert-info" role="alert">
+          {{ 'COMMENTS_PENDING_NOT_FOUND'|trans }}
+        </div>
+        {% else %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

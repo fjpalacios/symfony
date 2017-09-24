@@ -16,6 +16,11 @@
 {% block body_id "post" %}
 
 {% block body %}
+  {% for message in app.session.flashbag().get('status') %}
+    <div class="alert alert-info" role="alert">
+      {{ message|trans }}
+    </div>
+  {% endfor %}
   <div class="container mt-5 page">
     <div class="content mb-4">
       {% if post.type == 'post' %}
@@ -67,6 +72,17 @@
     </div>
     {% if user.bio and post.type != 'page' %}
       {% include('/public/_user-profile.html.twig') %}
+    {% endif %}
+    {% if comments %}
+      <div class="mt-5" id="comments">
+        <h2 class="text-center mb-4">
+          {{ 'COMMENTS_LIST_TITLE'|trans }}
+        </h2>
+        {% include('public/_comments.html.twig') %}
+      </div>
+    {% endif %}
+    {% if post.commentStatus == 'open' %}
+      {% include('public/_comment-form.html.twig') %}
     {% endif %}
   </div>
 {% endblock %}

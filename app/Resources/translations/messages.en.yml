@@ -21,6 +21,9 @@ ADMIN_POSTS_VIEW_TITLE: "View post"
 ADMIN_USERS_TITLE: "Users"
 ADMIN_USERS_ADD_TITLE: "New user"
 ADMIN_USERS_EDIT_TITLE: "Edit user"
+ADMIN_COMMENTS_TITLE: "Comments"
+ADMIN_COMMENTS_EDIT_TITLE: "Edit comment"
+ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
 
 # Roles
 ROLE_USER: "User"
@@ -196,3 +199,44 @@ CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "Category removed properly"
 CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"
+
+# Comments
+ADMIN_COMMENTS: "Comments"
+COMMENTS_TITLE: "Comments"
+COMMENT_ADDED_PROPERLY: "Comment added properly"
+COMMENT_ADDED_ERROR: "Something went wrong when adding the comment"
+COMMENT_ADDED_ERROR_AUTHOR: "In order to add your comment you must enter your name"
+COMMENT_ADDED_ERROR_EMAIL: "In order to add your comment you must enter your email"
+COMMENT_ADDED_ERROR_COMMENT: "You can not post an empty comment"
+COMMENT_SPAM_DETECTED: "Your comment was automatically detected as spam, it will be manually checked to rule out a false positive"
+COMMENTS_ADD_TITLE: "New comment"
+COMMENTS_LIST_TITLE: "Comments"
+COMMENT_AUTHOR: "Name"
+COMMENT_EMAIL: "Email"
+COMMENT_URL: "Website"
+COMMENT_COMMENT: "Comment"
+COMMENTS_AUTHOR: "Author"
+COMMENTS_COMMENT: "Comment"
+COMMENTS_POST: "Post"
+COMMENTS_NOT_FOUND: "There are currently no comments added, be patient they are coming"
+
+# Comments pending
+COMMENTS_PENDING_TITLE: "Pending comments"
+ADMIN_COMMENTS_PENDING: "Pending comments"
+COMMENTS_PENDING_NOT_FOUND: "Today is a happy day, no spam comments detected"
+
+# Comment del
+COMMENT_REMOVED_PROPERLY: "Comment removed properly"
+COMMENT_REMOVED_ERROR: "Something went wrong when removing the comment"
+
+# Comment approve
+COMMENT_APPROVED_PROPERLY: "Comment approved properly"
+COMMENT_APPROVED_ERROR: "Something went wrong when approving the comment"
+
+# Comment edit
+COMMENTS_EDIT_TITLE: "Edit comment"
+COMMENT_STATUS: "Status"
+COMMENT_STATUS_APPROVE: "Approved"
+COMMENT_STATUS_PENDING: "Pending"
+COMMENT_EDITED_PROPERLY: "Comment edited properly"
+COMMENT_EDITED_ERROR: "Something went wrong when editing the comment"

@@ -1,0 +1,52 @@
+{% if app.user %}
+  {% set name = app.user.name %}
+  {% set email = app.user.email %}
+  {% set url = app.user.url %}
+{% else %}
+  {% set name = '' %}
+  {% set email = '' %}
+  {% set url = '' %}
+{% endif %}
+
+<div id="new-comment" class="content mt-5">
+  <h2 class="text-center mb-4" id="title-new-comment">
+    {{ 'COMMENTS_ADD_TITLE'|trans }}
+  </h2>
+  {{ form_start(form) }}
+  <div class="form-group">
+    {{ form_label(form.author, 'COMMENT_AUTHOR') }}
+    {{ form_widget(form.author, { 'attr':
+      {'class': 'form-control',
+        'value': name } }) }}
+  </div>
+  <div class="form-group">
+    {{ form_label(form.email, 'COMMENT_EMAIL') }}
+    {{ form_widget(form.email, { 'attr':
+      {'class': 'form-control',
+        'value': email } }) }}
+  </div>
+  <div class="form-group">
+    {{ form_label(form.url, 'COMMENT_URL') }}
+    {{ form_widget(form.url, { 'attr':
+      {'class': 'form-control',
+        'value': url } }) }}
+  </div>
+  <div class="form-group">
+    {{ form_label(form.comment, 'COMMENT_COMMENT') }}
+    {{ form_widget(form.comment, { 'attr':
+      {'class': 'form-control',
+        'rows': 10} }) }}
+  </div>
+  <div class="container buttons mt-5">
+    <button type="submit" id="submit" name="submit"
+            class="btn btn-primary">
+      <i class="fa fa-check" aria-hidden="true"></i>
+      &nbsp; {{ 'ADD_BTN'|trans }}</button>
+    <button type="reset" id="submit" name="submit"
+            class="btn">
+      <i class="fa fa-eraser" aria-hidden="true"></i>
+      &nbsp; {{ 'RESET_BTN'|trans }}</button>
+    {% do form.status.setRendered %}
+    {{ form_end(form) }}
+  </div>
+</div>

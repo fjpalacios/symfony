@@ -3,18 +3,29 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
+use AppBundle\Form\CommentType;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
+use AppBundle\Utils\Akismet;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @Route("/{_locale}", requirements={"_locale" = "%app.locales%"})
  */
 class PublicController extends Controller
 {
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new Session();
+    }
+
     /**
      * @Route("/", name="home", defaults={"_format"="html", "page": "1"})
      * @Route("/page/{page}", name="paginated_home", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"})
@@ -88,20 +99,111 @@ class PublicController extends Controller
             $postView->setViews($postView->getViews() + 1);
             $em->flush();
         }
+        $commentRepo = $em->getRepository('AppBundle:Comment');
+        $comments = $commentRepo->findBy(array(
+            'postId' => $post->getId(),
+            'status' => 'approved',
+            'parentId' => null), array(
+                'date' => 'ASC'
+            )
+        );
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $env = $this->container->get('kernel')->getEnvironment();
+            $commentAuthor = $form->get('author')->getData();
+            $commentEmail = $form->get('email')->getData();
+            $commentComment = $form->get('comment')->getData();
+            if ($commentAuthor) {
+                if ($commentEmail) {
+                    if ($commentComment) {
+                        $comment->setDate(new \DateTime('now'));
+                        if ($env != 'test') {
+                            $wpApi = $this->container
+                                ->getParameter('wordpress_api_key');
+                            $wpUrl = $this->container
+                                ->getParameter('wordpress_blog_url');
+                            $akismet = new Akismet($wpUrl, $wpApi);
+                            $akismet->setCommentAuthorEmail($comment->getEmail());
+                            $akismet->setCommentContent($comment->getComment());
+                            if ($akismet->isCommentSpam()) {
+                                $comment->setStatus('pending');
+                            } else {
+                                $comment->setStatus('approved');
+                            }
+                        } else {
+                            $comment->setStatus('approved');
+                        }
+                        $comment->setPostId($post->getId());
+                        $comment->setIp($request->getClientIp());
+                        $em->persist($comment);
+                        $flush = $em->flush();
+                        $id = $comment->getId();
+                        if (!$flush) {
+                            $securityContext = $this->container->get('security.authorization_checker');
+                            $currentUserEmail = '';
+                            if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                                $currentUserId = $this->get('security.token_storage')->getToken()->getUser();
+                                $currentUserEmail = $userRepo->find($currentUserId)->getEmail();
+                            }
+                            if ($env != 'test' && $akismet->isCommentSpam()) {
+                                if ($comment->getEmail() != $currentUserEmail) {
+                                    $this->container->get('system_mailer')
+                                        ->send('App:new-comment-spam', array(
+                                            'comment' => $comment,
+                                            'post' => $post
+                                        ), 'es');
+                                }
+                                $status = 'COMMENT_SPAM_DETECTED';
+                            } else {
+                                if ($env != 'test' && $comment->getEmail() != $currentUserEmail) {
+                                    $this->container->get('system_mailer')
+                                        ->send('App:new-comment', array(
+                                            'comment' => $comment,
+                                            'post' => $post
+                                        ), 'es');
+                                }
+                                $status = 'COMMENT_ADDED_PROPERLY';
+                                $this->session->getFlashBag()->add('status', $status);
+                                return $this->redirectToRoute('post', array(
+                                    'slug' => $slug,
+                                    '_fragment' => 'comment-' . $id
+                                ));
+                            }
+                        } else {
+                            $status = 'COMMENT_ADDED_ERROR';
+                        }
+                    } else {
+                        $status = 'COMMENT_ADDED_ERROR_COMMENT';
+                    }
+                } else {
+                    $status = 'COMMENT_ADDED_ERROR_EMAIL';
+                }
+            } else {
+                $status = 'COMMENT_ADDED_ERROR_AUTHOR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->render('public/post.html.twig', array(
+                'post' => $post,
+                'user' => $author,
+                'pages' => $pages,
+                'comments' => $comments,
+                'form' => $form->createView()
+            ));
+        }
         if ($slug == 'categorias') {
             return $this->render('public/categories.html.twig', array(
                 'pages' => $pages,
                 'categories' => $categories
             ));
-        } elseif ($slug == 'rss') {
-            return $this->redirectToRoute('rss');
-        } elseif ($slug == 'login') {
-            return $this->redirectToRoute('login');
         } else {
             return $this->render('public/post.html.twig', array(
                 'post' => $post,
                 'user' => $author,
-                'pages' => $pages
+                'pages' => $pages,
+                'comments' => $comments,
+                'form' => $form->createView()
             ));
         }
     }
@@ -174,6 +276,21 @@ class PublicController extends Controller
             'posts' => $posts,
             'category' => $category,
             'pages' => $pages
+        ));
+    }
+
+    public function getCommentChildAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentRepo = $em->getRepository('AppBundle:Comment');
+        $comments = $commentRepo->findBy(array(
+            'parentId' => $id,
+            'status' => 'approved'), array(
+                'date' => 'ASC'
+            )
+        );
+        return $this->render('public/_comments.html.twig', array(
+            'comments' => $comments
         ));
     }
 }

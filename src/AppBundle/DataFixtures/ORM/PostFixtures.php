@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\FixturesTrait;
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -40,6 +41,17 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setAuthor(0 === $i ? $this->getReference('super-admin') : $this->getRandomUser());
             $post->setStatus($this->getRandomStatus());
             $manager->persist($post);
+
+            foreach (range(1, 5) as $j) {
+                $comment = new Comment();
+                $comment->setPostId($i + 1);
+                $comment->setAuthor('Bob');
+                $comment->setEmail('bob@test.com');
+                $comment->setDate(new \DateTime('now + ' . ($i + $j) . 'seconds'));
+                $comment->setStatus('approved');
+                $comment->setComment($this->getRandomCommentContent());
+                $manager->persist($comment);
+            }
         }
         $manager->flush();
     }

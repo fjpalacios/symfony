@@ -2,6 +2,7 @@
 
 namespace Tests\AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -52,6 +53,28 @@ class PublicControllerTest extends WebTestCase
         $client->request('GET', sprintf('/es/%s', $blogPost->getSlug()));
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
+    }
+
+    public function testNewComment()
+    {
+        $newCommentAuthor = 'Bob';
+        $newCommentEmail = 'testing@test.com';
+        $newCommentComment = 'Hey, guys!';
+        $client = static::createClient();
+        $blogPost = $client->getContainer()->get('doctrine')
+            ->getRepository(Post::class)->find(1);
+        $crawler = $client->request('GET', sprintf('/es/%s', $blogPost->getSlug()));
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_comment[author]' => $newCommentAuthor,
+            'appbundle_comment[email]' => $newCommentEmail,
+            'appbundle_comment[comment]' => $newCommentComment
+        ));
+        $client->submit($form);
+        $comment = $client->getContainer()->get('doctrine')
+            ->getRepository(Comment::class)->findOneBy(array(
+                'email' => $newCommentEmail,
+            ));
+        $this->assertSame($newCommentEmail, $comment->getEmail());
     }
 
     public function testProfile()

@@ -21,6 +21,9 @@ ADMIN_POSTS_VIEW_TITLE: "Ver artículo"
 ADMIN_USERS_TITLE: "Usuarios"
 ADMIN_USERS_ADD_TITLE: "Nuevo usuario"
 ADMIN_USERS_EDIT_TITLE: "Editar usuario"
+ADMIN_COMMENTS_TITLE: "Comentarios"
+ADMIN_COMMENTS_EDIT_TITLE: "Editar comentario"
+ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -196,3 +199,44 @@ CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "La categoría se eliminó correctamente"
 CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"
+
+# Comments
+ADMIN_COMMENTS: "Comentarios"
+COMMENTS_TITLE: "Comentarios"
+COMMENT_ADDED_PROPERLY: "El comentario se añadió correctamente"
+COMMENT_ADDED_ERROR: "Algo salió mal al añadir el comentario"
+COMMENT_ADDED_ERROR_AUTHOR: "Tienes que escribir tu nombre para poder comentar"
+COMMENT_ADDED_ERROR_EMAIL: "Tienes que escribir tu correo electrónico para poder comentar"
+COMMENT_ADDED_ERROR_COMMENT: "No puedes enviar un comentario vacío"
+COMMENT_SPAM_DETECTED: "El comentario fue detectado automáticamente como spam, será revisado manualmente para descartar un falso positivo"
+COMMENTS_ADD_TITLE: "Nuevo comentario"
+COMMENTS_LIST_TITLE: "Comentarios"
+COMMENT_AUTHOR: "Nombre"
+COMMENT_EMAIL: "Correo electrónico"
+COMMENT_URL: "Página web"
+COMMENT_COMMENT: "Comentario"
+COMMENTS_AUTHOR: "Autor"
+COMMENTS_COMMENT: "Comentario"
+COMMENTS_POST: "Artículo"
+COMMENTS_NOT_FOUND: "Actualmente no hay comentarios, ten paciencia pronto llegarán"
+
+# Comments pending
+COMMENTS_PENDING_TITLE: "Comentarios pendientes"
+ADMIN_COMMENTS_PENDING: "Comentarios pendientes"
+COMMENTS_PENDING_NOT_FOUND: "Hoy es un buen día, no hay comentarios detectados como spam"
+
+# Comment del
+COMMENT_REMOVED_PROPERLY: "El comentario se eliminó correctamente"
+COMMENT_REMOVED_ERROR: "Algo salió mal al eliminar el comentario"
+
+# Comment approve
+COMMENT_APPROVED_PROPERLY: "El comentario se aprobó correctamente"
+COMMENT_APPROVED_ERROR: "Algo salió mal al aprobar el comentario"
+
+# Comment edit
+COMMENTS_EDIT_TITLE: "Editar comentario"
+COMMENT_STATUS: "Estado"
+COMMENT_STATUS_APPROVE: "Aprobado"
+COMMENT_STATUS_PENDING: "Pendiente"
+COMMENT_EDITED_PROPERLY: "El comentario se editó correctamente"
+COMMENT_EDITED_ERROR: "Algo salió mal al editar el comentario"

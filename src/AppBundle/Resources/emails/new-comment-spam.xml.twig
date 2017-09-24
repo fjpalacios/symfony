@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<email xmlns="http://christoph-hautzinger.de/schema/system-mail-bundle"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://christoph-hautzinger.de/schema/system-mail-bundle http://christoph-hautzinger.de/schema/system-mail-bundle/email-1.0.xsd">
+  <to name="{{ admin_name }}">{{ admin_email }}</to>
+  <subject locale="en">New spam-detected comment by {{ comment.author }}</subject>
+  <subject locale="es">Nuevo posible spam en un comentario de {{ comment.author }}</subject>
+  <messageHtml locale="en">
+    <![CDATA[
+    <p>There is a new comment by {{ comment.author }} detected as spam,
+    <a href="
+      {{ url('admin_comments_approve') }}
+    ">please, check it out</a>.</p>
+    <p>{{ comment.comment }}</p>
+    ]]></messageHtml>
+  <messageHtml locale="es">
+    <![CDATA[
+    <p>Hay un nuevo comentario de {{ comment.author }} marcado como spam,
+    <a href="
+      {{ url('admin_comments_approve') }}
+    ">por favor, revísalo</a>.</p>
+    <p>{{ comment.comment }}</p>
+    ]]></messageHtml>
+</email>
