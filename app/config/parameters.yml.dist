@@ -15,14 +15,14 @@ parameters:
     mailer_host: 127.0.0.1
     mailer_port: ~
     mailer_encryption: ~
-    mailer_auth_mode: ~
     mailer_user: ~
     mailer_password: ~
 
     # Data for sending mails
     admin_email: ~
-    from_email: ~
-    from_name: ~
+    admin_name: ~
+    app_email: ~
+    app_name: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

@@ -48,6 +48,10 @@
             <a href="{{ 'mailto:' ~ comment.email }}">{{ comment.email }}</a>
             <br/>
             {{ comment.ip }}
+            <br/>
+            {{ comment.date|date('d-m-y') }}
+            <br/>
+            {{ comment.date|date('H:m:s') }}
           </td>
           <td>
             <a href="{{ path('post', {'slug': comment.slug }) }}">

@@ -41,8 +41,9 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         admin_email: '%admin_email%'
-        from_email: '%from_email%'
-        from_name: '%from_name%'
+        admin_name: '%admin_name%'
+        app_email: '%app_email%'
+        app_name: '%app_name%'
 
 # Doctrine Configuration
 doctrine:
@@ -89,5 +90,8 @@ ornicar_gravatar:
 hautzi_system_mail:
     defaults:
         from:
-            email: web@sargantanacode.es
-            name:  SargantanaCode
+            email: '%app_email%'
+            name:  '%app_name%'
+        to:
+            email: '%admin_email%'
+            name: '%admin_name%'

@@ -2,7 +2,7 @@
 <email xmlns="http://christoph-hautzinger.de/schema/system-mail-bundle"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://christoph-hautzinger.de/schema/system-mail-bundle http://christoph-hautzinger.de/schema/system-mail-bundle/email-1.0.xsd">
-  <to name="{{ from_name }}">{{ from_email }}</to>
+  <to name="{{ admin_name }}">{{ admin_email }}</to>
   <subject locale="en">New comment by {{ comment.author }}</subject>
   <subject locale="es">Nuevo comentario de {{ comment.author }}</subject>
   <messageHtml locale="en">
