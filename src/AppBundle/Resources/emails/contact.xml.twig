@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<email xmlns="http://christoph-hautzinger.de/schema/system-mail-bundle"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://christoph-hautzinger.de/schema/system-mail-bundle http://christoph-hautzinger.de/schema/system-mail-bundle/email-1.0.xsd">
+  <from name="{{ name }}">{{ email }}</from>
+  <to name="{{ admin_name }}">{{ admin_email }}</to>
+  <subject locale="en">[{{ app_name }}] {{ subject }}</subject>
+  <subject locale="es">[{{ app_name }}] {{ subject }}</subject>
+  <messageHtml locale="en">
+    <![CDATA[
+    <p>There is a new message by {{ name }}.<br/>
+    IP address: {{ ip }}.<br/>
+    Subject: {{ subject }}.<br/>
+    Email: {{ email }}.<br/>
+    Message:</p>
+    <p>{{ message }}</p>
+    ]]></messageHtml>
+  <messageHtml locale="es">
+    <![CDATA[
+    <p>Hay un nuevo mensaje de {{ name }}.<br/>
+    Dirección IP: {{ ip }}. <br/>
+    Asunto: {{ subject }}.<br/>
+    Correo electrónico: {{ email }}.<br/>
+    Mensaje:</p>
+    <p>{{ message }}</p>
+    ]]></messageHtml>
+</email>
