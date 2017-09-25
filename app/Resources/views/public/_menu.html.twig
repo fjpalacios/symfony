@@ -17,7 +17,8 @@
       </li>
       {% for page in pages %}
         <li class="nav-item
-                    {% if app.request.requestUri == '/'~app.request.locale~'/'~page.slug %}
+                    {% if app.request.requestUri == '/'~app.request.locale~'/'~page.slug or
+                          app.request.requestUri == '/'~app.request.locale~'/'~page.slug~'/' %}
                     active
                     {% endif %}">
           <a class="nav-link"
