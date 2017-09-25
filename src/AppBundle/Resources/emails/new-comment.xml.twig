@@ -7,11 +7,11 @@
   <subject locale="es">Nuevo comentario de {{ comment.author }}</subject>
   <messageHtml locale="en">
     <![CDATA[
-    There is a new comment by {{ comment.author }},
+    <p>There is a new comment by {{ comment.author }},
     <a href="
       {{ url('post', {'slug': post.slug, '_fragment': 'comment-' ~ comment.id }) }}
     ">please, check it out</a>.</p>
-    <p>{{ comment.comment }}
+    <p>{{ comment.comment }}</p>
     ]]></messageHtml>
   <messageHtml locale="es">
     <![CDATA[

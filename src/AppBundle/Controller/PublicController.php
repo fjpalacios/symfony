@@ -6,6 +6,7 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\ContactType;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
 use AppBundle\Utils\Akismet;
@@ -197,6 +198,8 @@ class PublicController extends Controller
                 'pages' => $pages,
                 'categories' => $categories
             ));
+        } else if ($slug == 'contacto') {
+            return $this->redirectToRoute('contact');
         } else {
             return $this->render('public/post.html.twig', array(
                 'post' => $post,
@@ -275,6 +278,53 @@ class PublicController extends Controller
         return $this->render('public/category.html.twig', array(
             'posts' => $posts,
             'category' => $category,
+            'pages' => $pages
+        ));
+    }
+
+    /**
+     * @Route("/contacto/", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        $form = $this->createForm(ContactType::class, null);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $name = $form->get('name')->getData();
+            $email = $form->get('email')->getData();
+            $ip = $request->getClientIp();
+            $subject = $form->get('subject')->getData();
+            $message = $form->get('message')->getData();
+            $this->container->get('system_mailer')
+                ->send('App:contact', array(
+                    'name' => $name,
+                    'email' => $email,
+                    'ip' => $ip,
+                    'subject' => $subject,
+                    'message' => $message
+                ), 'es');
+            $status = 'MESSAGE_SENDED_PROPERLY';
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('contact');
+        }
+        $locale = $request->getLocale();
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        if ($locale == 'es') {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEs' => 'ASC'
+            ));
+        } else {
+            $pages = $postRepo->findBy(array(
+                'navbar' => '1',
+                'status' => 'publish'), array(
+                'titleEn' => 'ASC'
+            ));
+        }
+        return $this->render('public/contact.html.twig', array(
+            'form' => $form->createView(),
             'pages' => $pages
         ));
     }

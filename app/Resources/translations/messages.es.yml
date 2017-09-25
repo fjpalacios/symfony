@@ -240,3 +240,10 @@ COMMENT_STATUS_APPROVE: "Aprobado"
 COMMENT_STATUS_PENDING: "Pendiente"
 COMMENT_EDITED_PROPERLY: "El comentario se editó correctamente"
 COMMENT_EDITED_ERROR: "Algo salió mal al editar el comentario"
+
+# Contact
+CONTACT_TITLE: "Contacto"
+SUBJECT: "Asunto"
+MESSAGE: "Mensaje"
+SEND_BTN: "Enviar"
+MESSAGE_SENDED_PROPERLY: "El mensaje se ha enviado correctamente, en breve nos pondremos en contacto contigo"
