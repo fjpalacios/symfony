@@ -25,6 +25,7 @@ $(document).ready(function () {
     passButton.style.display = 'block'
     passInput.style.display = 'none'
   }
+  checkCookies()
 })
 
 let newPass = document.getElementById('newpass')
@@ -101,6 +102,13 @@ if (replyButton) {
   }
 }
 
+let acceptCookie = document.getElementById('acceptcookies')
+if (document.body.contains(acceptCookie)) {
+  acceptCookie.addEventListener('click', () => {
+    acceptCookies()
+  }, false)
+}
+
 function randPass () {
   let length = 12
   let lower = 'abcdefghijklmnopqrstuvwxyz'
@@ -115,4 +123,17 @@ function randPass () {
     pass += symbol.charAt(Math.floor(Math.random() * symbol.length))
   }
   return pass
+}
+
+function checkCookies () {
+  if (window.localStorage.acceptCookie !== 'true') {
+    let cookies = document.getElementById('cookies')
+    cookies.classList.remove('hidden')
+  }
+}
+
+function acceptCookies () {
+  window.localStorage.setItem('acceptCookie', 'true')
+  let cookies = document.getElementById('cookies')
+  cookies.classList.add('hidden')
 }

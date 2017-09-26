@@ -21,3 +21,25 @@
     }
   }
 }
+
+.cookies {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  background-color: $black;
+  z-index: 999999;
+  color: $white;
+  @include flexbox();
+  @include align-items(center);
+  @include justify-content(space-between);
+  @include flex-wrap(nowrap);
+  &__message {
+    margin-left: 5%;
+  }
+  &__button {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}

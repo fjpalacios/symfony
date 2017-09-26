@@ -1,0 +1,10 @@
+{% if cookie_warning %}
+  <div id="cookies" class="cookies hidden">
+    <div class="cookies__message">{{ 'COOKIE_MESSAGE'|trans }}</div>
+    <div class="cookies__button">
+      <a id="acceptcookies" class="btn btn-sm btn-primary text-center">
+        {{ 'ACCEPT_BTN'|trans }}
+      </a>
+    </div>
+  </div>
+{% endif %}

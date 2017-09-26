@@ -247,3 +247,7 @@ SUBJECT: "Asunto"
 MESSAGE: "Mensaje"
 SEND_BTN: "Enviar"
 MESSAGE_SENDED_PROPERLY: "El mensaje se ha enviado correctamente, en breve nos pondremos en contacto contigo"
+
+# Cookies
+COOKIE_MESSAGE: "Los políticos españoles me obligan a avisarte de que en esta página se almacenan cookies"
+ACCEPT_BTN: "Acepto"
