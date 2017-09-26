@@ -247,3 +247,7 @@ SUBJECT: "Subject"
 MESSAGE: "Message"
 SEND_BTN: "Send"
 MESSAGE_SENDED_PROPERLY: "Your message has been sent properly, as fast as possible we will contact with you"
+
+# Cookies
+COOKIE_MESSAGE: "Spanish politicians urge me to warn you that cookies are stored on this page"
+ACCEPT_BTN: "Accept"

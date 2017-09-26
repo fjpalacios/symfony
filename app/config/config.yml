@@ -44,6 +44,7 @@ twig:
         admin_name: '%admin_name%'
         app_email: '%app_email%'
         app_name: '%app_name%'
+        cookie_warning: true
 
 # Doctrine Configuration
 doctrine:
