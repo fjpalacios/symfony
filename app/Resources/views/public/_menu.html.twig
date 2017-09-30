@@ -15,22 +15,30 @@
         {'_locale': app.request.locale }) }}">
           {{ 'HOME'|trans }}</a>
       </li>
-      {% for page in pages %}
-        <li class="nav-item
-                    {% if app.request.requestUri == '/'~app.request.locale~'/'~page.slug or
-                          app.request.requestUri == '/'~app.request.locale~'/'~page.slug~'/' %}
+      <li class="nav-item
+                    {% if app.request.get('_route') == 'about-us' %}
                     active
                     {% endif %}">
-          <a class="nav-link"
-             href="{{ path('post', { 'slug': page.slug }) }}">
-            {% if app.request.locale == 'es' %}
-              {{ page.titleEs }}
-            {% else %}
-              {{ page.titleEn }}
-            {% endif %}
-          </a>
-        </li>
-      {% endfor %}
+        <a class="nav-link" href="{{ path('about_us',
+        {'_locale': app.request.locale }) }}">
+          {{ 'ABOUT_US'|trans }}</a>
+      </li>
+      <li class="nav-item
+                    {% if app.request.get('_route') == 'categories' %}
+                    active
+                    {% endif %}">
+        <a class="nav-link" href="{{ path('categories',
+        {'_locale': app.request.locale }) }}">
+          {{ 'CATEGORIES'|trans }}</a>
+      </li>
+      <li class="nav-item
+                    {% if app.request.get('_route') == 'contact' %}
+                    active
+                    {% endif %}">
+        <a class="nav-link" href="{{ path('contact',
+        {'_locale': app.request.locale }) }}">
+          {{ 'CONTACT'|trans }}</a>
+      </li>
       <li class="nav-item"><a class="nav-link" href="{{ path('rss') }}">RSS</a></li>
     </ul>
     <ul class="navbar-nav">

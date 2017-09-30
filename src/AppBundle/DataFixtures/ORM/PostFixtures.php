@@ -34,7 +34,6 @@ class PostFixtures extends AbstractFixture implements DependentFixtureInterface,
             $post->setSlug($slug->slugify($post->getTitleEs()));
             $post->setType($this->getRandomType());
             $post->setCategory($this->getReference('category'));
-            $post->setNavbar(0);
             $post->setCommentStatus('open');
             $post->setCommentCount(0);
             $post->setViews(0);

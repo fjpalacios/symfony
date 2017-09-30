@@ -45,31 +45,16 @@ class PublicController extends Controller
             $totalItems = count($posts);
             $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
         }
-        $locale = $request->getLocale();
-        if ($locale == 'es') {
-            $pages = $repository->findBy(array(
-                    'navbar' => '1',
-                    'status' => 'publish'), array(
-                    'titleEs' => 'ASC'
-            ));
-        } else {
-            $pages = $repository->findBy(array(
-                    'navbar' => '1',
-                    'status' => 'publish'), array(
-                    'titleEn' => 'ASC'
-            ));
-        }
-        return $this->render('public/index.'.$_format.'.twig', array(
-                'posts' => $posts,
-                'pages' => $pages,
-                'totalItems' => $totalItems,
-                'pagesCount' => $pagesCount,
-                'page' => $page
+        return $this->render('public/index.' . $_format . '.twig', array(
+            'posts' => $posts,
+            'totalItems' => $totalItems,
+            'pagesCount' => $pagesCount,
+            'page' => $page
         ));
     }
 
     /**
-     * @Route("/{slug}", name="post")
+     * @Route("/article/{slug}/", name="post")
      */
     public function postAction(Request $request, Post $post)
     {
@@ -77,22 +62,6 @@ class PublicController extends Controller
         $userRepo = $em->getRepository('AppBundle:User');
         $postRepo = $this->getDoctrine()->getRepository('AppBundle:Post');
         $author = $userRepo->find($post->getAuthor());
-        $locale = $request->getLocale();
-        if ($locale == 'es') {
-            $pages = $postRepo->findBy(array(
-                    'navbar' => '1',
-                    'status' => 'publish'), array(
-                    'titleEs' => 'ASC'
-            ));
-        } else {
-            $pages = $postRepo->findBy(array(
-                    'navbar' => '1',
-                    'status' => 'publish'), array(
-                    'titleEn' => 'ASC'
-            ));
-        }
-        $categoryRepo = $em->getRepository('AppBundle:Category');
-        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
         $slug = $request->attributes->get('slug');
         if (!$this->get('security.authorization_checker')
             ->isGranted('ROLE_ADMIN')) {
@@ -188,27 +157,16 @@ class PublicController extends Controller
             return $this->render('public/post.html.twig', array(
                 'post' => $post,
                 'user' => $author,
-                'pages' => $pages,
                 'comments' => $comments,
                 'form' => $form->createView()
             ));
         }
-        if ($slug == 'categorias') {
-            return $this->render('public/categories.html.twig', array(
-                'pages' => $pages,
-                'categories' => $categories
-            ));
-        } else if ($slug == 'contacto') {
-            return $this->redirectToRoute('contact');
-        } else {
-            return $this->render('public/post.html.twig', array(
-                'post' => $post,
-                'user' => $author,
-                'pages' => $pages,
-                'comments' => $comments,
-                'form' => $form->createView()
-            ));
-        }
+        return $this->render('public/post.html.twig', array(
+            'post' => $post,
+            'user' => $author,
+            'comments' => $comments,
+            'form' => $form->createView()
+        ));
     }
 
     /**
@@ -222,28 +180,26 @@ class PublicController extends Controller
         $posts = $postRepo->getPaginatedProfile($page, $user->getId());
         $totalItems = count($posts);
         $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
-        $locale = $request->getLocale();
-        if ($locale == 'es') {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEs' => 'ASC'
-            ));
-        } else {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEn' => 'ASC'
-            ));
-        }
         return $this->render('public/profile.html.twig', array(
             'posts' => $posts,
             'user' => $user,
-            'pages' => $pages,
             'totalItems' => $totalItems,
             'pagesCount' => $pagesCount,
             'page' => $page,
             'username' => $user->getUsername()
+        ));
+    }
+
+    /**
+     * @Route("/categories/", name="categories")
+     */
+    public function categoriesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepo = $em->getRepository('AppBundle:Category');
+        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
+        return $this->render('public/categories.html.twig', array(
+            'categories' => $categories
         ));
     }
 
@@ -261,29 +217,14 @@ class PublicController extends Controller
             'status' => 'publish'), array(
             'date' => 'DESC'
         ));
-        $locale = $request->getLocale();
-        if ($locale == 'es') {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEs' => 'ASC'
-            ));
-        } else {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEn' => 'ASC'
-            ));
-        }
         return $this->render('public/category.html.twig', array(
             'posts' => $posts,
-            'category' => $category,
-            'pages' => $pages
+            'category' => $category
         ));
     }
 
     /**
-     * @Route("/contacto/", name="contact")
+     * @Route("/contact/", name="contact")
      */
     public function contactAction(Request $request)
     {
@@ -307,25 +248,28 @@ class PublicController extends Controller
             $this->session->getFlashBag()->add('status', $status);
             return $this->redirectToRoute('contact');
         }
-        $locale = $request->getLocale();
+        return $this->render('public/contact.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/about-us/", name="about_us")
+     */
+    public function aboutUsAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $postRepo = $em->getRepository('AppBundle:Post');
-        if ($locale == 'es') {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEs' => 'ASC'
-            ));
-        } else {
-            $pages = $postRepo->findBy(array(
-                'navbar' => '1',
-                'status' => 'publish'), array(
-                'titleEn' => 'ASC'
-            ));
+        $post = $postRepo->findOneBy(array(
+            'slug' => 'about-us'
+        ));
+        if (!$this->get('security.authorization_checker')
+            ->isGranted('ROLE_ADMIN')) {
+            $post->setViews($post->getViews() + 1);
+            $em->flush();
         }
-        return $this->render('public/contact.html.twig', array(
-            'form' => $form->createView(),
-            'pages' => $pages
+        return $this->render('public/post.html.twig', array(
+            'post' => $post
         ));
     }
 

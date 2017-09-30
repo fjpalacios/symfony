@@ -120,13 +120,6 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="navbar", type="boolean", options={"default" : 0})
-     */
-    private $navbar;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="image", type="string", length=100, nullable=true)
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
@@ -474,30 +467,6 @@ class Post
     public function getCategory()
     {
         return $this->category;
-    }
-
-    /**
-     * Set navbar
-     *
-     * @param string $navbar
-     *
-     * @return Post
-     */
-    public function setNavbar($navbar)
-    {
-        $this->navbar = $navbar;
-
-        return $this;
-    }
-
-    /**
-     * Get navbar
-     *
-     * @return string
-     */
-    public function getNavbar()
-    {
-        return $this->navbar;
     }
 
     /**

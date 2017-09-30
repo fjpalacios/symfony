@@ -50,7 +50,7 @@ class PublicControllerTest extends WebTestCase
         $client = static::createClient();
         $blogPost = $client->getContainer()->get('doctrine')
             ->getRepository(Post::class)->find(1);
-        $client->request('GET', sprintf('/es/%s', $blogPost->getSlug()));
+        $client->request('GET', sprintf('/es/article/%s/', $blogPost->getSlug()));
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
     }
@@ -63,7 +63,7 @@ class PublicControllerTest extends WebTestCase
         $client = static::createClient();
         $blogPost = $client->getContainer()->get('doctrine')
             ->getRepository(Post::class)->find(1);
-        $crawler = $client->request('GET', sprintf('/es/%s', $blogPost->getSlug()));
+        $crawler = $client->request('GET', sprintf('/es/article/%s/', $blogPost->getSlug()));
         $form = $crawler->selectButton('submit')->form(array(
             'appbundle_comment[author]' => $newCommentAuthor,
             'appbundle_comment[email]' => $newCommentEmail,
