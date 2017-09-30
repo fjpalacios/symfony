@@ -13,7 +13,7 @@
           <title>{{ post.titleEs }}</title>
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
-            <![CDATA[<img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
             {{ post.contentEs|raw|md2html }}
             ]]>
           </content:encoded>
@@ -22,7 +22,7 @@
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
             <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-            <img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
             {{ post.contentEn|raw|md2html }}
             ]]>
           </content:encoded>
@@ -31,7 +31,7 @@
           <title>{{ post.titleEn }}</title>
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
-            <![CDATA[<img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
             {{ post.contentEn|raw|md2html }}]]>
           </content:encoded>
         {% elseif app.request.locale == 'en' and post.titleEs %}
@@ -39,7 +39,7 @@
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
             <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-            <img src="{{ asset( 'uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
+            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
             {{ post.contentEs|raw|md2html }}
             ]]>
           </content:encoded>
