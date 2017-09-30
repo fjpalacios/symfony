@@ -17,20 +17,20 @@ class SitemapController extends Controller
         $urls = array();
         $hostname = $request->getSchemeAndHttpHost();
         $urls[] = array(
-                'loc' => '/sitemap-en.xml',
-                'modDate' => date('r'),
-                'changefreq' => 'daily',
-                'priority' => '0.5'
+            'loc' => '/sitemap-en.xml',
+            'modDate' => date('r'),
+            'changefreq' => 'daily',
+            'priority' => '0.5'
         );
         $urls[] = array(
-                'loc' => '/sitemap-es.xml',
-                'modDate' => date('r'),
-                'changefreq' => 'daily',
-                'priority' => '0.5'
+            'loc' => '/sitemap-es.xml',
+            'modDate' => date('r'),
+            'changefreq' => 'daily',
+            'priority' => '0.5'
         );
         return $this->render('public/sitemap-index.xml.twig', array(
-                'urls' => $urls,
-                'hostname' => $hostname
+            'urls' => $urls,
+            'hostname' => $hostname
         ));
     }
 
@@ -43,29 +43,44 @@ class SitemapController extends Controller
         $urls = array();
         $hostname = $request->getSchemeAndHttpHost();
         $posts = $em->getRepository('AppBundle:Post')
-                ->findBy(array(
-                        'status' => 'publish'), array(
-                        'modDate' => 'DESC'
-                ));
+            ->findBy(array(
+                'status' => 'publish'), array(
+                'modDate' => 'DESC'
+            ));
         foreach ($posts as $post) {
             $urls[] = array(
-                    'loc' => $this->get('router')->generate('post', array(
-                            'slug' => $post->getSlug(),
-                            '_locale' => 'en'
-                    )),
-                    'modDate' => $post->getModDate(),
-                    'changefreq' => 'daily',
-                    'priority' => '0.5'
+                'loc' => $this->get('router')->generate('post', array(
+                    'slug' => $post->getSlug(),
+                    '_locale' => 'en'
+                )),
+                'modDate' => $post->getModDate(),
+                'changefreq' => 'daily',
+                'priority' => '0.5'
             );
         }
         $urls[] = array(
-                'loc' => $this->get('router')->generate('home'),
-                'changefreq' => 'weekly',
-                'priority' => '1.0'
+            'loc' => $this->get('router')->generate('home'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('about_us'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('categories'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('contact'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
         );
         return $this->render('public/sitemap.xml.twig', array(
-                'urls' => $urls,
-                'hostname' => $hostname
+            'urls' => $urls,
+            'hostname' => $hostname
         ));
     }
 
@@ -78,29 +93,44 @@ class SitemapController extends Controller
         $urls = array();
         $hostname = $request->getSchemeAndHttpHost();
         $posts = $em->getRepository('AppBundle:Post')
-                ->findBy(array(
-                        'status' => 'publish'), array(
-                        'modDate' => 'DESC'
-                ));
+            ->findBy(array(
+                'status' => 'publish'), array(
+                'modDate' => 'DESC'
+            ));
         foreach ($posts as $post) {
             $urls[] = array(
-                    'loc' => $this->get('router')->generate('post', array(
-                            'slug' => $post->getSlug(),
-                            '_locale' => 'es'
-                    )),
-                    'modDate' => $post->getModDate(),
-                    'changefreq' => 'daily',
-                    'priority' => '0.5'
+                'loc' => $this->get('router')->generate('post', array(
+                    'slug' => $post->getSlug(),
+                    '_locale' => 'es'
+                )),
+                'modDate' => $post->getModDate(),
+                'changefreq' => 'daily',
+                'priority' => '0.5'
             );
         }
         $urls[] = array(
-                'loc' => $this->get('router')->generate('home'),
-                'changefreq' => 'weekly',
-                'priority' => '1.0'
+            'loc' => $this->get('router')->generate('home'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('about_us'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('categories'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
+        );
+        $urls[] = array(
+            'loc' => $this->get('router')->generate('contact'),
+            'changefreq' => 'weekly',
+            'priority' => '1.0'
         );
         return $this->render('public/sitemap.xml.twig', array(
-                'urls' => $urls,
-                'hostname' => $hostname
+            'urls' => $urls,
+            'hostname' => $hostname
         ));
     }
 }
