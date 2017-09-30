@@ -30,7 +30,7 @@
   h2, h3, h4, h5, h6 {
     color: $entry-link;
   }
-  a:not(.btn, .badge-link, .page-link) {
+  a:not(.btn, .badge-link, .page-link, .social-btn) {
     color: $entry-link;
     &:hover {
       text-decoration: none;
@@ -114,6 +114,41 @@
     color: $white;
     a {
       font-size: 9px;
+    }
+  }
+}
+
+.social {
+  &__list {
+    list-style-type: none;
+    text-align: center;
+    font-size: 40px;
+    margin: 5px auto 0 auto;
+    li {
+      display: inline;
+      margin-right: 6%;
+      a.social-btn--facebook {
+        &:hover {
+          color: $facebook;
+        }
+      }
+      a.social-btn--twitter {
+        &:hover {
+          color: $twitter;
+        }
+      }
+      a {
+        color: $dark-gray;
+        @include transition(all .8s ease);
+        &:hover {
+          color: $main-color;
+          text-decoration: none;
+          @include transition(all .8s ease);
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 }
@@ -208,17 +243,4 @@ ul.no-padding {
   color: $white;
   font-size: 13px;
   border-radius: 10px;
-}
-
-.footer {
-  margin-top: 1em;
-  padding-top: 10px;
-  background-color: $main-color;
-  color: $white;
-  padding-bottom: 10px;
-  bottom: 0;
-  p {
-    text-align: center;
-    margin: 0;
-  }
 }

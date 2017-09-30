@@ -1,10 +1,20 @@
 .footer {
+  margin-top: 1em;
+  background-color: $main-color;
+  color: $white;
+  bottom: 0;
   padding: 20px 15px 15px 15px;
+  p {
+    text-align: center;
+    margin: 0;
+  }
   a {
     color: $main-color-hover;
+    @include transition(all .8s ease);
     &:hover {
       color: $white;
       text-decoration: none;
+      @include transition(all .8s ease);
     }
   }
   &__list {
