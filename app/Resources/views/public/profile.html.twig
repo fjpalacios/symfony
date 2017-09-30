@@ -1,5 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+  {{ user.name }} — SargantanaCode
+{% endblock %}
+
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url"
+        content="{{ url('profile', {'username': user.username }) }}"/>
+  <meta property="og:title" content="{{ user.name }} — SargantanaCode"/>
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ user.bio }}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:image"
+        content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+{% endblock %}
+
 {% block body_id "profiles" %}
 
 {% block body %}

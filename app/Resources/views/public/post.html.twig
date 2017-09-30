@@ -13,6 +13,26 @@
   {% endif %}
 {% endblock %}
 
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url" content="{{ url('post', {'slug': post.slug }) }}"/>
+  <meta property="og:title" content="{{ post.titleEs }} — SargantanaCode"/>
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author" content="https://www.facebook.com/sargantanacode/" />
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ post.excerptEs }}"/>
+  <meta property="og:type" content="article"/>
+  {% if post.image is not null %}
+    <meta property="og:image"
+          content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}"/>
+  {% else %}
+    <meta property="og:image"
+          content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+  {% endif %}
+{% endblock %}
+
 {% block body_id "post" %}
 
 {% block body %}

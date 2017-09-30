@@ -4,6 +4,23 @@
   {{ 'CATEGORIES_LIST_TITLE'|trans }} — SargantanaCode
 {% endblock %}
 
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url" content="{{ url('contact') }}"/>
+  <meta property="og:title"
+        content="{{ 'CATEGORIES_TITLE'|trans }} — SargantanaCode"/>
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ 'CATEGORIES_EXCERPT'|trans }}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:image"
+        content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+{% endblock %}
+
 {% block body_id "categories" %}
 
 {% block body %}

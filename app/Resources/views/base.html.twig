@@ -8,6 +8,7 @@
     <title>{% block title %}SargantanaCode{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('assets/main.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}"/>
+    {% block meta %}{% endblock %}
   </head>
   <body id="{% block body_id %}{% endblock %}">
     {% include('_header.html.twig') %}

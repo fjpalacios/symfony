@@ -1,4 +1,4 @@
-DESC: "This is a temporary description"
+DESC: "SargantanaCode is a website where you can find different subjects related to computer science but mainly related to programming, with Spanish free content"
 ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
 GITHUB: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
@@ -46,6 +46,10 @@ LOGIN: "Log in"
 LOGOUT: "Log out"
 POST_EDIT: "Edit post"
 PAGE_EDIT: "Edit page"
+
+# Meta
+CATEGORIES_EXCERPT: "List of all the categories available at SargantanaCode"
+CONTACT_EXCERPT: "SargantanaCode contact form"
 
 # Login
 LOGIN_TITLE: "Enter your credentials"
