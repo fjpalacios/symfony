@@ -62,13 +62,6 @@ class PostType extends AbstractType
                         'choice_value' => 'id',
                         'placeholder' => 'CHOOSE_A_CATEGORY',
                         'multiple' => false
-                ))
-                ->add('navbar', ChoiceType::class, array(
-                        'choices' => array(
-                                'No' => 0,
-                                'Yes' => 1
-                        ),
-                        'multiple' => false
                 ));
     }
 

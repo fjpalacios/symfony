@@ -70,10 +70,10 @@
         {% endif %}
       </div>
     </div>
-    {% if user.bio and post.type != 'page' %}
+    {% if user.bio is defined and post.type != 'page' %}
       {% include('/public/_user-profile.html.twig') %}
     {% endif %}
-    {% if comments %}
+    {% if comments is defined %}
       <div class="mt-5" id="comments">
         <h2 class="text-center mb-4">
           {{ 'COMMENTS_LIST_TITLE'|trans }}
@@ -81,7 +81,7 @@
         {% include('public/_comments.html.twig') %}
       </div>
     {% endif %}
-    {% if post.commentStatus == 'open' %}
+    {% if comments is defined and post.commentStatus == 'open' %}
       {% include('public/_comment-form.html.twig') %}
     {% endif %}
   </div>

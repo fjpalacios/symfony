@@ -102,9 +102,12 @@ class AdminController extends Controller
             $post->setAuthor($userId);
             $post->setDate(new \DateTime('now'));
             $post->setModDate(new \DateTime('now'));
-            $post->setSlug($slug->slugify($post->getTitleEs()));
+            if ($post->getTitleEn()) {
+                $post->setSlug($slug->slugify($post->getTitleEn()));
+            } else {
+                $post->setSlug($slug->slugify($post->getTitleEs()));
+            }
             $post->setType('post');
-            $post->setNavbar(0);
             $post->setCommentCount(0);
             $post->setViews(0);
             $file = $form->get('image')->getData();
@@ -174,7 +177,6 @@ class AdminController extends Controller
             }
             $slug = new Slugify();
             $post->setSlug($slug->slugify($form->get('slug')->getData()));
-            $post->setNavbar(0);
             $file = $form->get('image')->getData();
             if ($file) {
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();
@@ -255,10 +257,15 @@ class AdminController extends Controller
             $page->setAuthor($userId);
             $page->setDate(new \DateTime('now'));
             $page->setModDate(new \DateTime('now'));
-            $page->setSlug($slug->slugify($page->getTitleEs()));
+            if ($page->getTitleEn()) {
+                $page->setSlug($slug->slugify($page->getTitleEn()));
+            } else {
+                $page->setSlug($slug->slugify($page->getTitleEs()));
+            }
             $page->setType('page');
             $page->setCommentCount(0);
             $page->setViews(0);
+            $page->setCommentStatus('close');
             $em->persist($page);
             $flush = $em->flush();
             $id = $page->getId();
