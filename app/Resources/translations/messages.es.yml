@@ -255,3 +255,10 @@ MESSAGE_SENDED_PROPERLY: "El mensaje se ha enviado correctamente, en breve nos p
 # Cookies
 COOKIE_MESSAGE: "Los políticos españoles me obligan a avisarte de que en esta página se almacenan cookies"
 ACCEPT_BTN: "Acepto"
+
+# Search
+SEARCH: "Buscador"
+SEARCH_TEXT: "Desde este buscador encontrarás fácilmente el contenido que deseas en español. Escribe las palabras clave relacionadas con el tema que prefieras y se buscará tanto en títulos como en contenidos."
+SEARCHING_FOR: "Buscando el término «%search%» en español. Encontrados %results% resultados"
+NO_SEARCH_RESULTS: "No se han encontrado resultados para el término «%search%» en español"
+SEARCH_OPTIONS: "Puedes probar %search_link_start%buscando de nuevo con otros términos%search_link_end% o tal vez visitar nuestra %index_link_start%página principal%index_link_end% para navegar entre los últimos contenidos publicados."

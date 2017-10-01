@@ -255,3 +255,10 @@ MESSAGE_SENDED_PROPERLY: "Your message has been sent properly, as fast as possib
 # Cookies
 COOKIE_MESSAGE: "Spanish politicians urge me to warn you that cookies are stored on this page"
 ACCEPT_BTN: "Accept"
+
+# Search
+SEARCH: "Search"
+SEARCH_TEXT: "From this search form you'll easily find the content you want in English. Write the keywords related to the topic you want and the engine will search both title and content."
+SEARCHING_FOR: "Searching for \"%search%\" term in English. %results% results were found"
+NO_SEARCH_RESULTS: "No results for \"%search%\" term found in English"
+SEARCH_OPTIONS: "You can try %search_link_start%searching again with other terms%search_link_end%, or perhaps visit our %index_link_start%home page%index_link_end% to browse through the latest published content."
