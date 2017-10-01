@@ -7,6 +7,7 @@ use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
+use AppBundle\Form\SearchFormType;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
 use AppBundle\Utils\Akismet;
@@ -270,6 +271,38 @@ class PublicController extends Controller
         }
         return $this->render('public/post.html.twig', array(
             'post' => $post
+        ));
+    }
+
+    /**
+     * @Route("/search/{search}/", name="search", defaults={"page": "1"})
+     * @Route("/search/", name="search_form", defaults={"page": "1"})
+     */
+    public function searchAction(Request $request, $page)
+    {
+        $search = $request->attributes->get('search');
+        $form = $this->createForm(SearchFormType::class, null);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchForm = $form->get('search')->getData();
+            return $this->redirectToRoute('search', array('search' => $searchForm));
+        }
+        if ($search) {
+            $locale = $request->getLocale();
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
+            $posts = $repository->getPaginatedSearch($locale, $search, $page);
+            $totalItems = count($posts);
+            $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
+            return $this->render('public/search.html.twig', array(
+                'posts' => $posts,
+                'totalItems' => $totalItems,
+                'pagesCount' => $pagesCount,
+                'page' => $page,
+                'search' => $search
+            ));
+        }
+        return $this->render('public/search.html.twig', array(
+            'form' => $form->createView()
         ));
     }
 

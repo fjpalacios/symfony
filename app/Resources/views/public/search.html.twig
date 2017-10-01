@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {% if search is defined %}
+    {{ 'SEARCH'|trans ~ ': ' ~ search ~ ' — SargantanaCode' }}
+  {% else %}
+    {{ 'SEARCH'|trans ~ ' — SargantanaCode' }}
+  {% endif %}
+{% endblock %}
+
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url" content="{{ url('search_form') }}"/>
+  {% if search is defined %}
+    <meta property="og:title" content="{{ 'SEARCH'|trans ~ ': ' ~ search ~ ' — SargantanaCode' }}"/>
+  {% else %}
+    <meta property="og:title" content="{{ 'SEARCH'|trans ~ ' — SargantanaCode' }}"/>
+  {% endif %}
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ 'DESC'|trans }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image"
+        content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+{% endblock %}
+
+{% block body_id "public" %}
+
+{% block body %}
+  {% if search is defined %}
+    {% if posts|length > 0 %}
+      <div class="container mt-5 page">
+        <div class="content text-center">
+          {{ 'SEARCHING_FOR'|trans({ '%search%': search, '%results%': posts|length }) }}
+        </div>
+        {% include('public/_content.html.twig') %}
+        {% if pagesCount > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
+          {% include('_pagination.html.twig') %}
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="alert alert-danger" role="alert">
+        {{ 'NO_SEARCH_RESULTS'|trans({ '%search%': search }) }}
+      </div>
+      <div class="container mt-5 page">
+        <div class="content">
+          {{ 'SEARCH_OPTIONS'|trans({
+            '%search_link_start%': '<a href="'~path('search_form')~'">',
+            '%search_link_end%': '</a>',
+            '%index_link_start%': '<a href="'~path('home')~'">',
+            '%index_link_end%': '</a>'})|raw }}
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    <div class="container mt-5 page">
+      <div class="content">
+        <h2>{{ 'SEARCH'|trans }}</h2>
+        {{ 'SEARCH_TEXT'|trans }}
+        {{ form_start(form) }}
+        <div class="form-group mt-4">
+          {{ form_widget(form.search, { 'attr':
+            {'class': 'form-control'} }) }}
+        </div>
+        {{ form_end(form) }}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
