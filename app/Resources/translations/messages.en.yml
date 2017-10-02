@@ -262,3 +262,13 @@ SEARCH_TEXT: "From this search form you'll easily find the content you want in E
 SEARCHING_FOR: "Searching for \"%search%\" term in English. %results% results were found"
 NO_SEARCH_RESULTS: "No results for \"%search%\" term found in English"
 SEARCH_OPTIONS: "You can try %search_link_start%searching again with other terms%search_link_end%, or perhaps visit our %index_link_start%home page%index_link_end% to browse through the latest published content."
+
+# Error pages
+HTTP_ERROR_DESC: "There was an unknown error (HTTP %status_code%) that prevented to complete your request."
+HTTP_ERROR_TEXT: "Try loading this page again in some minutes or %link_start%go back to the homepage%link_end%."
+HTTP_ERROR_403_DESC: "You don't have permission to access to this resource."
+HTTP_ERROR_403_TEXT: "Ask your manager or system administrator to grant you access to this resource."
+HTTP_ERROR_404_DESC: "We couldn't find the page you requested."
+HTTP_ERROR_404_TEXT: "Check out any misspelling in the URL or %link_start%go back to the homepage%link_end%."
+HTTP_ERROR_4500_DESC: "There was an internal server error."
+HTTP_ERROR_500_TEXT: "Try loading this page again in some minutes or %link_start%go back to the homepage%link_end%."

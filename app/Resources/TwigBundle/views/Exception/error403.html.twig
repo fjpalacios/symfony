@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'Error 403 — SargantanaCode' }}
+{% endblock %}
+
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url" content="{{ url('home') }}"/>
+  <meta property="og:title" content="SargantanaCode"/>
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ 'DESC'|trans }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image"
+        content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+{% endblock %}
+
+{% block body_id "error" %}
+
+{% block body %}
+  <div class="container page mt-5">
+    <div class="content">
+      <h2>{{ 'Error ' ~ status_code }}</h2>
+      {{ 'HTTP_ERROR_403_DESC'|trans({ '%status_code%': 403 }) }}
+      {{ 'HTTP_ERROR_403_TEXT'|trans }}
+    </div>
+  </div>
+{% endblock %}
