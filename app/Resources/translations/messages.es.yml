@@ -262,3 +262,13 @@ SEARCH_TEXT: "Desde este buscador encontrarás fácilmente el contenido que dese
 SEARCHING_FOR: "Buscando el término «%search%» en español. Encontrados %results% resultados"
 NO_SEARCH_RESULTS: "No se han encontrado resultados para el término «%search%» en español"
 SEARCH_OPTIONS: "Puedes probar %search_link_start%buscando de nuevo con otros términos%search_link_end% o tal vez visitar nuestra %index_link_start%página principal%index_link_end% para navegar entre los últimos contenidos publicados."
+
+# Error pages
+HTTP_ERROR_DESC: "Se ha producido un error desconocido (HTTP %status_code%) que ha impedido completar tu petición."
+HTTP_ERROR_TEXT: "Intenta recargar esta página dentro de unos minutos o %link_start%vuelve a la página de inicio%link_end%."
+HTTP_ERROR_403_DESC: "No tienes permiso para acceder a este recurso."
+HTTP_ERROR_403_TEXT: "Solicita a los administradores de este sitio que te concedan permiso para acceder al recurso solicitado."
+HTTP_ERROR_404_DESC: "No hemos podido encontrar la página solicitada."
+HTTP_ERROR_404_TEXT: "Comprueba que la dirección de la página está bien escrita o %link_start%vuelve a la página de inicio%link_end%."
+HTTP_ERROR_500_DESC: "Se ha producido un error grave en el servidor."
+HTTP_ERROR_500_TEXT: "Intenta recargar esta página dentro de unos minutos o %link_start%vuelve a la página de inicio%link_end%."

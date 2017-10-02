@@ -14,8 +14,10 @@
       height: 3rem;
       max-width: 90%;
       fill: $white;
+      @include transition(all .8s ease);
       &:hover {
         fill: $main-color-hover;
+        @include transition(all .8s ease);
       }
     }
   }
