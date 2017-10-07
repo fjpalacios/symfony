@@ -25,6 +25,7 @@ ADMIN_COMMENTS_TITLE: "Comentarios"
 ADMIN_COMMENTS_EDIT_TITLE: "Editar comentario"
 ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 ADMIN_IMAGES_TITLE: "Imágenes"
+ADMIN_IMAGES_ADD_TITLE: "Nueva imagen"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -276,7 +277,19 @@ HTTP_ERROR_500_TEXT: "Intenta recargar esta página dentro de unos minutos o %li
 
 # Images
 IMAGES_TITLE: "Imágenes"
+ADMIN_IMAGES: "Imágenes"
 IMAGES_ITEM_IMAGE: "Imagen"
 IMAGES_ITEM_TITLE: "Título"
 IMAGES_ITEM_DESC: "Descripción"
 IMAGES_NOT_FOUND: "Actualmente no hay ninguna imagen, si lo necesitas %link_start%añade una ahora%link_end%"
+
+# Images add
+IMAGES_ADD_TITLE: "Nueva imagen"
+ADMIN_IMAGES_ADD: "Añadir imagen"
+IMAGE_TITLE_ES: "Título"
+IMAGE_DESCRIPTION_ES: "Descripción"
+IMAGE_TITLE_EN: "Title"
+IMAGE_DESCRIPTION_EN: "Description"
+IMAGE_FILE: "Archivo"
+IMAGE_ADDED_PROPERLY: "La imagen se añadió correctamente"
+IMAGE_ADDED_ERROR: "Algo salió mal al añadir la nueva imagen"

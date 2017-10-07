@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_IMAGES_ADD_TITLE'|trans }} — SargantanaCode
+{% endblock %}
+
+{% block body_id "admin-images-add" %}
+
+{% block body %}
+  <div class="row justify-content-center page">
+    <div class="col-lg-7 mt-5 page">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">
+        {{ 'IMAGES_ADD_TITLE'|trans }}
+      </h2>
+      {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
+        <div class="container content">
+          <div class="form-group">
+            {{ form_label(form.titleEs, 'IMAGE_TITLE_ES') }}
+            {{ form_widget(form.titleEs, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.descriptionEs, 'IMAGE_DESCRIPTION_ES') }}
+            {{ form_widget(form.descriptionEs, { 'attr': {
+              'class': 'form-control',
+              'rows': 10} }) }}
+          </div>
+        </div>
+        <div class="container content mt-5">
+          <div class="form-group">
+            {{ form_label(form.titleEn, 'IMAGE_TITLE_EN') }}
+            {{ form_widget(form.titleEn, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.descriptionEn, 'IMAGE_DESCRIPTION_EN') }}
+            {{ form_widget(form.descriptionEn, { 'attr': {
+              'class': 'form-control',
+              'rows': 10} }) }}
+          </div>
+        </div>
+        <div class="container content mt-5">
+          <div class="form-group">
+            {{ form_label(form.file, 'IMAGE_FILE') }}
+            {{ form_widget(form.file, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+        </div>
+        {{ form_widget(form._token) }}
+        <div class="container buttons mt-5">
+          <button type="submit" id="submit" name="submit"
+                  class="btn btn-primary">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            &nbsp; {{ 'ADD_BTN'|trans }}</button>
+          <button type="reset" id="submit" name="submit"
+                  class="btn">
+            <i class="fa fa-eraser" aria-hidden="true"></i>
+            &nbsp; {{ 'RESET_BTN'|trans }}</button>
+        </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+{% endblock %}

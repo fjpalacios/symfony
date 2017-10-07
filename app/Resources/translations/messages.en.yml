@@ -25,6 +25,7 @@ ADMIN_COMMENTS_TITLE: "Comments"
 ADMIN_COMMENTS_EDIT_TITLE: "Edit comment"
 ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
 ADMIN_IMAGES_TITLE: "Images"
+ADMIN_IMAGES_ADD_TITLE: "New image"
 
 # Roles
 ROLE_USER: "User"
@@ -276,7 +277,19 @@ HTTP_ERROR_500_TEXT: "Try loading this page again in some minutes or %link_start
 
 # Images
 IMAGES_TITLE: "Images"
+ADMIN_IMAGES: "Images"
 IMAGES_ITEM_IMAGE: "Image"
 IMAGES_ITEM_TITLE: "Title"
 IMAGES_ITEM_DESC: "Description"
 IMAGES_NOT_FOUND: "Currently there is no image, if you need it %link_start%add one now%link_end%"
+
+# Images add
+IMAGES_ADD_TITLE: "New image"
+ADMIN_IMAGES_ADD: "Add image"
+IMAGE_TITLE_ES: "Título"
+IMAGE_DESCRIPTION_ES: "Descripción"
+IMAGE_TITLE_EN: "Title"
+IMAGE_DESCRIPTION_EN: "Description"
+IMAGE_FILE: "File"
+IMAGE_ADDED_PROPERLY: "Image added properly"
+IMAGE_ADDED_ERROR: "Something went wrong when adding the new image"

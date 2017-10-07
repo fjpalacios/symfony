@@ -4,9 +4,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Image;
 use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\ImageType;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
@@ -693,9 +695,39 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $imageRepo = $em->getRepository('AppBundle:Image');
-        $images = $imageRepo->findBy(array(), array('id' => 'ASC'));
+        $images = $imageRepo->findBy(array(), array('id' => 'DESC'));
         return $this->render('admin/images/images.html.twig', array(
             'images' => $images
         ));
+    }
+
+    /**
+     * @Route("/images/add", name="admin_images_add")
+     */
+    public function imagesAddAction(Request $request)
+    {
+        $image = new Image();
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $file = $form->get('file')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $image->setFile($fileName);
+            }
+            $em->persist($image);
+            $flush = $em->flush();
+            $id = $image->getId();
+            if (!$flush) {
+                $status = 'IMAGE_ADDED_PROPERLY';
+            } else {
+                $status = 'IMAGE_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+        }
+        return $this->render('admin/images/images-add.html.twig', array(
+            'form' => $form->createView()));
     }
 }
