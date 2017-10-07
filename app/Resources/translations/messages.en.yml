@@ -24,6 +24,7 @@ ADMIN_USERS_EDIT_TITLE: "Edit user"
 ADMIN_COMMENTS_TITLE: "Comments"
 ADMIN_COMMENTS_EDIT_TITLE: "Edit comment"
 ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
+ADMIN_IMAGES_TITLE: "Images"
 
 # Roles
 ROLE_USER: "User"
@@ -272,3 +273,10 @@ HTTP_ERROR_404_DESC: "We couldn't find the page you requested."
 HTTP_ERROR_404_TEXT: "Check out any misspelling in the URL or %link_start%go back to the homepage%link_end%."
 HTTP_ERROR_4500_DESC: "There was an internal server error."
 HTTP_ERROR_500_TEXT: "Try loading this page again in some minutes or %link_start%go back to the homepage%link_end%."
+
+# Images
+IMAGES_TITLE: "Images"
+IMAGES_ITEM_IMAGE: "Image"
+IMAGES_ITEM_TITLE: "Title"
+IMAGES_ITEM_DESC: "Description"
+IMAGES_NOT_FOUND: "Currently there is no image, if you need it %link_start%add one now%link_end%"

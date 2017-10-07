@@ -9,7 +9,7 @@
   .post-body {
     img {
       @include breakpoint-up(small) {
-        margin: 0 -15px 15px -15px;
+        margin: 0 -15px 0 -15px;
         width: calc(100% + #{30px});
       }
       width: 100%;
@@ -207,6 +207,18 @@ ul.no-padding {
     padding: 3px;
     border: 1px solid $gray;
     border-radius: 50%;
+  }
+}
+
+.table-images {
+  td {
+    vertical-align: middle;
+  }
+  img {
+    height: 50px;
+    background-color: $white;
+    padding: 3px;
+    border: 1px solid $gray;
   }
 }
 

@@ -24,6 +24,7 @@ ADMIN_USERS_EDIT_TITLE: "Editar usuario"
 ADMIN_COMMENTS_TITLE: "Comentarios"
 ADMIN_COMMENTS_EDIT_TITLE: "Editar comentario"
 ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
+ADMIN_IMAGES_TITLE: "Imágenes"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -272,3 +273,10 @@ HTTP_ERROR_404_DESC: "No hemos podido encontrar la página solicitada."
 HTTP_ERROR_404_TEXT: "Comprueba que la dirección de la página está bien escrita o %link_start%vuelve a la página de inicio%link_end%."
 HTTP_ERROR_500_DESC: "Se ha producido un error grave en el servidor."
 HTTP_ERROR_500_TEXT: "Intenta recargar esta página dentro de unos minutos o %link_start%vuelve a la página de inicio%link_end%."
+
+# Images
+IMAGES_TITLE: "Imágenes"
+IMAGES_ITEM_IMAGE: "Imagen"
+IMAGES_ITEM_TITLE: "Título"
+IMAGES_ITEM_DESC: "Descripción"
+IMAGES_NOT_FOUND: "Actualmente no hay ninguna imagen, si lo necesitas %link_start%añade una ahora%link_end%"

@@ -685,4 +685,17 @@ class AdminController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @Route("/images/", name="admin_images")
+     */
+    public function imagesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $imageRepo = $em->getRepository('AppBundle:Image');
+        $images = $imageRepo->findBy(array(), array('id' => 'ASC'));
+        return $this->render('admin/images/images.html.twig', array(
+            'images' => $images
+        ));
+    }
 }

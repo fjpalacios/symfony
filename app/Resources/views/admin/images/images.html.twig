@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_IMAGES_TITLE'|trans }} — SargantanaCode
+{% endblock %}
+
+{% block body_id "admin-images" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">{{ 'IMAGES_TITLE'|trans }}</h2>
+      {% if images %}
+      <table class="table table-striped table-images">
+        <thead>
+        <tr>
+          <th class="d-none d-lg-table-cell text-center">
+            {{ 'IMAGES_ITEM_IMAGE'|trans }}
+          </th>
+          <th class="text-center">
+            {{ 'IMAGES_ITEM_TITLE'|trans }}
+          </th>
+          <th class="d-none d-sm-table-cell text-center">
+            {{ 'IMAGES_ITEM_DESC'|trans }}
+          </th>
+          <th class="text-center">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% endif %}
+        {% for image in images %}
+          <tr>
+            <td class="d-none d-lg-table-cell text-center">
+              {% if image.file is not null %}
+                {% if app.request.locale == 'es' and image.titleEs %}
+                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
+                       alt="{{ image.titleEs }}"/>
+                {% elseif app.request.locale == 'es' and image.titleEn %}
+                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
+                       alt="{{ image.titleEn }}"/>
+                {% endif %}
+                {% if app.request.locale == 'en' and image.titleEn %}
+                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
+                       alt="{{ image.titleEn }}"/>
+                {% elseif app.request.locale == 'en' and image.titleEs %}
+                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
+                       alt="{{ image.titleEs }}"/>
+                {% endif %}
+              {% endif %}
+            </td>
+            <td class="d-none d-sm-table-cell text-center">
+              {% if app.request.locale == 'es' and image.titleEs %}
+                {{ image.titleEs }}
+              {% elseif app.request.locale == 'es' and image.titleEn %}
+                {{ image.titleEn }}
+              {% endif %}
+              {% if app.request.locale == 'en' and image.titleEn %}
+                {{ image.titleEn }}
+              {% elseif app.request.locale == 'en' and image.titleEs %}
+                {{ image.titleEs }}
+              {% endif %}
+            </td>
+            {% if app.request.locale == 'es' and image.descriptionEs %}
+              <td>{{ image.descriptionEs }}</td>
+            {% elseif app.request.locale == 'es' and image.descriptionEn %}
+              <td>{{ image.descriptionEn }}</td>
+            {% endif %}
+            {% if app.request.locale == 'en' and image.descriptionEn %}
+              <td>{{ image.descriptionEn }}</td>
+            {% elseif app.request.locale == 'en' and image.descriptionEs %}
+              <td>{{ image.descriptionEs }}</td>
+            {% endif %}
+            <td class="text-center">
+              <a href="#"
+                 class="btn btn-sm btn-primary text-center">
+                <i class="fa fa-edit"
+                   aria-hidden="true"></i>
+              </a>
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="#"
+                   class="btn btn-sm btn-danger text-center">
+                  <i class="fa fa-remove"
+                     aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        {% if not images %}
+        <div class="alert alert-danger" role="alert">
+          {{ 'IMAGES_NOT_FOUND'|trans({
+            '%link_start%': '<a href="#">',
+            '%link_end%': '</a>'})|raw }}
+        </div>
+        {% else %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
