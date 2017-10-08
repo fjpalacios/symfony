@@ -35,45 +35,42 @@ class AdminController extends Controller
     /**
      * @Route("/", name="admin")
      */
-    public function adminAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function adminAction()
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $userRepo = $em->getRepository('AppBundle:User');
-            $userEmail = $userRepo->findOneBy(array(
-                            'email' => $form->get('email')->getData()
-                    )
-            );
-            $userUsername = $userRepo->findOneBy(array(
-                            'username' => $form->get('username')->getData()
-                    )
-            );
-            if (!$userEmail) {
-                if (!$userUsername) {
-                    $password = $passwordEncoder->encodePassword($user,
-                            $user->getPlainPassword());
-                    $user->setPassword($password);
-                    $em->persist($user);
-                    $flush = $em->flush();
-                    if (!$flush) {
-                        $status = 'USER_ADDED_PROPERLY';
-                    } else {
-                        $status = 'USER_ADDED_ERROR';
-                    }
-                } else {
-                    $status = 'USER_ADDED_USERNAME_EXIST';
-                }
-            } else {
-                $status = 'USER_ADDED_EMAIL_EXIST';
-            }
-            $this->session->getFlashBag()->add('status', $status);
-        }
-        return $this->render('admin/admin.html.twig',
-                array("form" => $form->createView())
+        $postRepo = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $commentRepo = $this->getDoctrine()->getRepository('AppBundle:Comment');
+        $posts = $postRepo->findBy(array(
+            'type' => 'post',
+            'status' => 'publish'), array(
+            'date' => 'DESC'),
+            5
         );
+        $drafts = $postRepo->findBy(array(
+            'type' => 'post',
+            'status' => 'draft'), array(
+            'date' => 'DESC'),
+            5
+        );
+        $views = $postRepo->findBy(array(
+            'type' => 'post',
+            'status' => 'publish'), array(
+            'views' => 'DESC'),
+            5
+        );
+        $commentCount = $postRepo->findBy(array(
+            'type' => 'post',
+            'status' => 'publish'), array(
+            'commentCount' => 'DESC'),
+            5
+        );
+        $comments = $commentRepo->getCommentsWithRelatedPost(5);
+        return $this->render('admin/admin.html.twig',array(
+            'posts' => $posts,
+            'drafts' => $drafts,
+            'views' => $views,
+            'commentCount' => $commentCount,
+            'comments' => $comments
+        ));
     }
 
     /**
@@ -637,6 +634,10 @@ class AdminController extends Controller
         $flush = $em->flush();
         if (!$flush) {
             $status = 'COMMENT_APPROVED_PROPERLY';
+            $postRepo = $em->getRepository('AppBundle:Post');
+            $commentCount = $postRepo->find($post->getId());
+            $commentCount->setCommentCount($commentCount->getCommentCount() + 1);
+            $em->flush();
         } else {
             $status = 'COMMENT_APPROVED_ERROR';
         }
