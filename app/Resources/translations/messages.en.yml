@@ -304,3 +304,7 @@ LINK_COPIED: "Link copied"
 MARKDOWN_CODE_COPIED: "Markdown code copied"
 IMAGE_EDITED_PROPERLY: "Image edited properly"
 IMAGE_EDITED_ERROR: "Something went wrong when editing the new image"
+
+# Image del
+IMAGE_REMOVED_PROPERLY: "Image removed properly"
+IMAGE_REMOVED_ERROR: "Something went wrong when removing the new image"

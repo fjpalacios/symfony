@@ -735,6 +735,30 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/images/del/{id}", name="admin_images_del")
+     */
+    public function imagesRemoveAction(Image $image)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $file = $image->getFile();
+        if ($file) {
+            $fs = new Filesystem();
+            $fs->remove($this->get('kernel')->getRootDir() .
+                '/../web/uploads/' . $file);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($image);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'IMAGE_REMOVED_PROPERLY';
+        } else {
+            $status = 'IMAGE_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_images');
+    }
+
+    /**
      * @Route("/images/edit/{id}", name="admin_images_edit")
      */
     public function imagesEditAction(Request $request, $id)

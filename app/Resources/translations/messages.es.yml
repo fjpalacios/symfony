@@ -302,5 +302,9 @@ IMAGE_FILE_MARKDOWN_LINK_ES: "Enlace markdown"
 IMAGE_FILE_MARKDOWN_LINK_EN: "Markdown link"
 LINK_COPIED: "Enlace copiado"
 MARKDOWN_CODE_COPIED: "Código markdown copiado"
-IMAGE_EDITED_PROPERLY: "La imagen se ditó correctamente"
+IMAGE_EDITED_PROPERLY: "La imagen se editó correctamente"
 IMAGE_EDITED_ERROR: "Algo salió mal al editar la nueva imagen"
+
+# Image del
+IMAGE_REMOVED_PROPERLY: "La imagen se eliminó correctamente"
+IMAGE_REMOVED_ERROR: "Algo salió mal al eliminar la nueva imagen"
