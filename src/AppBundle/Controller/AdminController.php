@@ -319,6 +319,7 @@ class AdminController extends Controller
             }
             $slug = new Slugify();
             $page->setSlug($slug->slugify($form->get('slug')->getData()));
+            $page->setCommentStatus('close');
             $em->persist($page);
             $flush = $em->flush();
             if (!$flush) {
