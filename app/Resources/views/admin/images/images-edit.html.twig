@@ -48,7 +48,7 @@
             </div>
           </label>
           <input type="text" id="markdown-image-es" class="form-control"
-                 value="{{ '['~image.titleEs~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEs~'")') }}">
+                 value="{{ '!['~image.titleEs~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEs~'")') }}">
         </div>
         {% if image.titleEn %}
           <div class="form-group">
@@ -63,7 +63,7 @@
               </div>
             </label>
             <input type="text" id="markdown-image-en" class="form-control"
-                   value="{{ '['~image.titleEn~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEn~'")') }}">
+                   value="{{ '!['~image.titleEn~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEn~'")') }}">
           </div>
         {% endif %}
       </div>
