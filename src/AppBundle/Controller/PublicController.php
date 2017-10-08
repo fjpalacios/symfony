@@ -136,6 +136,9 @@ class PublicController extends Controller
                                         ), 'es');
                                 }
                                 $status = 'COMMENT_ADDED_PROPERLY';
+                                $commentCount = $postRepo->find($post->getId());
+                                $commentCount->setCommentCount($commentCount->getCommentCount() + 1);
+                                $em->flush();
                                 $this->session->getFlashBag()->add('status', $status);
                                 return $this->redirectToRoute('post', array(
                                     'slug' => $slug,

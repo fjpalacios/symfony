@@ -308,3 +308,10 @@ IMAGE_EDITED_ERROR: "Something went wrong when editing the new image"
 # Image del
 IMAGE_REMOVED_PROPERLY: "Image removed properly"
 IMAGE_REMOVED_ERROR: "Something went wrong when removing the new image"
+
+# Admin dashboard
+LAST_FIVE_POSTS_TITLE: "Last five posts"
+LAST_FIVE_COMMENTS_TITLE: "Last five comments"
+LAST_FIVE_DRAFTS_TITLE: "Last five drafts"
+LAST_FIVE_MOST_VIEWS_TITLE: "The five most viewed posts"
+LAST_FIVE_MOST_COMMENTED_TITLE: "The five most commented posts"

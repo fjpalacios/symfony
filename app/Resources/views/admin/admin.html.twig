@@ -7,70 +7,39 @@
 {% block body_id "admin" %}
 
 {% block body %}
-  <div class="row justify-content-center mt-5 page">
-    <div class="col-11 col-sm-8 col-lg-6 col-xl-5">
-      <div class="content">
-        {% for message in app.session.flashbag().get('status') %}
-          <div class="alert alert-info" role="alert">
-            {{ message|trans }}
-          </div>
-        {% endfor %}
-        <h2 class="text-center mb-4">{{ 'ADDUSER_TITLE'|trans }}</h2>
-        <form name="appbundle_user" method="post">
-          <div class="form-group">
-            {{ form_label(form.username, 'USERNAME') }}
-            {{ form_widget(form.username, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          <div class="form-group">
-            {{ form_label(form.email, 'EMAIL') }}
-            {{ form_widget(form.email, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          {% for passwordField in form.plainPassword %}
-            <div class="form-group">
-              {% if loop.index == 1 %}
-                {{ form_label(passwordField, 'PASSWORD') }}
-              {% else %}
-                {{ form_label(passwordField, 'REPEAT_PASSWORD') }}
-              {% endif %}
-              {{ form_widget(passwordField, { 'attr':
-                {'class': 'form-control'} }) }}
-            </div>
-          {% endfor %}
-          <div class="form-group">
-            {{ form_label(form.name, 'NAME') }}
-            {{ form_widget(form.name, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          <div class="form-group">
-            {{ form_label(form.url, 'URL') }}
-            {{ form_widget(form.url, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          <div class="form-group">
-            {{ form_label(form.bio, 'BIO') }}
-            {{ form_widget(form.bio, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          <div class="form-group">
-            {{ form_label(form.roles, 'ROLES') }}
-            {{ form_widget(form.roles, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
-          {{ form_widget(form._token) }}
-          <div class="buttons">
-            <button type="submit" id="submit" name="submit"
-                    class="btn btn-primary">
-              <i class="fa fa-check" aria-hidden="true"></i>
-              &nbsp; {{ 'ADD_BTN'|trans }}</button>
-            <button type="reset" id="submit" name="submit"
-                    class="btn">
-              <i class="fa fa-eraser" aria-hidden="true"></i>
-              &nbsp; {{ 'RESET_BTN'|trans }}</button>
-          </div>
-        </form>
-      </div>
+  <div class="container mt-5 page">
+    {% if posts %}
+    <div class="content">
+      <h2 class="text-center mb-4">{{ 'LAST_FIVE_POSTS_TITLE'|trans }}</h2>
+      {% include('admin/posts/_post-list.html.twig') %}
     </div>
+    {% endif %}
+    {% if comments %}
+      <div class="content mt-4">
+        <h2 class="text-center mb-4">{{ 'LAST_FIVE_COMMENTS_TITLE'|trans }}</h2>
+        {% include('admin/comments/_comments-list.html.twig') %}
+      </div>
+    {% endif %}
+    {% if drafts %}
+      {% set posts = drafts %}
+      <div class="content mt-4">
+        <h2 class="text-center mb-4">{{ 'LAST_FIVE_DRAFTS_TITLE'|trans }}</h2>
+        {% include('admin/posts/_post-list.html.twig') %}
+      </div>
+    {% endif %}
+    {% if views %}
+      {% set posts = views %}
+      <div class="content mt-4">
+        <h2 class="text-center mb-4">{{ 'LAST_FIVE_MOST_VIEWS_TITLE'|trans }}</h2>
+        {% include('admin/posts/_post-list.html.twig') %}
+      </div>
+    {% endif %}
+    {% if commentCount %}
+      {% set posts = commentCount %}
+      <div class="content mt-4">
+        <h2 class="text-center mb-4">{{ 'LAST_FIVE_MOST_COMMENTED_TITLE'|trans }}</h2>
+        {% include('admin/posts/_post-list.html.twig') %}
+      </div>
+    {% endif %}
   </div>
 {% endblock %}

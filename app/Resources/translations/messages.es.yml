@@ -308,3 +308,10 @@ IMAGE_EDITED_ERROR: "Algo salió mal al editar la nueva imagen"
 # Image del
 IMAGE_REMOVED_PROPERLY: "La imagen se eliminó correctamente"
 IMAGE_REMOVED_ERROR: "Algo salió mal al eliminar la nueva imagen"
+
+# Admin dashboard
+LAST_FIVE_POSTS_TITLE: "Últimos cinco artículos"
+LAST_FIVE_COMMENTS_TITLE: "Últimos cinco comentarios"
+LAST_FIVE_DRAFTS_TITLE: "Últimos cinco borradores"
+LAST_FIVE_MOST_VIEWS_TITLE: "Los cinco artículos más vistos"
+LAST_FIVE_MOST_COMMENTED_TITLE: "Los cinco artículos más comentados"
