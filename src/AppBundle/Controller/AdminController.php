@@ -726,8 +726,54 @@ class AdminController extends Controller
                 $status = 'IMAGE_ADDED_ERROR';
             }
             $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_images_edit', array(
+                'id' => $id
+            ));
         }
         return $this->render('admin/images/images-add.html.twig', array(
             'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/images/edit/{id}", name="admin_images_edit")
+     */
+    public function imagesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $imageRepo = $em->getRepository('AppBundle:Image');
+        $image = $imageRepo->find($id);
+        $existentFile = $image->getFile();
+        $form = $this->createForm(ImageType::class, $image);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $image->setFile($fileName);
+                if ($existentFile) {
+                    $fs = new Filesystem();
+                    $fs->remove($this->get('kernel')->getRootDir() .
+                        '/../web/uploads/' . $existentFile);
+                }
+            } else {
+                $image->setFile($existentFile);
+            }
+            $em->persist($image);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'IMAGE_EDITED_PROPERLY';
+            } else {
+                $status = 'IMAGE_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_images_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/images/images-edit.html.twig', array(
+            'form' => $form->createView(),
+            'image' => $image
+        ));
     }
 }

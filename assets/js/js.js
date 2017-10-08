@@ -109,6 +109,57 @@ if (document.body.contains(acceptCookie)) {
   }, false)
 }
 
+let copyImageLink = document.querySelector('#copy-link-image')
+if (document.body.contains(copyImageLink)) {
+  copyImageLink.addEventListener('click', () => {
+    document.querySelector('#link-image').select()
+    let copyAlert = document.getElementById('alert-copy-link-image')
+    try {
+      document.execCommand('copy')
+      copyAlert.classList.remove('hidden')
+      setTimeout( () => {
+        copyAlert.classList.add('hidden')
+      }, 2000)
+    } catch (err) {
+      console.log('Oops, unable to copy')
+    }
+  }, false)
+}
+
+let copyMarkdownImageEs = document.querySelector('#copy-markdown-image-es')
+if (document.body.contains(copyMarkdownImageEs)) {
+  copyMarkdownImageEs.addEventListener('click', () => {
+    document.querySelector('#markdown-image-es').select()
+    let copyAlert = document.getElementById('alert-copy-markdown-image-es')
+    try {
+      document.execCommand('copy')
+      copyAlert.classList.remove('hidden')
+      setTimeout( () => {
+        copyAlert.classList.add('hidden')
+      }, 2000)
+    } catch (err) {
+      console.log('Oops, unable to copy')
+    }
+  }, false)
+}
+
+let copyMarkdownImageEn = document.querySelector('#copy-markdown-image-en')
+if (document.body.contains(copyMarkdownImageEn)) {
+  copyMarkdownImageEn.addEventListener('click', () => {
+    document.querySelector('#markdown-image-en').select()
+    let copyAlert = document.getElementById('alert-copy-markdown-image-en')
+    try {
+      document.execCommand('copy')
+      copyAlert.classList.remove('hidden')
+      setTimeout( () => {
+        copyAlert.classList.add('hidden')
+      }, 2000)
+    } catch (err) {
+      console.log('Oops, unable to copy')
+    }
+  }, false)
+}
+
 function randPass () {
   let length = 12
   let lower = 'abcdefghijklmnopqrstuvwxyz'

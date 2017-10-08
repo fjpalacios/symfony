@@ -106,7 +106,7 @@
   &__content {
     width: 100%;
     p + .comment__reply {
-        margin-top: -10px;
+      margin-top: -10px;
     }
   }
   &__reply {
@@ -219,6 +219,35 @@ ul.no-padding {
     background-color: $white;
     padding: 3px;
     border: 1px solid $gray;
+  }
+}
+
+.copy {
+  @include flexbox();
+  i {
+    @include align-self(center);
+  }
+  .alert-copy {
+    position:relative;
+    margin-right: 20px;
+    padding: 0;
+    small {
+      top: 0;
+      background-color: $black;
+      color: $white;
+      text-transform: lowercase;
+      padding: 2px 2px 2px 4px;
+      &:after{
+        content: "";
+        position: absolute;
+        height: 0;
+        width: 0;
+        left: 100%;
+        top: 3px;
+        border: 10px solid transparent;
+        border-left: 10px solid $black;
+      }
+    }
   }
 }
 

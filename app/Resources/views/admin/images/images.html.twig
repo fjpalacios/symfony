@@ -78,7 +78,7 @@
               <td>{{ image.descriptionEs }}</td>
             {% endif %}
             <td class="text-center">
-              <a href="#"
+              <a href="{{ path('admin_images_edit', {'id': image.id}) }}"
                  class="btn btn-sm btn-primary text-center">
                 <i class="fa fa-edit"
                    aria-hidden="true"></i>

@@ -18,15 +18,21 @@ class ImageType extends AbstractType
     {
         $builder
             ->add('titleEs', TextType::class)
-            ->add('descriptionEs', TextareaType::class)
-            ->add('titleEn', TextType::class)
-            ->add('descriptionEn', TextareaType::class)
+            ->add('descriptionEs', TextareaType::class, array(
+                'required' => false
+            ))
+            ->add('titleEn', TextType::class, array(
+                'required' => false
+            ))
+            ->add('descriptionEn', TextareaType::class, array(
+                'required' => false
+            ))
             ->add('file', FileType::class, array(
                 'required' => false,
                 'data_class' => null
             ));
     }
-    
+
     /**
      * {@inheritdoc}
      */
