@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_IMAGES_EDIT_TITLE'|trans }} — SargantanaCode
+{% endblock %}
+
+{% block body_id "admin-images-edit" %}
+
+{% block body %}
+  <div class="row justify-content-center page">
+    <div class="col-lg-7 mt-5 page">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">
+        {{ 'IMAGES_EDIT_TITLE'|trans }}
+      </h2>
+      {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
+      <div class="container content">
+        {% if image.file is not null %}
+          <img src="{{ asset( 'uploads/' ~ image.file ) }}" alt=""
+               class="post-header">
+        {% endif %}
+        <div class="form-group">
+          <label for="markdown-image" class="d-flex justify-content-between">
+            <span>{{ 'IMAGE_FILE_LINK'|trans }}</span>
+            <div class="copy">
+              <div class="alert-copy hidden" id="alert-copy-link-image">
+                <small>{{ 'LINK_COPIED'|trans }}</small>
+              </div>
+              <i class="fa fa-copy" aria-hidden="true" id="copy-link-image"></i>
+            </div>
+          </label>
+          <input type="text" id="link-image" class="form-control"
+                 value="{{ app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file) }}">
+        </div>
+        <div class="form-group">
+          <label for="markdown-image" class="d-flex justify-content-between">
+            <span>{{ 'IMAGE_FILE_MARKDOWN_LINK_ES'|trans }}</span>
+            <div class="copy">
+              <div class="alert-copy hidden" id="alert-copy-markdown-image-es">
+                <small>{{ 'MARKDOWN_CODE_COPIED'|trans }}</small>
+              </div>
+              <i class="fa fa-copy" aria-hidden="true"
+                 id="copy-markdown-image-es"></i>
+            </div>
+          </label>
+          <input type="text" id="markdown-image-es" class="form-control"
+                 value="{{ '['~image.titleEs~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEs~'")') }}">
+        </div>
+        {% if image.titleEn %}
+          <div class="form-group">
+            <label for="markdown-image" class="d-flex justify-content-between">
+              <span>{{ 'IMAGE_FILE_MARKDOWN_LINK_EN'|trans }}</span>
+              <div class="copy">
+                <div class="alert-copy hidden" id="alert-copy-markdown-image-en">
+                  <small>{{ 'MARKDOWN_CODE_COPIED'|trans }}</small>
+                </div>
+                <i class="fa fa-copy" aria-hidden="true"
+                   id="copy-markdown-image-en"></i>
+              </div>
+            </label>
+            <input type="text" id="markdown-image-en" class="form-control"
+                   value="{{ '['~image.titleEn~']('~app.request.getSchemeAndHttpHost() ~ asset('uploads/'~image.file~' "'~image.titleEn~'")') }}">
+          </div>
+        {% endif %}
+      </div>
+      <div class="container content mt-5">
+        <div class="form-group">
+          {{ form_label(form.titleEs, 'IMAGE_TITLE_ES') }}
+          {{ form_widget(form.titleEs, { 'attr':
+            {'class': 'form-control'} }) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.descriptionEs, 'IMAGE_DESCRIPTION_ES') }}
+          {{ form_widget(form.descriptionEs, { 'attr': {
+            'class': 'form-control',
+            'rows': 10} }) }}
+        </div>
+      </div>
+      <div class="container content mt-5">
+        <div class="form-group">
+          {{ form_label(form.titleEn, 'IMAGE_TITLE_EN') }}
+          {{ form_widget(form.titleEn, { 'attr':
+            {'class': 'form-control'} }) }}
+        </div>
+        <div class="form-group">
+          {{ form_label(form.descriptionEn, 'IMAGE_DESCRIPTION_EN') }}
+          {{ form_widget(form.descriptionEn, { 'attr': {
+            'class': 'form-control',
+            'rows': 10} }) }}
+        </div>
+      </div>
+      <div class="container content mt-5">
+        <div class="form-group">
+          {{ form_label(form.file, 'IMAGE_FILE') }}
+          {{ form_widget(form.file, { 'attr':
+            {'class': 'form-control'} }) }}
+        </div>
+      </div>
+      {{ form_widget(form._token) }}
+      <div class="container buttons mt-5">
+        <button type="submit" id="submit" name="submit"
+                class="btn btn-primary">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          &nbsp; {{ 'EDIT_BTN'|trans }}</button>
+        <button type="reset" id="submit" name="submit"
+                class="btn">
+          <i class="fa fa-eraser" aria-hidden="true"></i>
+          &nbsp; {{ 'RESET_BTN'|trans }}</button>
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+{% endblock %}
