@@ -34,6 +34,13 @@
         background-color: $main-color;
       }
     }
+    .active {
+      background-color: $main-color-highlight;
+      &:hover {
+        color: $white;
+        background-color: $main-color-highlight;
+      }
+    }
   }
 }
 

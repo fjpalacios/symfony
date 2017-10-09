@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:content="http://search.yahoo.com/mrss/">
+<rss version="2.0"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>{{ 'TITLE'|trans }}</title>
     <description>{{ 'DESC'|trans }}</description>
     <pubDate>{{ 'now'|date('r', timezone='GMT') }}</pubDate>
     <lastBuildDate>{{ (posts|first).date|default('now')|date('r', timezone='GMT') }}</lastBuildDate>
     <link>{{ url('home') }}</link>
+    <atom:link href="{{ url('rss') }}" rel="self" type="application/rss+xml" />
     <language>{{ app.request.locale }}</language>
     {% for post in posts %}
       <item>
@@ -47,7 +51,7 @@
         <link>{{ url('post', {'slug': post.slug}) }}</link>
         <guid>{{ url('post', {'slug': post.slug}) }}</guid>
         <pubDate>{{ post.date|date(format='r', timezone='GMT') }}</pubDate>
-        <author>{{ post.author.name }}</author>
+        <dc:creator><![CDATA[{{ post.author.name }}]]></dc:creator>
         <category>{{ post.category.name }}</category>
       </item>
     {% endfor %}

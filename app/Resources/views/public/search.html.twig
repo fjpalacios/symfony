@@ -2,7 +2,7 @@
 
 {% block title %}
   {% if search is defined %}
-    {{ 'SEARCH'|trans ~ ': ' ~ search ~ ' — SargantanaCode' }}
+    {{ 'SEARCH'|trans ~ ': ' ~ search ~ ' — ' ~ 'TITLE'|trans }}
   {% else %}
     {{ 'SEARCH'|trans ~ ' — SargantanaCode' }}
   {% endif %}

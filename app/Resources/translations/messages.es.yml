@@ -4,7 +4,7 @@ LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artí
 GITHUB: "Este proyecto es de código abierto, lo puedes encontrar en %link_start%nuestro repositorio de GitHub%link_end%"
 
 # Titles
-TITLE: "Título"
+TITLE: "SargantanaCode"
 CATEGORIES_LIST_TITLE: "Listado de categorías"
 ADMIN_PANEL_TITLE: "Panel de administración"
 ADMIN_CATEGORIES_TITLE: "Categorías"
@@ -256,7 +256,7 @@ SEND_BTN: "Enviar"
 MESSAGE_SENDED_PROPERLY: "El mensaje se ha enviado correctamente, en breve nos pondremos en contacto contigo"
 
 # Cookies
-COOKIE_MESSAGE: "Los políticos españoles me obligan a avisarte de que en esta página se almacenan cookies"
+COOKIE_MESSAGE: "Los políticos españoles nos obligan a avisarte de que en esta página se almacenan cookies"
 ACCEPT_BTN: "Acepto"
 
 # Search
