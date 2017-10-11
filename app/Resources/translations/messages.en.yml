@@ -4,7 +4,7 @@ LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the
 GITHUB: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
 
 # Titles
-TITLE: "Title"
+TITLE: "SargantanaCode"
 CATEGORIES_LIST_TITLE: "List of categories"
 ADMIN_PANEL_TITLE: "Admin area"
 ADMIN_CATEGORIES_TITLE: "Categories"
@@ -256,7 +256,7 @@ SEND_BTN: "Send"
 MESSAGE_SENDED_PROPERLY: "Your message has been sent properly, as fast as possible we will contact with you"
 
 # Cookies
-COOKIE_MESSAGE: "Spanish politicians urge me to warn you that cookies are stored on this page"
+COOKIE_MESSAGE: "Spanish politicians urge us to warn you that cookies are stored on this page"
 ACCEPT_BTN: "Accept"
 
 # Search

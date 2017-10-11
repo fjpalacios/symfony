@@ -1,6 +1,7 @@
 {
-    "name": "javi/symfony",
-    "license": "proprietary",
+    "name": "sargantanacode/sargantanacode",
+    "description": "The sourcecode behind SargantanaCode's project",
+    "license": "GPLv3",
     "type": "project",
     "autoload": {
         "psr-4": {

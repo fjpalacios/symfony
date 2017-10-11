@@ -2,14 +2,14 @@
 
 {% block title %}
   {% if app.request.locale == 'en' and post.titleEn %}
-    {{ post.titleEn }} — SargantanaCode
+    {{ post.titleEn }} — {{ 'TITLE'|trans }}
   {% elseif app.request.locale == 'en' and post.titleEs %}
-    {{ post.titleEs }} — SargantanaCode
+    {{ post.titleEs }} — {{ 'TITLE'|trans }}
   {% endif %}
   {% if app.request.locale == 'es' and post.titleEs %}
-    {{ post.titleEs }} — SargantanaCode
+    {{ post.titleEs }} — {{ 'TITLE'|trans }}
   {% elseif app.request.locale == 'es' and post.titleEn %}
-    {{ post.titleEn }} — SargantanaCode
+    {{ post.titleEn }} — {{ 'TITLE'|trans }}
   {% endif %}
 {% endblock %}
 

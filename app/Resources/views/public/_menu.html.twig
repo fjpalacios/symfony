@@ -61,12 +61,21 @@
         <div class="dropdown-menu m-0 rounded-0"
              aria-labelledby="langDropdown">
           {% for locale in locales() %}
-            <a class="dropdown-item" href="{{ path(
-            app.request.get('_route', 'home'),
-            app.request.get('_route_params', [])|
-            merge({_locale: locale.code})) }}">
-              {{ locale.name|capitalize }}
-            </a>
+            {% if locale.code == app.request.locale %}
+              <a class="dropdown-item active" href="{{ path(
+              app.request.get('_route', 'home'),
+              app.request.get('_route_params', [])|
+              merge({_locale: locale.code})) }}">
+                {{ locale.name|capitalize }}
+              </a>
+            {% else %}
+              <a class="dropdown-item" href="{{ path(
+              app.request.get('_route', 'home'),
+              app.request.get('_route_params', [])|
+              merge({_locale: locale.code})) }}">
+                {{ locale.name|capitalize }}
+              </a>
+            {% endif %}
           {% endfor %}
         </div>
       </li>
