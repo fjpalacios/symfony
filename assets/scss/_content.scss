@@ -116,6 +116,25 @@
       font-size: 9px;
     }
   }
+  &__links {
+    width: 80%;
+    list-style-type: none;
+    text-align: center;
+    font-size: 25px;
+    li {
+      display: inline;
+      margin-right: 6%;
+      a {
+        @include transition(all .8s ease);
+        &:hover {
+          @include transition(all .8s ease);
+        }
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 }
 
 .social {
@@ -228,7 +247,7 @@ ul.no-padding {
     @include align-self(center);
   }
   .alert-copy {
-    position:relative;
+    position: relative;
     margin-right: 20px;
     padding: 0;
     small {
@@ -237,7 +256,7 @@ ul.no-padding {
       color: $white;
       text-transform: lowercase;
       padding: 2px 2px 2px 4px;
-      &:after{
+      &:after {
         content: "";
         position: absolute;
         height: 0;

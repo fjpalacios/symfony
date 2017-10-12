@@ -198,6 +198,9 @@
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ path('admin_users_edit',
+          { 'id': app.user.id }) }}">{{ 'USER_EDIT'|trans }}</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ path('logout',
           {'_locale': app.request.locale }) }}">
             {{ 'LOGOUT'|trans }}</a>

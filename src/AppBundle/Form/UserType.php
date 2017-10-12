@@ -33,6 +33,10 @@ class UserType extends AbstractType
                 ))
                 ->add('name', TextType::class)
                 ->add('url', UrlType::class, array('required' => false))
+                ->add('github', UrlType::class, array('required' => false))
+                ->add('linkedin', UrlType::class, array('required' => false))
+                ->add('twitter', UrlType::class, array('required' => false))
+                ->add('facebook', UrlType::class, array('required' => false))
                 ->add('bio', TextareaType::class, array('required' => false))
                 ->add('roles', ChoiceType::class, array(
                         'choices' => array(
