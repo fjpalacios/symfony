@@ -1,7 +1,7 @@
 DESC: "SargantanaCode is a website where you can find different subjects related to computer science but mainly related to programming, with Spanish free content"
 ONLY_ADMIN: "You need to be an admin to perform this action"
 LANGUAGE_NOT_AVAILABLE: "English version of this post was not found, showing the Spanish version instead"
-GITHUB: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
+GITHUB_REPO: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
 
 # Titles
 TITLE: "SargantanaCode"
@@ -49,6 +49,7 @@ LOGIN: "Log in"
 LOGOUT: "Log out"
 POST_EDIT: "Edit post"
 PAGE_EDIT: "Edit page"
+USER_EDIT: "Edit user"
 
 # Meta
 CATEGORIES_EXCERPT: "List of all the categories available at SargantanaCode"
@@ -156,6 +157,10 @@ USERS_ADD_TITLE: "Add new user"
 EMAIL: "Email"
 NAME: "Name"
 URL: "URL"
+GITHUB: "GitHub URL"
+LINKEDIN: "LinkedIN URL"
+TWITTER: "Twitter URL"
+FACEBOOK: "Facebook URL"
 BIO: "Bio"
 ROLES: "Roles"
 USER_ADDED_PROPERLY: "User added properly"

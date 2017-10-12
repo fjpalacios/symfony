@@ -71,6 +71,34 @@ class User implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="github", type="string", nullable=true, length=250)
+     */
+    private $github;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin", type="string", nullable=true, length=250)
+     */
+    private $linkedin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", nullable=true, length=250)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", nullable=true, length=250)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
@@ -246,6 +274,102 @@ class User implements UserInterface
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set github
+     *
+     * @param string $github
+     *
+     * @return User
+     */
+    public function setGithub($github)
+    {
+        $this->github = $github;
+
+        return $this;
+    }
+
+    /**
+     * Get github
+     *
+     * @return string
+     */
+    public function getGithub()
+    {
+        return $this->github;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     *
+     * @return User
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
     }
 
     /**

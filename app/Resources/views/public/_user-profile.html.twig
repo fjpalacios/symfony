@@ -8,5 +8,44 @@
       <h2>{{ user.name }}</h2>
     </a>
     {{ user.bio|raw|md2html }}
+    {% if user.url or user.github or user.linkedin or user.twitter or user.facebook %}
+      <ul class="user__links">
+        {% if user.url %}
+          <li>
+            <a href="{{ user.url }}">
+              <i class="fa fa-external-link-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        {% endif %}
+        {% if user.github %}
+          <li>
+            <a href="{{ user.github }}">
+              <i class="fa fa-github-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        {% endif %}
+        {% if user.linkedin %}
+          <li>
+            <a href="{{ user.linkedin }}">
+              <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        {% endif %}
+        {% if user.twitter %}
+          <li>
+            <a href="{{ user.twitter }}">
+              <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        {% endif %}
+        {% if user.facebook %}
+          <li>
+            <a href="{{ user.facebook }}">
+              <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    {% endif %}
   </div>
 </div>
