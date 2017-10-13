@@ -335,7 +335,8 @@ class AdminController extends Controller
         return $this->render('admin/pages/pages-edit.html.twig', array(
                 'form' => $form->createView(),
                 'author' => $author,
-                'id' => $id
+                'id' => $id,
+                'page' => $page
         ));
     }
 

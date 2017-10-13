@@ -98,7 +98,12 @@
         <button type="submit" id="submit" name="submit"
                 class="btn btn-primary">
           <i class="fa fa-check" aria-hidden="true"></i>
-          &nbsp; {{ 'EDIT_BTN'|trans }}</button>
+          {% if post.status == 'draft' %}
+            &nbsp; {{ 'SAVE_BTN'|trans }}
+          {% else %}
+            &nbsp; {{ 'EDIT_BTN'|trans }}
+          {% endif %}
+        </button>
         <button type="reset" id="submit" name="submit"
                 class="btn">
           <i class="fa fa-eraser" aria-hidden="true"></i>

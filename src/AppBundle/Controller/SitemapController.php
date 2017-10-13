@@ -14,6 +14,12 @@ class SitemapController extends Controller
     public function sitemapAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('AppBundle:Post')
+            ->findBy(array(
+                'status' => 'publish',
+                'type' => 'post'), array(
+                'modDate' => 'DESC'
+            ));
         $urls = array();
         $hostname = $request->getSchemeAndHttpHost();
         $urls[] = array(
@@ -30,7 +36,8 @@ class SitemapController extends Controller
         );
         return $this->render('public/sitemap-index.xml.twig', array(
             'urls' => $urls,
-            'hostname' => $hostname
+            'hostname' => $hostname,
+            'posts' => $posts
         ));
     }
 
@@ -44,7 +51,8 @@ class SitemapController extends Controller
         $hostname = $request->getSchemeAndHttpHost();
         $posts = $em->getRepository('AppBundle:Post')
             ->findBy(array(
-                'status' => 'publish'), array(
+                'status' => 'publish',
+                'type' => 'post'), array(
                 'modDate' => 'DESC'
             ));
         foreach ($posts as $post) {
@@ -94,7 +102,8 @@ class SitemapController extends Controller
         $hostname = $request->getSchemeAndHttpHost();
         $posts = $em->getRepository('AppBundle:Post')
             ->findBy(array(
-                'status' => 'publish'), array(
+                'status' => 'publish',
+                'type' => 'post'), array(
                 'modDate' => 'DESC'
             ));
         foreach ($posts as $post) {
