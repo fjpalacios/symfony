@@ -52,7 +52,11 @@
         <guid>{{ url('post', {'slug': post.slug}) }}</guid>
         <pubDate>{{ post.date|date(format='r', timezone='GMT') }}</pubDate>
         <dc:creator><![CDATA[{{ post.author.name }}]]></dc:creator>
-        <category>{{ post.category.name }}</category>
+        {% if app.request.locale == 'es' %}
+          <category>{{ post.category.nameEs }}</category>
+        {% else %}
+          <category>{{ post.category.nameEn }}</category>
+        {% endif %}
       </item>
     {% endfor %}
   </channel>

@@ -4,7 +4,18 @@
       <div class="list">
         <a href="{{ path('post', { 'slug': post.slug }) }}">
           <span class="date-badge">{{ post.date|date("d/m/Y") }}</span>
-          <span class="category-badge">{{ post.category.name }}</span>
+          <span class="category-badge">
+            {% if app.request.locale == 'en' and post.category.nameEn %}
+              {{ post.category.nameEn }}
+            {% elseif app.request.locale == 'en' and post.titleEs %}
+              {{ post.category.nameEs }}
+            {% endif %}
+            {% if app.request.locale == 'es' and post.category.nameEs %}
+              {{ post.category.nameEs }}
+            {% elseif app.request.locale == 'es' and post.category.nameEn %}
+              {{ post.category.nameEn }}
+            {% endif %}
+          </span>
           {% if post.image is not null %}
             <img src="{{ asset( 'uploads/' ~ post.image ) }}"
                  alt="{{ post.titleEs }}">

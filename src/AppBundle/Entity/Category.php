@@ -25,9 +25,16 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name_es", type="string", length=255)
      */
-    private $name;
+    private $nameEs;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_en", type="string", length=255)
+     */
+    private $nameEn;
 
     /**
      * @var string
@@ -70,27 +77,51 @@ class Category
     }
 
     /**
-     * Set name
+     * Set name ES
      *
-     * @param string $name
+     * @param string $nameEs
      *
      * @return Category
      */
-    public function setName($name)
+    public function setNameEs($nameEs)
     {
-        $this->name = $name;
+        $this->nameEs = $nameEs;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get name ES
      *
      * @return string
      */
-    public function getName()
+    public function getNameEs()
     {
-        return $this->name;
+        return $this->nameEs;
+    }
+
+    /**
+     * Set name EN
+     *
+     * @param string $nameEn
+     *
+     * @return Category
+     */
+    public function setNameEn($nameEn)
+    {
+        $this->nameEn = $nameEn;
+
+        return $this;
+    }
+
+    /**
+     * Get name EN
+     *
+     * @return string
+     */
+    public function getNameEn()
+    {
+        return $this->nameEn;
     }
 
     /**

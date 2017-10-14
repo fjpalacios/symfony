@@ -196,7 +196,8 @@ PUBLIC_CATEGORIES_NOT_FOUND: "Actualmente no hay ninguna categoría publicada, s
 
 # Category add
 CATEGORIES_ADD_TITLE: "Nueva categoría"
-CATEGORY_NAME: "Nombre de la categoría"
+CATEGORY_NAME_ES: "Nombre de la categoría"
+CATEGORY_NAME_EN: "Category name"
 CATEGORY_DESC_ES: "Descripción"
 CATEGORY_DESC_EN: "Description"
 CATEGORY_IMAGE: "Imagen (300x300)"

@@ -51,7 +51,16 @@
         <span class="category-badge">
           <a href="{{ path('category', { 'slug': post.category.slug }) }}"
              class="badge-link">
-          {{ post.category.name }}
+            {% if app.request.locale == 'en' and post.category.nameEn %}
+              {{ post.category.nameEn }}
+            {% elseif app.request.locale == 'en' and post.titleEs %}
+              {{ post.category.nameEs }}
+            {% endif %}
+            {% if app.request.locale == 'es' and post.category.nameEs %}
+              {{ post.category.nameEs }}
+            {% elseif app.request.locale == 'es' and post.category.nameEn %}
+              {{ post.category.nameEn }}
+            {% endif %}
           </a>
         </span>
         {% if post.image is not null %}

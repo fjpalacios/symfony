@@ -173,17 +173,18 @@ class AdminControllerTest extends WebTestCase
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
-            'appbundle_category[name]' => $newCategoryName,
+            'appbundle_category[nameEs]' => $newCategoryName,
+            'appbundle_category[nameEn]' => $newCategoryName,
             'appbundle_category[descriptionEs]' => $newDescriptionEs,
             'appbundle_category[descriptionEn]' => $newDescriptionEn
         ));
         $client->submit($form);
         $category = $client->getContainer()->get('doctrine')
             ->getRepository(Category::class)->findOneBy(array(
-                'name' => $newCategoryName,
+                'nameEs' => $newCategoryName,
             ));
         $this->assertNotNull($category);
-        $this->assertSame($newCategoryName, $category->getName());
+        $this->assertSame($newCategoryName, $category->getNameEs());
         $this->assertSame($newDescriptionEn, $category->getDescriptionEn());
     }
 
@@ -198,12 +199,12 @@ class AdminControllerTest extends WebTestCase
         $this->assertSame(Response::HTTP_OK,
             $client->getResponse()->getStatusCode());
         $form = $crawler->selectButton('submit')->form(array(
-            'appbundle_category[name]' => $newCategoryName
+            'appbundle_category[nameEs]' => $newCategoryName
         ));
         $client->submit($form);
         $category = $client->getContainer()->get('doctrine')
             ->getRepository(Category::class)->find(1);
-        $this->assertSame($newCategoryName, $category->getName());
+        $this->assertSame($newCategoryName, $category->getNameEs());
     }
 
     public function testDeleteCategory()

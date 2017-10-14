@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -13,11 +14,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostType extends AbstractType
 {
+    private $categoryName;
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+         if ($options['lang'] == 'es') {
+             $this->categoryName = 'nameEs';
+         } else {
+             $this->categoryName = 'nameEn';
+         }
         $builder
                 ->add('status', ChoiceType::class, array(
                         'choices' => array(
@@ -28,6 +36,10 @@ class PostType extends AbstractType
                 ))
                 ->add('author', EntityType::class, array(
                         'class' => 'AppBundle:User',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                                ->orderBy('u.name', 'ASC');
+                        },
                         'choice_label' => 'name',
                         'choice_value' => 'id',
                         'multiple' => false
@@ -58,7 +70,11 @@ class PostType extends AbstractType
                 ))
                 ->add('category', EntityType::class, array(
                         'class' => 'AppBundle:Category',
-                        'choice_label' => 'name',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('c')
+                                ->orderBy('c.'.$this->categoryName, 'ASC');
+                        },
+                        'choice_label' => $this->categoryName,
                         'choice_value' => 'id',
                         'placeholder' => 'CHOOSE_A_CATEGORY',
                         'multiple' => false
@@ -71,8 +87,10 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\Post'
+                'data_class' => 'AppBundle\Entity\Post',
+                'lang' => null
         ));
+        $resolver->setRequired('lang');
     }
 
     /**
