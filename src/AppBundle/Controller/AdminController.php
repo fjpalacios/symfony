@@ -91,7 +91,8 @@ class AdminController extends Controller
     public function postsAddAction(Request $request)
     {
         $post = new Post();
-        $form = $this->createForm(PostType::class, $post);
+        $locale = $request->getLocale();
+        $form = $this->createForm(PostType::class, $post, ['lang' => $locale]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -167,7 +168,8 @@ class AdminController extends Controller
         $author = $post->getAuthor();
         $status = $post->getStatus();
         $image = $post->getImage();
-        $form = $this->createForm(PostType::class, $post);
+        $locale = $request->getLocale();
+        $form = $this->createForm(PostType::class, $post, ['lang' => $locale]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setModDate(new \DateTime('now'));
@@ -487,11 +489,16 @@ class AdminController extends Controller
     /**
      * @Route("/categories/", name="admin_categories")
      */
-    public function categoriesAction()
+    public function categoriesAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $categoryRepo = $em->getRepository('AppBundle:Category');
-        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $categories = $categoryRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $categories = $categoryRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
         return $this->render('admin/categories/categories.html.twig', array(
             'categories' => $categories
         ));
@@ -508,7 +515,7 @@ class AdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $slug = new Slugify();
-            $category->setSlug($slug->slugify($category->getName()));
+            $category->setSlug($slug->slugify($category->getNameEn()));
             $file = $form->get('image')->getData();
             if ($file) {
                 $fileName = md5(uniqid()) . '.' . $file->guessExtension();

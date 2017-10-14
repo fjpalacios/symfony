@@ -14,7 +14,8 @@ class CategoryFixtures extends AbstractFixture
     public function load(ObjectManager $manager)
     {
         $category = new Category();
-        $category->setName('Lorem ipsum');
+        $category->setNameEs('Lorem ipsum');
+        $category->setNameEn('Lorem ipsum');
         $category->setSlug('lorem-ipsum');
         $category->setDescriptionEn($this->getRandomPostExcerpt());
         $category->setDescriptionEs($this->getRandomPostExcerpt());

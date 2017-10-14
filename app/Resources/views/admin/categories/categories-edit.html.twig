@@ -20,8 +20,13 @@
       {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
         <div class="container content">
           <div class="form-group">
-            {{ form_label(form.name, 'CATEGORY_NAME') }}
-            {{ form_widget(form.name, { 'attr':
+            {{ form_label(form.nameEs, 'CATEGORY_NAME_ES') }}
+            {{ form_widget(form.nameEs, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.nameEn, 'CATEGORY_NAME_EN') }}
+            {{ form_widget(form.nameEn, { 'attr':
               {'class': 'form-control'} }) }}
           </div>
           <div class="form-group">
