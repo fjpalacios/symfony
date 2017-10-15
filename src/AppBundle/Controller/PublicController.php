@@ -201,7 +201,12 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $categoryRepo = $em->getRepository('AppBundle:Category');
-        $categories = $categoryRepo->findBy(array(), array('name' => 'ASC'));
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $categories = $categoryRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $categories = $categoryRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
         return $this->render('public/categories.html.twig', array(
             'categories' => $categories
         ));

@@ -33,11 +33,22 @@
               <a href="{{ path('category', { 'slug': category.slug }) }}">
                 {% if category.image is not null %}
                   <img src="{{ asset( 'uploads/' ~ category.image ) }}"
-                       alt="{{ category.name }}"
+                       alt="{{ category.nameEs }}"
                        class="list__image">
                 {% endif %}
                 <div class="list__content">
-                  <h4 class="list__title">{{ category.name }}</h4>
+                  <h4 class="list__title">
+                    {% if app.request.locale == 'es' and category.nameEs %}
+                      {{ category.nameEs }}
+                    {% elseif app.request.locale == 'es' and category.nameEn %}
+                      {{ category.nameEn }}
+                    {% endif %}
+                    {% if app.request.locale == 'en' and category.nameEn %}
+                      {{ category.nameEn }}
+                    {% elseif app.request.locale == 'en' and category.nameEs %}
+                      {{ category.nameEs }}
+                    {% endif %}
+                  </h4>
                   <p class="list__text">
                     {% if app.request.locale == 'en' and category.descriptionEn %}
                       {{ category.descriptionEn }}
