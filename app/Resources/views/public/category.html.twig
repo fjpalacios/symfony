@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {{ category.name }} — {{ 'TITLE'|trans }}
+  {% if app.request.locale == 'es' and category.nameEs %}
+    {{ category.nameEs }} — {{ 'TITLE'|trans }}
+  {% elseif app.request.locale == 'es' and category.nameEn %}
+    {{ category.nameEn }} — {{ 'TITLE'|trans }}
+  {% endif %}
+  {% if app.request.locale == 'en' and category.nameEn %}
+    {{ category.nameEn }} — {{ 'TITLE'|trans }}
+  {% elseif app.request.locale == 'en' and category.nameEs %}
+    {{ category.nameEs }} — {{ 'TITLE'|trans }}
+  {% endif %}
 {% endblock %}
 
 {% block meta %}
@@ -9,7 +18,17 @@
   <meta name="twitter:site" content="@SargantanaCode"/>
   <meta name="twitter:creator" content="@fjpalacios"/>
   <meta property="og:url" content="{{ url('category', {'slug': category.slug }) }}"/>
-  <meta property="og:title" content="{{ category.name }} — SargantanaCode"/>
+  {% if app.request.locale == 'es' and category.nameEs %}
+    <meta property="og:title" content="{{ category.nameEs }} — SargantanaCode"/>
+  {% elseif app.request.locale == 'es' and category.nameEn %}
+    <meta property="og:title" content="{{ category.nameEn }} — SargantanaCode"/>
+  {% endif %}
+  {% if app.request.locale == 'en' and category.nameEn %}
+    <meta property="og:title" content="{{ category.nameEn }} — SargantanaCode"/>
+  {% elseif app.request.locale == 'en' and category.nameEs %}
+    <meta property="og:title" content="{{ category.nameEs }} — SargantanaCode"/>
+  {% endif %}
+
   <meta property="og:site_name" content="SargantanaCode"/>
   <meta property="article:author" content="https://www.facebook.com/sargantanacode/" />
   <meta property="fb:admins" content="826302220"/>
@@ -32,11 +51,22 @@
       {% if category.image is not null %}
         <div class="category__avatar">
           <img src="{{ asset( 'uploads/' ~ category.image ) }}"
-               alt="{{ category.name }}"/>
+               alt="{{ category.nameEs }}"/>
         </div>
       {% endif %}
       <div class="category__desc">
-        <h2>{{ category.name }}</h2>
+        <h2>
+          {% if app.request.locale == 'es' and category.nameEs %}
+            {{ category.nameEs }}
+          {% elseif app.request.locale == 'es' and category.nameEn %}
+            {{ category.nameEn }}
+          {% endif %}
+          {% if app.request.locale == 'en' and category.nameEn %}
+            {{ category.nameEn }}
+          {% elseif app.request.locale == 'en' and category.nameEs %}
+            {{ category.nameEs }}
+          {% endif %}
+        </h2>
         {% if app.request.locale == 'en' and category.descriptionEn %}
           {{ category.descriptionEn }}
         {% elseif app.request.locale == 'en' and category.descriptionEs %}
