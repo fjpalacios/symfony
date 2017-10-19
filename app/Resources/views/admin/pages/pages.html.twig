@@ -37,15 +37,10 @@
         {% endif %}
         {% for page in pages %}
           <tr>
-            {% if app.request.locale == 'es' and page.titleEs %}
+            {% if app.request.locale == 'es' %}
               <td>{{ page.titleEs }}</td>
-            {% elseif app.request.locale == 'es' and page.titleEn %}
+            {% else %}
               <td>{{ page.titleEn }}</td>
-            {% endif %}
-            {% if app.request.locale == 'en' and page.titleEn %}
-              <td>{{ page.titleEn }}</td>
-            {% elseif app.request.locale == 'en' and page.titleEs %}
-              <td>{{ page.titleEs }}</td>
             {% endif %}
             {% if page.status == 'publish' %}
               <td class="d-none d-sm-table-cell text-center">

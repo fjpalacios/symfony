@@ -51,57 +51,43 @@
         <span class="category-badge">
           <a href="{{ path('category', { 'slug': post.category.slug }) }}"
              class="badge-link">
-            {% if app.request.locale == 'en' and post.category.nameEn %}
-              {{ post.category.nameEn }}
-            {% elseif app.request.locale == 'en' and post.titleEs %}
+            {% if app.request.locale == 'es' %}
               {{ post.category.nameEs }}
-            {% endif %}
-            {% if app.request.locale == 'es' and post.category.nameEs %}
-              {{ post.category.nameEs }}
-            {% elseif app.request.locale == 'es' and post.category.nameEn %}
+            {% else %}
               {{ post.category.nameEn }}
             {% endif %}
           </a>
         </span>
         {% if post.image is not null %}
-          <img src="{{ asset( 'uploads/' ~ post.image ) }}"
-               alt="{{ post.titleEs }}"
-               class="post-header">
+          {% if app.request.locale == 'es' %}
+            <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+                 alt="{{ post.titleEs }}"
+                 class="post-header">
+          {% else %}
+            <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+                 alt="{{ post.titleEn }}"
+                 class="post-header">
+          {% endif %}
         {% endif %}
       {% endif %}
       <h2 class="post-title">
-        {% if app.request.locale == 'en' and post.titleEn %}
-          {{ post.titleEn }}
-        {% elseif app.request.locale == 'en' and post.titleEs %}
+        {% if app.request.locale == 'es' %}
           {{ post.titleEs }}
-        {% endif %}
-        {% if app.request.locale == 'es' and post.titleEs %}
-          {{ post.titleEs }}
-        {% elseif app.request.locale == 'es' and post.titleEn %}
+        {% else %}
           {{ post.titleEn }}
         {% endif %}
       </h2>
       <div class="post-body">
-        {% if app.request.locale == 'en' and not post.titleEn or
-        app.request.locale == 'es' and not post.titleEs %}
-          <div class="alert alert-danger" role="alert">
-            {{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-          </div>
-        {% endif %}
-        {% if app.request.locale == 'en' and post.titleEn %}
-          {{ post.contentEn|raw|md2html }}
-        {% elseif app.request.locale == 'en' and post.titleEs %}
+        {% if app.request.locale == 'es' %}
           {{ post.contentEs|raw|md2html }}
-        {% endif %}
-        {% if app.request.locale == 'es' and post.titleEs %}
-          {{ post.contentEs|raw|md2html }}
-        {% elseif app.request.locale == 'es' and post.titleEn %}
+        {% else %}
           {{ post.contentEn|raw|md2html }}
         {% endif %}
       </div>
     </div>
     {% if post.type == 'post' %}
       <div class="social mb-3">
+        {% if app.request.locale == 'es' %}
         <ul class="social__list">
           <li>
             <a
@@ -119,11 +105,39 @@
             </a>
           </li>
           <li>
-            <a href="mailto:?subject={{ post.titleEs }}&body={{ post.titleEs }} en SargantanaCode: {{ url('post', {'slug': post.slug }) }}" class="social-btn">
+            <a
+              href="mailto:?subject={{ post.titleEs }}&body={{ post.titleEs }} en SargantanaCode: {{ url('post', {'slug': post.slug }) }}"
+              class="social-btn">
               <i class="fa fa-envelope-square" aria-hidden="true"></i>
             </a>
           </li>
         </ul>
+        {% else %}
+          <ul class="social__list">
+            <li>
+              <a
+                href="https://twitter.com/intent/tweet?url={{ url('post', {'slug': post.slug }) }}&text={{ post.titleEn }}&via=SargantanaCode"
+                target="_blank" class="social-btn social-btn--twitter"
+                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')return false">
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="javascript: void(0);"
+                 onclick="javascript:window.open('https://www.facebook.com/sharer.php?u={{ url('post', {'slug': post.slug }) }}&t={{ post.titleEn }}','ventanacompartir', 'toolbar=0, status=0, width=650, height=450')"
+                 target="_blank" class="social-btn social-btn--facebook">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:?subject={{ post.titleEn }}&body={{ post.titleEn }} en SargantanaCode: {{ url('post', {'slug': post.slug }) }}"
+                class="social-btn">
+                <i class="fa fa-envelope-square" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        {% endif %}
       </div>
     {% endif %}
     {% if user.bio is defined and post.type != 'page' %}

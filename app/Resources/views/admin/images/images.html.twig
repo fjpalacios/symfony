@@ -39,43 +39,26 @@
           <tr>
             <td class="d-none d-lg-table-cell text-center">
               {% if image.file is not null %}
-                {% if app.request.locale == 'es' and image.titleEs %}
+                {% if app.request.locale == 'es' %}
                   <img src="{{ asset( 'uploads/' ~ image.file ) }}"
                        alt="{{ image.titleEs }}"/>
-                {% elseif app.request.locale == 'es' and image.titleEn %}
+                {% else %}
                   <img src="{{ asset( 'uploads/' ~ image.file ) }}"
                        alt="{{ image.titleEn }}"/>
-                {% endif %}
-                {% if app.request.locale == 'en' and image.titleEn %}
-                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
-                       alt="{{ image.titleEn }}"/>
-                {% elseif app.request.locale == 'en' and image.titleEs %}
-                  <img src="{{ asset( 'uploads/' ~ image.file ) }}"
-                       alt="{{ image.titleEs }}"/>
                 {% endif %}
               {% endif %}
             </td>
             <td class="d-none d-sm-table-cell text-center">
-              {% if app.request.locale == 'es' and image.titleEs %}
+              {% if app.request.locale == 'es' %}
                 {{ image.titleEs }}
-              {% elseif app.request.locale == 'es' and image.titleEn %}
+              {% else %}
                 {{ image.titleEn }}
-              {% endif %}
-              {% if app.request.locale == 'en' and image.titleEn %}
-                {{ image.titleEn }}
-              {% elseif app.request.locale == 'en' and image.titleEs %}
-                {{ image.titleEs }}
               {% endif %}
             </td>
-            {% if app.request.locale == 'es' and image.descriptionEs %}
+            {% if app.request.locale == 'es' %}
               <td>{{ image.descriptionEs }}</td>
-            {% elseif app.request.locale == 'es' and image.descriptionEn %}
+            {% else %}
               <td>{{ image.descriptionEn }}</td>
-            {% endif %}
-            {% if app.request.locale == 'en' and image.descriptionEn %}
-              <td>{{ image.descriptionEn }}</td>
-            {% elseif app.request.locale == 'en' and image.descriptionEs %}
-              <td>{{ image.descriptionEs }}</td>
             {% endif %}
             <td class="text-center">
               <a href="{{ path('admin_images_edit', {'id': image.id}) }}"

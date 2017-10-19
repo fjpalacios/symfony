@@ -1,15 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {% if app.request.locale == 'es' and category.nameEs %}
+  {% if app.request.locale == 'es' %}
     {{ category.nameEs }} — {{ 'TITLE'|trans }}
-  {% elseif app.request.locale == 'es' and category.nameEn %}
+  {% else %}
     {{ category.nameEn }} — {{ 'TITLE'|trans }}
-  {% endif %}
-  {% if app.request.locale == 'en' and category.nameEn %}
-    {{ category.nameEn }} — {{ 'TITLE'|trans }}
-  {% elseif app.request.locale == 'en' and category.nameEs %}
-    {{ category.nameEs }} — {{ 'TITLE'|trans }}
   {% endif %}
 {% endblock %}
 
@@ -17,22 +12,23 @@
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:site" content="@SargantanaCode"/>
   <meta name="twitter:creator" content="@fjpalacios"/>
-  <meta property="og:url" content="{{ url('category', {'slug': category.slug }) }}"/>
-  {% if app.request.locale == 'es' and category.nameEs %}
+  <meta property="og:url"
+        content="{{ url('category', {'slug': category.slug }) }}"/>
+  {% if app.request.locale == 'es' %}
     <meta property="og:title" content="{{ category.nameEs }} — SargantanaCode"/>
-  {% elseif app.request.locale == 'es' and category.nameEn %}
+  {% else %}
     <meta property="og:title" content="{{ category.nameEn }} — SargantanaCode"/>
-  {% endif %}
-  {% if app.request.locale == 'en' and category.nameEn %}
-    <meta property="og:title" content="{{ category.nameEn }} — SargantanaCode"/>
-  {% elseif app.request.locale == 'en' and category.nameEs %}
-    <meta property="og:title" content="{{ category.nameEs }} — SargantanaCode"/>
   {% endif %}
 
   <meta property="og:site_name" content="SargantanaCode"/>
-  <meta property="article:author" content="https://www.facebook.com/sargantanacode/" />
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
   <meta property="fb:admins" content="826302220"/>
-  <meta property="og:description" content="{{ category.descriptionEs }}"/>
+  {% if app.request.locale == 'es' %}
+    <meta property="og:description" content="{{ category.descriptionEs }}"/>
+  {% else %}
+    <meta property="og:description" content="{{ category.descriptionEn }}"/>
+  {% endif %}
   <meta property="og:type" content="article"/>
   {% if category.image is not null %}
     <meta property="og:image"
@@ -50,31 +46,26 @@
     <div class="content category">
       {% if category.image is not null %}
         <div class="category__avatar">
-          <img src="{{ asset( 'uploads/' ~ category.image ) }}"
-               alt="{{ category.nameEs }}"/>
+          {% if app.request.locale == 'es' %}
+            <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+                 alt="{{ category.nameEs }}">
+          {% else %}
+            <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+                 alt="{{ category.nameEn }}">
+          {% endif %}
         </div>
       {% endif %}
       <div class="category__desc">
         <h2>
-          {% if app.request.locale == 'es' and category.nameEs %}
+          {% if app.request.locale == 'es' %}
             {{ category.nameEs }}
-          {% elseif app.request.locale == 'es' and category.nameEn %}
+          {% else %}
             {{ category.nameEn }}
-          {% endif %}
-          {% if app.request.locale == 'en' and category.nameEn %}
-            {{ category.nameEn }}
-          {% elseif app.request.locale == 'en' and category.nameEs %}
-            {{ category.nameEs }}
           {% endif %}
         </h2>
-        {% if app.request.locale == 'en' and category.descriptionEn %}
-          {{ category.descriptionEn }}
-        {% elseif app.request.locale == 'en' and category.descriptionEs %}
+        {% if app.request.locale == 'es' %}
           {{ category.descriptionEs }}
-        {% endif %}
-        {% if app.request.locale == 'es' and category.descriptionEs %}
-          {{ category.descriptionEs }}
-        {% elseif app.request.locale == 'es' and category.descriptionEn %}
+        {% else %}
           {{ category.descriptionEn }}
         {% endif %}
       </div>

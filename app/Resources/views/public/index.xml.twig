@@ -13,7 +13,7 @@
     <language>{{ app.request.locale }}</language>
     {% for post in posts %}
       <item>
-        {% if app.request.locale == 'es' and post.titleEs %}
+        {% if app.request.locale == 'es' %}
           <title>{{ post.titleEs }}</title>
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
@@ -21,7 +21,8 @@
             {{ post.contentEs|raw|md2html }}
             ]]>
           </content:encoded>
-        {% elseif app.request.locale == 'es' and post.titleEn %}
+          <category>{{ post.category.nameEs }}</category>
+        {% else %}
           <title>{{ post.titleEn }}</title>
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
@@ -30,33 +31,12 @@
             {{ post.contentEn|raw|md2html }}
             ]]>
           </content:encoded>
-        {% endif %}
-        {% if app.request.locale == 'en' and post.titleEn %}
-          <title>{{ post.titleEn }}</title>
-          <description>{{ post.excerptEn }}</description>
-          <content:encoded>
-            <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
-            {{ post.contentEn|raw|md2html }}]]>
-          </content:encoded>
-        {% elseif app.request.locale == 'en' and post.titleEs %}
-          <title>{{ post.titleEs }}</title>
-          <description>{{ post.excerptEs }}</description>
-          <content:encoded>
-            <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
-            {{ post.contentEs|raw|md2html }}
-            ]]>
-          </content:encoded>
+          <category>{{ post.category.nameEn }}</category>
         {% endif %}
         <link>{{ url('post', {'slug': post.slug}) }}</link>
         <guid>{{ url('post', {'slug': post.slug}) }}</guid>
         <pubDate>{{ post.date|date(format='r', timezone='GMT') }}</pubDate>
         <dc:creator><![CDATA[{{ post.author.name }}]]></dc:creator>
-        {% if app.request.locale == 'es' %}
-          <category>{{ post.category.nameEs }}</category>
-        {% else %}
-          <category>{{ post.category.nameEn }}</category>
-        {% endif %}
       </item>
     {% endfor %}
   </channel>

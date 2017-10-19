@@ -44,26 +44,16 @@
               {% endif %}
             </td>
             <td class="d-none d-sm-table-cell text-center">
-              {% if app.request.locale == 'es' and category.nameEs %}
+              {% if app.request.locale == 'es' %}
                 {{ category.nameEs }}
-              {% elseif app.request.locale == 'es' and category.nameEn %}
+              {% else %}
                 {{ category.nameEn }}
-              {% endif %}
-              {% if app.request.locale == 'en' and category.nameEn %}
-                {{ category.nameEn }}
-              {% elseif app.request.locale == 'en' and category.nameEs %}
-                {{ category.nameEs }}
               {% endif %}
             </td>
-            {% if app.request.locale == 'es' and category.descriptionEs %}
+            {% if app.request.locale == 'es' %}
               <td>{{ category.descriptionEs }}</td>
-            {% elseif app.request.locale == 'es' and category.descriptionEn %}
+            {% else %}
               <td>{{ category.descriptionEn }}</td>
-            {% endif %}
-            {% if app.request.locale == 'en' and category.descriptionEn %}
-              <td>{{ category.descriptionEn }}</td>
-            {% elseif app.request.locale == 'en' and category.descriptionEs %}
-              <td>{{ category.descriptionEs }}</td>
             {% endif %}
             <td class="text-center">
               <a href="{{ path('category', { 'slug': category.slug }) }}"
