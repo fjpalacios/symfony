@@ -1,14 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  {% if app.request.locale == 'en' and post.titleEn %}
-    {{ post.titleEn }} — {{ 'TITLE'|trans }}
-  {% elseif app.request.locale == 'en' and post.titleEs %}
+  {% if app.request.locale == 'es'%}
     {{ post.titleEs }} — {{ 'TITLE'|trans }}
-  {% endif %}
-  {% if app.request.locale == 'es' and post.titleEs %}
-    {{ post.titleEs }} — {{ 'TITLE'|trans }}
-  {% elseif app.request.locale == 'es' and post.titleEn %}
+  {% else %}
     {{ post.titleEn }} — {{ 'TITLE'|trans }}
   {% endif %}
 {% endblock %}
@@ -18,12 +13,17 @@
   <meta name="twitter:site" content="@SargantanaCode"/>
   <meta name="twitter:creator" content="@fjpalacios"/>
   <meta property="og:url" content="{{ url('post', {'slug': post.slug }) }}"/>
-  <meta property="og:title" content="{{ post.titleEs }} — SargantanaCode"/>
+  {% if app.request.locale == 'es' %}
+    <meta property="og:title" content="{{ post.titleEs }} — SargantanaCode"/>
+    <meta property="og:description" content="{{ post.excerptEs }}"/>
+  {% else %}
+    <meta property="og:title" content="{{ post.titleEn }} — SargantanaCode"/>
+    <meta property="og:description" content="{{ post.excerptEn }}"/>
+  {% endif %}
   <meta property="og:site_name" content="SargantanaCode"/>
   <meta property="article:author"
         content="https://www.facebook.com/sargantanacode/"/>
   <meta property="fb:admins" content="826302220"/>
-  <meta property="og:description" content="{{ post.excerptEs }}"/>
   <meta property="og:type" content="article"/>
   {% if post.image is not null %}
     <meta property="og:image"
@@ -88,30 +88,30 @@
     {% if post.type == 'post' %}
       <div class="social mb-3">
         {% if app.request.locale == 'es' %}
-        <ul class="social__list">
-          <li>
-            <a
-              href="https://twitter.com/intent/tweet?url={{ url('post', {'slug': post.slug }) }}&text={{ post.titleEs }}&via=SargantanaCode"
-              target="_blank" class="social-btn social-btn--twitter"
-              onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')return false">
-              <i class="fa fa-twitter-square" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a href="javascript: void(0);"
-               onclick="javascript:window.open('https://www.facebook.com/sharer.php?u={{ url('post', {'slug': post.slug }) }}&t={{ post.titleEs }}','ventanacompartir', 'toolbar=0, status=0, width=650, height=450')"
-               target="_blank" class="social-btn social-btn--facebook">
-              <i class="fa fa-facebook-square" aria-hidden="true"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:?subject={{ post.titleEs }}&body={{ post.titleEs }} en SargantanaCode: {{ url('post', {'slug': post.slug }) }}"
-              class="social-btn">
-              <i class="fa fa-envelope-square" aria-hidden="true"></i>
-            </a>
-          </li>
-        </ul>
+          <ul class="social__list">
+            <li>
+              <a
+                href="https://twitter.com/intent/tweet?url={{ url('post', {'slug': post.slug }) }}&text={{ post.titleEs }}&via=SargantanaCode"
+                target="_blank" class="social-btn social-btn--twitter"
+                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600')return false">
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="javascript: void(0);"
+                 onclick="javascript:window.open('https://www.facebook.com/sharer.php?u={{ url('post', {'slug': post.slug }) }}&t={{ post.titleEs }}','ventanacompartir', 'toolbar=0, status=0, width=650, height=450')"
+                 target="_blank" class="social-btn social-btn--facebook">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:?subject={{ post.titleEs }}&body={{ post.titleEs }} en SargantanaCode: {{ url('post', {'slug': post.slug }) }}"
+                class="social-btn">
+                <i class="fa fa-envelope-square" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
         {% else %}
           <ul class="social__list">
             <li>
