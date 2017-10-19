@@ -32,32 +32,28 @@
             <div class="list">
               <a href="{{ path('category', { 'slug': category.slug }) }}">
                 {% if category.image is not null %}
-                  <img src="{{ asset( 'uploads/' ~ category.image ) }}"
-                       alt="{{ category.nameEs }}"
-                       class="list__image">
+                  {% if app.request.locale == 'es' %}
+                    <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+                         alt="{{ category.nameEs }}"
+                         class="list__image">
+                  {% else %}
+                    <img src="{{ asset( 'uploads/' ~ category.image ) }}"
+                         alt="{{ category.nameEn }}"
+                         class="list__image">
+                  {% endif %}
                 {% endif %}
                 <div class="list__content">
                   <h4 class="list__title">
-                    {% if app.request.locale == 'es' and category.nameEs %}
+                    {% if app.request.locale == 'es' %}
                       {{ category.nameEs }}
-                    {% elseif app.request.locale == 'es' and category.nameEn %}
+                    {% else %}
                       {{ category.nameEn }}
-                    {% endif %}
-                    {% if app.request.locale == 'en' and category.nameEn %}
-                      {{ category.nameEn }}
-                    {% elseif app.request.locale == 'en' and category.nameEs %}
-                      {{ category.nameEs }}
                     {% endif %}
                   </h4>
                   <p class="list__text">
-                    {% if app.request.locale == 'en' and category.descriptionEn %}
-                      {{ category.descriptionEn }}
-                    {% elseif app.request.locale == 'en' and category.descriptionEs %}
+                    {% if app.request.locale == 'es' %}
                       {{ category.descriptionEs }}
-                    {% endif %}
-                    {% if app.request.locale == 'es' and category.descriptionEs %}
-                      {{ category.descriptionEs }}
-                    {% elseif app.request.locale == 'es' and category.descriptionEn %}
+                    {% else %}
                       {{ category.descriptionEn }}
                     {% endif %}
                   </p>

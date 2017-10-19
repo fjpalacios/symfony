@@ -5,43 +5,33 @@
         <a href="{{ path('post', { 'slug': post.slug }) }}">
           <span class="date-badge">{{ post.date|date("d/m/Y") }}</span>
           <span class="category-badge">
-            {% if app.request.locale == 'en' and post.category.nameEn %}
-              {{ post.category.nameEn }}
-            {% elseif app.request.locale == 'en' and post.titleEs %}
+            {% if app.request.locale == 'es' %}
               {{ post.category.nameEs }}
-            {% endif %}
-            {% if app.request.locale == 'es' and post.category.nameEs %}
-              {{ post.category.nameEs }}
-            {% elseif app.request.locale == 'es' and post.category.nameEn %}
+            {% else %}
               {{ post.category.nameEn }}
             {% endif %}
           </span>
           {% if post.image is not null %}
-            <img src="{{ asset( 'uploads/' ~ post.image ) }}"
-                 alt="{{ post.titleEs }}">
+            {% if app.request.locale == 'es' %}
+              <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+                   alt="{{ post.titleEs }}">
+            {% else %}
+              <img src="{{ asset( 'uploads/' ~ post.image ) }}"
+                   alt="{{ post.titleEn }}">
+            {% endif %}
           {% endif %}
           <div class="list__content">
             <h4 class="list__title">
-              {% if app.request.locale == 'en' and post.titleEn %}
-                {{ post.titleEn }}
-              {% elseif app.request.locale == 'en' and post.titleEs %}
+              {% if app.request.locale == 'es' %}
                 {{ post.titleEs }}
-              {% endif %}
-              {% if app.request.locale == 'es' and post.titleEs %}
-                {{ post.titleEs }}
-              {% elseif app.request.locale == 'es' and post.titleEn %}
+              {% else %}
                 {{ post.titleEn }}
               {% endif %}
             </h4>
             <p class="list__text">
-              {% if app.request.locale == 'en' and post.titleEn %}
-                {{ post.excerptEn }}
-              {% elseif app.request.locale == 'en' and post.titleEs %}
+              {% if app.request.locale == 'es' %}
                 {{ post.excerptEs }}
-              {% endif %}
-              {% if app.request.locale == 'es' and post.titleEs %}
-                {{ post.excerptEs }}
-              {% elseif app.request.locale == 'es' and post.titleEn %}
+              {% else %}
                 {{ post.excerptEn }}
               {% endif %}
             </p>

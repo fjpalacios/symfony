@@ -38,15 +38,10 @@
     </td>
     <td>
       <a href="{{ path('post', {'slug': comment.slug }) }}">
-        {% if app.request.locale == 'es' and comment.title_es %}
+        {% if app.request.locale == 'es' %}
           {{ comment.title_es }}
-        {% elseif app.request.locale == 'es' and comment.title_en %}
+        {% else %}
           {{ comment.title_en }}
-        {% endif %}
-        {% if app.request.locale == 'en' and comment.title_en %}
-          {{ comment.title_en }}
-        {% elseif app.request.locale == 'en' and comment.title_es %}
-          {{ comment.title_es }}
         {% endif %}
       </a>
       <hr/>
