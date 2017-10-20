@@ -1,6 +1,7 @@
 DESC: "SargantanaCode is a website where you can find different subjects related to computer science but mainly related to programming, with Spanish free content"
 ONLY_ADMIN: "You need to be an admin to perform this action"
 GITHUB_REPO: "This project is open source, you can find it on %link_start%our GitHub repository%link_end%"
+CONTENT_LICENSE: "The content of this page has a %link_start%CC BY-SA%link_end% license"
 
 # Titles
 TITLE: "SargantanaCode"

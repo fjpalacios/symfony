@@ -2,6 +2,15 @@
   <p>{{ 'GITHUB_REPO'|trans({
       '%link_start%': '<a href="https://github.com/sargantanacode/sargantanacode">',
       '%link_end%': '</a>'})|raw }}</p>
+  {% if app.request.locale == 'es' %}
+    <p>{{ 'CONTENT_LICENSE'|trans({
+        '%link_start%': '<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">',
+        '%link_end%': '</a>'})|raw }}</p>
+  {% else %}
+    <p>{{ 'CONTENT_LICENSE'|trans({
+        '%link_start%': '<a href="https://creativecommons.org/licenses/by-sa/4.0/">',
+        '%link_end%': '</a>'})|raw }}</p>
+  {% endif %}
   <ul class="footer__list">
     <li>
       <a href="https://www.facebook.com/sargantanacode">
