@@ -2,6 +2,7 @@ DESC: "SargantanaCode es una web en la que podrás encontrar distintos temas rel
 ONLY_ADMIN: "Necesitas ser administrador para ejecutar esta acción"
 LANGUAGE_NOT_AVAILABLE: "No se encontró la versión en español para este artículo, se muestra en su lugar la versión en inglés"
 GITHUB_REPO: "Este proyecto es de código abierto, lo puedes encontrar en %link_start%nuestro repositorio de GitHub%link_end%"
+CONTENT_LICENSE: "El contenido de esta página tiene una licencia %link_start%CC BY-SA%link_end%"
 
 # Titles
 TITLE: "SargantanaCode"
