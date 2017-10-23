@@ -26,6 +26,7 @@ $(document).ready(function () {
     passInput.style.display = 'none'
   }
   checkCookies()
+  $('.post-body a, .user a, .comment a, .footer a').attr('target', '_blank');
 })
 
 let newPass = document.getElementById('newpass')
