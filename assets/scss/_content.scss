@@ -271,7 +271,7 @@ ul.no-padding {
 }
 
 .category-badge {
-  @include background-opacity($main-color, 0.7);
+  @include background-opacity($dark-gray, 0.5);
   position: absolute;
   white-space: nowrap;
   vertical-align: middle;
@@ -292,7 +292,7 @@ ul.no-padding {
 }
 
 .date-badge {
-  @include background-opacity($main-color, 0.7);
+  @include background-opacity($dark-gray, 0.5);
   position: absolute;
   white-space: nowrap;
   vertical-align: middle;

@@ -18,18 +18,15 @@
           <description>{{ post.excerptEs }}</description>
           <content:encoded>
             <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
-            {{ post.contentEs|raw|md2html }}
-            ]]>
+            {{ post.contentEs|raw|md2html }}]]>
           </content:encoded>
           <category>{{ post.category.nameEs }}</category>
         {% else %}
           <title>{{ post.titleEn }}</title>
           <description>{{ post.excerptEn }}</description>
           <content:encoded>
-            <![CDATA[{{ 'LANGUAGE_NOT_AVAILABLE'|trans }}
-            <img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
-            {{ post.contentEn|raw|md2html }}
-            ]]>
+            <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEn }}" />
+            {{ post.contentEn|raw|md2html }}]]>
           </content:encoded>
           <category>{{ post.category.nameEn }}</category>
         {% endif %}
