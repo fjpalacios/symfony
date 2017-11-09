@@ -28,7 +28,7 @@
     <div class="row">
       {% for category in categories %}
         {% if has_posts(category.id) %}
-          <div class="col-12 col-sm-6 col-md-3 mb-4">
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
             <div class="list">
               <a href="{{ path('category', { 'slug': category.slug }) }}">
                 {% if category.image is not null %}
