@@ -52,8 +52,18 @@ class AdminController extends Controller
             'date' => 'DESC'),
             5
         );
-        $views = $em->createQuery("SELECT p FROM AppBundle\Entity\Post p WHERE p.views > 0 AND p.type = 'post' AND p.status = 'publish' ORDER BY p.views")->getResult();
-        $commentCount = $em->createQuery("SELECT p FROM AppBundle\Entity\Post p WHERE p.commentCount > 0 AND p.type = 'post' AND p.status = 'publish' ORDER BY p.commentCount")->getResult();
+        $views = $em->createQuery("
+              SELECT p FROM AppBundle\Entity\Post p 
+              WHERE p.views > 0 AND p.type = 'post' AND p.status = 'publish'
+              ORDER BY p.views DESC")
+            ->setMaxResults(5)
+            ->getResult();
+        $commentCount = $em->createQuery("
+              SELECT p FROM AppBundle\Entity\Post p
+              WHERE p.commentCount > 0 AND p.type = 'post' AND p.status = 'publish'
+              ORDER BY p.commentCount DESC")
+            ->setMaxResults(5)
+            ->getResult();
         $comments = $commentRepo->getCommentsWithRelatedPost(5);
         return $this->render('admin/admin.html.twig',array(
             'posts' => $posts,
