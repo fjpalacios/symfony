@@ -220,15 +220,16 @@ class PublicController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $postRepo = $em->getRepository('AppBundle:Post');
-        $posts = $postRepo->findBy(array(
-            'category' => $category->getId(),
-            'type' => 'post',
-            'status' => 'publish'), array(
-            'date' => 'DESC'
-        ));
+        $posts = $postRepo->getPaginatedCategory($page, $category->getId());
+        $totalItems = count($posts);
+        $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
         return $this->render('public/category.html.twig', array(
             'posts' => $posts,
-            'category' => $category
+            'category' => $category,
+            'totalItems' => $totalItems,
+            'pagesCount' => $pagesCount,
+            'page' => $page,
+            'slug' => $category->getSlug()
         ));
     }
 
