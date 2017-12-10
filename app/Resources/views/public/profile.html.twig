@@ -27,7 +27,7 @@
   <div class="container page mt-5">
     {% include('public/_user-profile.html.twig') %}
     {% include('public/_content.html.twig') %}
-    {% if pagesCount > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
+    {% if totalItems > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
       {% include('_pagination.html.twig') %}
     {% endif %}
   </div>

@@ -21,7 +21,7 @@
 {% block body %}
   <div class="container page">
     {% include('public/_content.html.twig') %}
-    {% if pagesCount > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
+    {% if totalItems > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
       {% include('_pagination.html.twig') %}
     {% endif %}
     {% if not posts %}
