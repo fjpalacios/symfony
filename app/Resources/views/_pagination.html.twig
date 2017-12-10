@@ -2,6 +2,10 @@
 app.request.attributes.get('_route') == 'paginated_home' %}
   {% set paginator_path = 'paginated_home' %}
   {% set route = 'home' %}
+{% elseif  app.request.attributes.get('_route') == 'category' or
+app.request.attributes.get('_route') == 'paginated_category' %}
+  {% set paginator_path = 'paginated_category' %}
+  {% set route = 'category' %}
 {% else %}
   {% set paginator_path = 'paginated_profile' %}
   {% set route = 'profile' %}
@@ -13,6 +17,10 @@ app.request.attributes.get('_route') == 'paginated_home' %}
         {% if route == 'profile' %}
           <a href="{{ path(paginator_path, {'page': page-1,
             'username': username }) }}"
+             class="page-link">&laquo;</a>
+        {% elseif route == 'category' %}
+          <a href="{{ path(paginator_path, {'page': page-1,
+            'slug': slug }) }}"
              class="page-link">&laquo;</a>
         {% else %}
           <a href="{{ path(paginator_path, {'page': page-1 }) }}"
@@ -31,6 +39,11 @@ app.request.attributes.get('_route') == 'paginated_home' %}
               href="{{ path('paginated_profile', {'page': i,
                 'username': username }) }}"
               class="page-link">{{ i }}</a></li>
+        {% elseif route == 'category' %}
+          <li class="page-item active"><a
+              href="{{ path(paginator_path, {'page': i,
+                'slug': slug }) }}"
+              class="page-link">{{ i }}</a></li>
         {% else %}
           <li class="page-item active"><a
               href="{{ path(paginator_path, {'page': i }) }}"
@@ -41,6 +54,11 @@ app.request.attributes.get('_route') == 'paginated_home' %}
           <li class="page-item"><a
               href="{{ path('paginated_profile', {'page': i,
                 'username': username }) }}"
+              class="page-link">{{ i }}</a></li>
+        {% elseif route == 'category' %}
+          <li class="page-item"><a
+              href="{{ path(paginator_path, {'page': i,
+                'slug': slug }) }}"
               class="page-link">{{ i }}</a></li>
         {% else %}
           <li class="page-item"><a
@@ -54,6 +72,10 @@ app.request.attributes.get('_route') == 'paginated_home' %}
         {% if route == 'profile' %}
           <a href="{{ path('paginated_profile', {'page': page+1,
             'username': username }) }}"
+             class="page-link">&raquo;</a>
+        {% elseif route == 'category' %}
+          <a href="{{ path(paginator_path, {'page': page+1,
+            'slug': slug }) }}"
              class="page-link">&raquo;</a>
         {% else %}
           <a href="{{ path(paginator_path, {'page': page+1 }) }}"

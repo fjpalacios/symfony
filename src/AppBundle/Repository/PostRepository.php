@@ -40,6 +40,20 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         return $paginator;
     }
 
+    public function getPaginatedCategory($currentPage = 1, $categoryId, $perPage = Post::NUM_ITEMS)
+    {
+        $em = $this->getEntityManager();
+        $dql = "SELECT p, c FROM AppBundle\Entity\Post p JOIN p.category c
+                WHERE p.type = 'post' AND p.status = 'publish' AND p.category = :categoryId
+                ORDER BY p.date DESC";
+        $query = $em->createQuery($dql)
+            ->setParameter('categoryId', $categoryId)
+            ->setFirstResult($perPage * ($currentPage - 1))
+            ->setMaxResults($perPage);
+        $paginator = new Paginator($query, $fetchJoinCollection = true);
+        return $paginator;
+    }
+
     public function getPaginatedSearch($locale, $search, $currentPage = 1, $perPage = Post::NUM_ITEMS)
     {
         $em = $this->getEntityManager();

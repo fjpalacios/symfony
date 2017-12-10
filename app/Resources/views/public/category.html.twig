@@ -71,5 +71,8 @@
       </div>
     </div>
     {% include('public/_content.html.twig') %}
+    {% if totalItems > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
+      {% include('_pagination.html.twig') %}
+    {% endif %}
   </div>
 {% endblock %}
