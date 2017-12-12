@@ -13,26 +13,28 @@
         <img src="{{ asset( 'uploads/' ~ post.image ) }}" alt=""
              class="post-header">
       {% endif %}
-      <h2>
+      <h2 class="post-title">
         {% if app.request.locale == 'es' %}
           {{ post.titleEs }}
         {% else %}
           {{ post.titleEn }}
         {% endif %}
       </h2>
-      {% if app.request.locale == 'es' %}
-        {{ post.contentEs|raw|md2html }}
-        <div class="mt-5">
-          <h3>{{ 'POST_EXCERPT'|trans }}</h3>
-          {{ post.excerptEs }}
-        </div>
-      {% else %}
-        {{ post.contentEn|raw|md2html }}
-        <div class="mt-5">
-          <h3>{{ 'POST_EXCERPT'|trans }}</h3>
-          {{ post.excerptEn }}
-        </div>
-      {% endif %}
+      <div class="post-body">
+        {% if app.request.locale == 'es' %}
+          {{ post.contentEs|raw|md2html }}
+          <div class="mt-5">
+            <h3>{{ 'POST_EXCERPT'|trans }}</h3>
+            {{ post.excerptEs }}
+          </div>
+        {% else %}
+          {{ post.contentEn|raw|md2html }}
+          <div class="mt-5">
+            <h3>{{ 'POST_EXCERPT'|trans }}</h3>
+            {{ post.excerptEn }}
+          </div>
+        {% endif %}
+      </div>
     </div>
     {% if user.bio and post.type != 'page' %}
       {% include('/public/_user-profile.html.twig') %}
