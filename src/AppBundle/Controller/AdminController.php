@@ -655,9 +655,56 @@ class AdminController extends Controller
                 $status = 'COURSE_ADDED_ERROR';
             }
             $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_courses_edit', array(
+                'id' => $id
+            ));
         }
         return $this->render('admin/courses/courses-add.html.twig', array(
             'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/courses/edit/{id}", name="admin_courses_edit")
+     */
+    public function coursesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $course = $courseRepo->find($id);
+        $image = $course->getImage();
+        $form = $this->createForm(CourseType::class, $course);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = new Slugify();
+            $course->setSlug($slug->slugify($form->get('slug')->getData()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $course->setImage($fileName);
+                if ($image) {
+                    $fs = new Filesystem();
+                    $fs->remove($this->get('kernel')->getRootDir() .
+                        '/../web/uploads/' . $image);
+                }
+            } else {
+                $course->setImage($image);
+            }
+            $em->persist($course);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'COURSE_EDITED_PROPERLY';
+            } else {
+                $status = 'COURSE_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_courses_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/courses/courses-edit.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

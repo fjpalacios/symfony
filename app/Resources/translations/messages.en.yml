@@ -29,6 +29,7 @@ ADMIN_IMAGES_ADD_TITLE: "New image"
 ADMIN_IMAGES_EDIT_TITLE: "Edit image"
 ADMIN_COURSES_TITLE: "Courses"
 ADMIN_COURSES_ADD_TITLE: "New course"
+ADMIN_COURSES_EDIT_TITLE: "Edit course"
 
 # Roles
 ROLE_USER: "User"
@@ -236,6 +237,12 @@ COURSE_DESC_EN: "Description"
 COURSE_IMAGE: "Image (300x300)"
 COURSE_ADDED_PROPERLY: "Course added properly"
 COURSE_ADDED_ERROR: "Something went wrong when adding the new course"
+
+# Course edit
+COURSES_EDIT_TITLE: "Edit course"
+COURSE_SLUG: "Permanent link"
+COURSE_EDITED_PROPERLY: "Course edited properly"
+COURSE_EDITED_ERROR: "Something went wrong when editing the course"
 
 # Comments
 ADMIN_COMMENTS: "Comments"

@@ -30,6 +30,7 @@ ADMIN_IMAGES_ADD_TITLE: "Nueva imagen"
 ADMIN_IMAGES_EDIT_TITLE: "Editar imagen"
 ADMIN_COURSES_TITLE: "Cursos"
 ADMIN_COURSES_ADD_TITLE: "Nuevo curso"
+ADMIN_COURSES_EDIT_TITLE: "Editar curso"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -237,6 +238,12 @@ COURSE_DESC_EN: "Description"
 COURSE_IMAGE: "Imagen (300x300)"
 COURSE_ADDED_PROPERLY: "El curso se añadió correctamente"
 COURSE_ADDED_ERROR: "Algo salió mal al añadir el nuevo curso"
+
+# Course edit
+COURSES_EDIT_TITLE: "Editar curso"
+COURSE_SLUG: "Enlace permanente"
+COURSE_EDITED_PROPERLY: "El curso se editó correctamente"
+COURSE_EDITED_ERROR: "Algo salió mal al editar el curso"
 
 # Comments
 ADMIN_COMMENTS: "Comentarios"
