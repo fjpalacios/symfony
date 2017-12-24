@@ -43,18 +43,20 @@
                      alt="{{ course.nameEs }}"/>
               {% endif %}
             </td>
-            <td class="d-none d-sm-table-cell text-center">
+            <td class="text-center">
               {% if app.request.locale == 'es' %}
                 {{ course.nameEs }}
               {% else %}
                 {{ course.nameEn }}
               {% endif %}
             </td>
-            {% if app.request.locale == 'es' %}
-              <td>{{ course.descriptionEs }}</td>
-            {% else %}
-              <td>{{ course.descriptionEn }}</td>
-            {% endif %}
+            <td class="d-none d-sm-table-cell text-center">
+              {% if app.request.locale == 'es' %}
+                {{ course.descriptionEs }}
+              {% else %}
+                {{ course.descriptionEn }}
+              {% endif %}
+            </td>
             <td class="text-center">
               <a href="#"
                  class="btn btn-sm btn-info text-center">
