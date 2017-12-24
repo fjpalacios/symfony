@@ -29,6 +29,7 @@ ADMIN_IMAGES_TITLE: "Imágenes"
 ADMIN_IMAGES_ADD_TITLE: "Nueva imagen"
 ADMIN_IMAGES_EDIT_TITLE: "Editar imagen"
 ADMIN_COURSES_TITLE: "Cursos"
+ADMIN_COURSES_ADD_TITLE: "Nuevo curso"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -224,6 +225,15 @@ COURSES_ITEM_NAME: "Nombre"
 COURSES_ITEM_DESC: "Descripción"
 COURSES_NOT_FOUND: "Actualmente no hay ningún curso añadido, anímate y %link_start%añade uno ahora%link_end%."
 
+# Course add
+COURSES_ADD_TITLE: "Nuevo curso"
+COURSE_NAME_ES: "Nombre del curso"
+COURSE_NAME_EN: "Course name"
+COURSE_DESC_ES: "Descripción"
+COURSE_DESC_EN: "Description"
+COURSE_IMAGE: "Imagen (300x300)"
+COURSE_ADDED_PROPERLY: "El curso se añadió correctamente"
+COURSE_ADDED_ERROR: "Algo salió mal al añadir el nuevo curso"
 
 # Comments
 ADMIN_COMMENTS: "Comentarios"

@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Course;
 use AppBundle\Entity\Image;
 use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\CourseType;
 use AppBundle\Form\ImageType;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
@@ -624,6 +626,38 @@ class AdminController extends Controller
         return $this->render('admin/courses/courses.html.twig', array(
             'courses' => $courses
         ));
+    }
+
+    /**
+     * @Route("/courses/add", name="admin_courses_add")
+     */
+    public function coursesAddAction(Request $request)
+    {
+        $course = new Course();
+        $form = $this->createForm(CourseType::class, $course);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = new Slugify();
+            $course->setSlug($slug->slugify($course->getNameEn()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $course->setImage($fileName);
+            }
+            $em->persist($course);
+            $flush = $em->flush();
+            $id = $course->getId();
+            if (!$flush) {
+                $status = 'COURSE_ADDED_PROPERLY';
+            } else {
+                $status = 'COURSE_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+        }
+        return $this->render('admin/courses/courses-add.html.twig', array(
+            'form' => $form->createView()));
     }
 
     /**

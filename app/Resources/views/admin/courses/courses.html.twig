@@ -78,7 +78,7 @@
         {% if not courses %}
         <div class="alert alert-danger" role="alert">
           {{ 'COURSES_NOT_FOUND'|trans({
-            '%link_start%': '<a href="#">',
+            '%link_start%': '<a href=""'~path('admin_categories_add')~'"">',
             '%link_end%': '</a>'})|raw }}
         </div>
         {% else %}
