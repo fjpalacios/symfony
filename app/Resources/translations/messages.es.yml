@@ -67,6 +67,7 @@ REMEMBER_LOGIN: "Recuérdame"
 LOGIN_BTN: "Iniciar sesión"
 
 # Posts
+ADMIN_POSTS_PAGES: "Artículos y páginas"
 ADMIN_POSTS: "Artículos"
 POSTS_TITLE: "Artículos"
 ADMIN_POSTS_ADD: "Añadir artículo"
@@ -188,6 +189,7 @@ USER_EDITED_ERROR: "Algo salió mal al editar el usuario"
 CANCEL_PASSWORD: "Cancelar"
 
 # Categories
+ADMIN_CATEGORIES_COURSES: "Categorías y cursos"
 ADMIN_CATEGORIES: "Categorías"
 CATEGORIES_TITLE: "Categorías"
 ADMIN_CATEGORIES_ADD: "Añadir categoría"

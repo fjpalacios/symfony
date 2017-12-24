@@ -66,6 +66,7 @@ REMEMBER_LOGIN: "Keep me logged in"
 LOGIN_BTN: "Sign in"
 
 # Posts
+ADMIN_POSTS_PAGES: "Posts and Pages"
 ADMIN_POSTS: "Posts"
 POSTS_TITLE: "Posts"
 ADMIN_POSTS_ADD: "Add post"
@@ -187,6 +188,7 @@ USER_EDITED_ERROR: "Something went wrong when editing the user"
 CANCEL_PASSWORD: "Cancel"
 
 # Categories
+ADMIN_CATEGORIES_COURSES: "Categories and Courses"
 ADMIN_CATEGORIES: "Categories"
 CATEGORIES_TITLE: "Categories"
 ADMIN_CATEGORIES_ADD: "Add category"

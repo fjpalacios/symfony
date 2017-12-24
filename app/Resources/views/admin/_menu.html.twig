@@ -20,7 +20,7 @@
            id="langDropdown" data-toggle="dropdown"
            aria-haspopup="true"
            aria-expanded="false">
-          {{ 'ADMIN_POSTS'|trans }}</a>
+          {{ 'ADMIN_POSTS_PAGES'|trans }}</a>
         <div class="dropdown-menu m-0 rounded-0"
              aria-labelledby="langDropdown">
           <a class="dropdown-item
@@ -35,6 +35,52 @@
              {% endif %}" href="{{ path('admin_posts_add',
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_POSTS_ADD'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_pages' %}
+             active
+             {% endif %}" href="{{ path('admin_pages',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_PAGES'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_pages_add' %}
+             active
+             {% endif %}" href="{{ path('admin_pages_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_PAGES_ADD'|trans }}</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           id="langDropdown" data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">
+          {{ 'ADMIN_CATEGORIES_COURSES'|trans }}</a>
+        <div class="dropdown-menu m-0 rounded-0"
+             aria-labelledby="langDropdown">
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_categories' %}
+             active
+             {% endif %}" href="{{ path('admin_categories',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_CATEGORIES'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_categories_add' %}
+             active
+             {% endif %}" href="{{ path('admin_categories_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_courses' %}
+             active
+             {% endif %}" href="{{ path('admin_courses',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_COURSES'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_courses_add' %}
+             active
+             {% endif %}" href="{{ path('admin_courses_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_COURSES_ADD'|trans }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -64,52 +110,6 @@
            id="langDropdown" data-toggle="dropdown"
            aria-haspopup="true"
            aria-expanded="false">
-          {{ 'ADMIN_CATEGORIES'|trans }}</a>
-        <div class="dropdown-menu m-0 rounded-0"
-             aria-labelledby="langDropdown">
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_categories' %}
-             active
-             {% endif %}" href="{{ path('admin_categories',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_CATEGORIES'|trans }}</a>
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_categories_add' %}
-             active
-             {% endif %}" href="{{ path('admin_categories_add',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
-           id="langDropdown" data-toggle="dropdown"
-           aria-haspopup="true"
-           aria-expanded="false">
-          {{ 'ADMIN_COURSES'|trans }}</a>
-        <div class="dropdown-menu m-0 rounded-0"
-             aria-labelledby="langDropdown">
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_courses' %}
-             active
-             {% endif %}" href="{{ path('admin_courses',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_COURSES'|trans }}</a>
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_courses_add' %}
-             active
-             {% endif %}" href="{{ path('admin_courses_add',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_COURSES_ADD'|trans }}</a>
-        </div>
-      </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
-           id="langDropdown" data-toggle="dropdown"
-           aria-haspopup="true"
-           aria-expanded="false">
           {{ 'ADMIN_IMAGES'|trans }}</a>
         <div class="dropdown-menu m-0 rounded-0"
              aria-labelledby="langDropdown">
@@ -125,28 +125,6 @@
              {% endif %}" href="{{ path('admin_images_add',
           {'_locale': app.request.locale }) }}">
             {{ 'ADMIN_IMAGES_ADD'|trans }}</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
-           id="langDropdown" data-toggle="dropdown"
-           aria-haspopup="true"
-           aria-expanded="false">
-          {{ 'ADMIN_PAGES'|trans }}</a>
-        <div class="dropdown-menu m-0 rounded-0"
-             aria-labelledby="langDropdown">
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_pages' %}
-             active
-             {% endif %}" href="{{ path('admin_pages',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_PAGES'|trans }}</a>
-          <a class="dropdown-item
-             {% if app.request.get('_route') == 'admin_pages_add' %}
-             active
-             {% endif %}" href="{{ path('admin_pages_add',
-          {'_locale': app.request.locale }) }}">
-            {{ 'ADMIN_PAGES_ADD'|trans }}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
