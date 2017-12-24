@@ -245,6 +245,10 @@ COURSE_SLUG: "Enlace permanente"
 COURSE_EDITED_PROPERLY: "El curso se editó correctamente"
 COURSE_EDITED_ERROR: "Algo salió mal al editar el curso"
 
+# Course del
+COURSE_REMOVED_PROPERLY: "El curso se eliminó correctamente"
+COURSE_REMOVED_ERROR: "Algo salió mal al eliminar el curso"
+
 # Comments
 ADMIN_COMMENTS: "Comentarios"
 COMMENTS_TITLE: "Comentarios"

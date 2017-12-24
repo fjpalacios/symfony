@@ -708,6 +708,30 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/courses/del/{id}", name="admin_courses_del")
+     */
+    public function coursesRemoveAction(Course $course)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $image = $course->getImage();
+        if ($image) {
+            $fs = new Filesystem();
+            $fs->remove($this->get('kernel')->getRootDir() .
+                '/../web/uploads/' . $image);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($course);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'COURSE_REMOVED_PROPERLY';
+        } else {
+            $status = 'COURSE_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_courses');
+    }
+
+    /**
      * @Route("/comments/", name="admin_comments")
      */
     public function commentsAction()

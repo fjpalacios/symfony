@@ -244,6 +244,10 @@ COURSE_SLUG: "Permanent link"
 COURSE_EDITED_PROPERLY: "Course edited properly"
 COURSE_EDITED_ERROR: "Something went wrong when editing the course"
 
+# Course del
+COURSE_REMOVED_PROPERLY: "Course removed properly"
+COURSE_REMOVED_ERROR: "Something went wrong when removing the course"
+
 # Comments
 ADMIN_COMMENTS: "Comments"
 COMMENTS_TITLE: "Comments"
