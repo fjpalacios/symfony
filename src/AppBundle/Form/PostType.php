@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PostType extends AbstractType
 {
     private $categoryName;
+    private $courseName;
 
     /**
      * {@inheritdoc}
@@ -23,8 +24,10 @@ class PostType extends AbstractType
     {
          if ($options['lang'] == 'es') {
              $this->categoryName = 'nameEs';
+             $this->courseName = 'nameEs';
          } else {
              $this->categoryName = 'nameEn';
+             $this->courseName = 'nameEn';
          }
         $builder
                 ->add('status', ChoiceType::class, array(
@@ -78,6 +81,18 @@ class PostType extends AbstractType
                         'choice_value' => 'id',
                         'placeholder' => 'CHOOSE_A_CATEGORY',
                         'multiple' => false
+                ))
+                ->add('course', EntityType::class, array(
+                        'class' => 'AppBundle:Course',
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('c')
+                                ->orderBy('c.'.$this->courseName, 'ASC');
+                        },
+                        'choice_label' => $this->courseName,
+                        'choice_value' => 'id',
+                        'placeholder' => 'CHOOSE_A_COURSE',
+                        'multiple' => false,
+                        'required' => false
                 ));
     }
 
