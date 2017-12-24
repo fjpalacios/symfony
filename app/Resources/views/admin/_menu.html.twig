@@ -81,6 +81,30 @@
             {{ 'ADMIN_CATEGORIES_ADD'|trans }}</a>
         </div>
       </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           id="langDropdown" data-toggle="dropdown"
+           aria-haspopup="true"
+           aria-expanded="false">
+          {{ 'ADMIN_COURSES'|trans }}</a>
+        <div class="dropdown-menu m-0 rounded-0"
+             aria-labelledby="langDropdown">
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_courses' %}
+             active
+             {% endif %}" href="{{ path('admin_courses',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_COURSES'|trans }}</a>
+          <a class="dropdown-item
+             {% if app.request.get('_route') == 'admin_courses_add' %}
+             active
+             {% endif %}" href="{{ path('admin_courses_add',
+          {'_locale': app.request.locale }) }}">
+            {{ 'ADMIN_COURSES_ADD'|trans }}</a>
+        </div>
+      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#"
            id="langDropdown" data-toggle="dropdown"

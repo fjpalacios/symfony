@@ -219,6 +219,7 @@ CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"
 # Courses
 ADMIN_COURSES: "Courses"
 COURSES_TITLE: "Courses"
+ADMIN_COURSES_ADD: "Add course"
 COURSES_ITEM_IMAGE: "Image"
 COURSES_ITEM_NAME: "Name"
 COURSES_ITEM_DESC: "Description"

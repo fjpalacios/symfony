@@ -220,6 +220,7 @@ CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"
 # Courses
 ADMIN_COURSES: "Cursos"
 COURSES_TITLE: "Cursos"
+ADMIN_COURSES_ADD: "Añadir curso"
 COURSES_ITEM_IMAGE: "Imagen"
 COURSES_ITEM_NAME: "Nombre"
 COURSES_ITEM_DESC: "Descripción"
