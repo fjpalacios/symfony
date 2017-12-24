@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_COURSES_TITLE'|trans }} — {{ 'TITLE'|trans }}
+{% endblock %}
+
+{% block body_id "admin-courses" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">{{ 'COURSES_TITLE'|trans }}</h2>
+      {% if courses %}
+      <table class="table table-striped table-categories">
+        <thead>
+        <tr>
+          <th class="d-none d-lg-table-cell text-center">
+            {{ 'COURSES_ITEM_IMAGE'|trans }}
+          </th>
+          <th class="text-center">
+            {{ 'COURSES_ITEM_NAME'|trans }}
+          </th>
+          <th class="d-none d-sm-table-cell text-center">
+            {{ 'COURSES_ITEM_DESC'|trans }}
+          </th>
+          <th class="text-center">
+            <i class="fa fa-wrench" aria-hidden="true"></i>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% endif %}
+        {% for course in courses %}
+          <tr>
+            <td class="d-none d-lg-table-cell text-center">
+              {% if course.image is not null %}
+                <img src="{{ asset( 'uploads/' ~ course.image ) }}"
+                     alt="{{ course.nameEs }}"/>
+              {% endif %}
+            </td>
+            <td class="d-none d-sm-table-cell text-center">
+              {% if app.request.locale == 'es' %}
+                {{ course.nameEs }}
+              {% else %}
+                {{ course.nameEn }}
+              {% endif %}
+            </td>
+            {% if app.request.locale == 'es' %}
+              <td>{{ course.descriptionEs }}</td>
+            {% else %}
+              <td>{{ course.descriptionEn }}</td>
+            {% endif %}
+            <td class="text-center">
+              <a href="#"
+                 class="btn btn-sm btn-info text-center">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </a>
+              <a href="#"
+                 class="btn btn-sm btn-primary text-center">
+                <i class="fa fa-edit"
+                   aria-hidden="true"></i>
+              </a>
+              {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="#"
+                   class="btn btn-sm btn-danger text-center">
+                  <i class="fa fa-remove"
+                     aria-hidden="true"></i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        {% if not courses %}
+        <div class="alert alert-danger" role="alert">
+          {{ 'COURSES_NOT_FOUND'|trans({
+            '%link_start%': '<a href="#">',
+            '%link_end%': '</a>'})|raw }}
+        </div>
+        {% else %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

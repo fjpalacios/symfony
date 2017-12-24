@@ -609,6 +609,24 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/courses/", name="admin_courses")
+     */
+    public function coursesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $courses = $courseRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $courses = $courseRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
+        return $this->render('admin/courses/courses.html.twig', array(
+            'courses' => $courses
+        ));
+    }
+
+    /**
      * @Route("/comments/", name="admin_comments")
      */
     public function commentsAction()

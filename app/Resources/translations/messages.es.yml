@@ -28,6 +28,7 @@ ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 ADMIN_IMAGES_TITLE: "Imágenes"
 ADMIN_IMAGES_ADD_TITLE: "Nueva imagen"
 ADMIN_IMAGES_EDIT_TITLE: "Editar imagen"
+ADMIN_COURSES_TITLE: "Cursos"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -214,6 +215,15 @@ CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "La categoría se eliminó correctamente"
 CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"
+
+# Courses
+ADMIN_COURSES: "Cursos"
+COURSES_TITLE: "Cursos"
+COURSES_ITEM_IMAGE: "Imagen"
+COURSES_ITEM_NAME: "Nombre"
+COURSES_ITEM_DESC: "Descripción"
+COURSES_NOT_FOUND: "Actualmente no hay ningún curso añadido, anímate y %link_start%añade uno ahora%link_end%."
+
 
 # Comments
 ADMIN_COMMENTS: "Comentarios"

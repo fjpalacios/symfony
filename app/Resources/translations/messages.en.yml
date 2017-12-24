@@ -27,6 +27,7 @@ ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
 ADMIN_IMAGES_TITLE: "Images"
 ADMIN_IMAGES_ADD_TITLE: "New image"
 ADMIN_IMAGES_EDIT_TITLE: "Edit image"
+ADMIN_COURSES_TITLE: "Courses"
 
 # Roles
 ROLE_USER: "User"
@@ -213,6 +214,15 @@ CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "Category removed properly"
 CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"
+
+# Courses
+ADMIN_COURSES: "Courses"
+COURSES_TITLE: "Courses"
+COURSES_ITEM_IMAGE: "Image"
+COURSES_ITEM_NAME: "Name"
+COURSES_ITEM_DESC: "Description"
+COURSES_NOT_FOUND: "There are currently no courses added, do you want to %link_start%add one%link_end% now?"
+
 
 # Comments
 ADMIN_COMMENTS: "Comments"
