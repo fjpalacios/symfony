@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'COURSES_LIST_TITLE'|trans }} — {{ 'TITLE'|trans }}
+{% endblock %}
+
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url" content="{{ url('contact') }}"/>
+  <meta property="og:title"
+        content="{{ 'COURSES_TITLE'|trans }} — SargantanaCode"/>
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  <meta property="og:description" content="{{ 'COURSES_EXCERPT'|trans }}"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:image"
+        content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+{% endblock %}
+
+{% block body_id "courses" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="row">
+      {% for course in courses %}
+        {% if has_courses(course.id) %}
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+            <div class="list">
+              <a href="{{ path('course', { 'slug': course.slug }) }}">
+                {% if course.image is not null %}
+                  {% if app.request.locale == 'es' %}
+                    <img src="{{ asset( 'uploads/' ~ course.image ) }}"
+                         alt="{{ course.nameEs }}"
+                         class="list__image">
+                  {% else %}
+                    <img src="{{ asset( 'uploads/' ~ course.image ) }}"
+                         alt="{{ course.nameEn }}"
+                         class="list__image">
+                  {% endif %}
+                {% endif %}
+                <div class="list__content">
+                  <h4 class="list__title">
+                    {% if app.request.locale == 'es' %}
+                      {{ course.nameEs }}
+                    {% else %}
+                      {{ course.nameEn }}
+                    {% endif %}
+                  </h4>
+                  <p class="list__text">
+                    {% if app.request.locale == 'es' %}
+                      {{ course.descriptionEs }}
+                    {% else %}
+                      {{ course.descriptionEn }}
+                    {% endif %}
+                  </p>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if not courses %}
+      <div class="alert alert-danger" role="alert">
+        {{ 'PUBLIC_COURSES_NOT_FOUND'|trans({
+          '%link_start%': '<a href="'~path('admin_courses_add')~'">',
+          '%link_end%': '</a>'})|raw }}
+      </div>
+    {% endif %}
+  </div>
+  </div>
+{% endblock %}

@@ -6,6 +6,7 @@ CONTENT_LICENSE: "The content of this page has a %link_start%CC BY-SA%link_end% 
 # Titles
 TITLE: "SargantanaCode"
 CATEGORIES_LIST_TITLE: "List of categories"
+COURSES_LIST_TITLE: "List of courses"
 ADMIN_PANEL_TITLE: "Admin area"
 ADMIN_CATEGORIES_TITLE: "Categories"
 ADMIN_CATEGORIES_ADD_TITLE: "New category"
@@ -56,6 +57,7 @@ USER_EDIT: "Edit user"
 
 # Meta
 CATEGORIES_EXCERPT: "List of all the categories available at SargantanaCode"
+COURSES_EXCERPT: "List of all the courses available at SargantanaCode"
 CONTACT_EXCERPT: "SargantanaCode contact form"
 
 # Login
@@ -229,6 +231,7 @@ COURSES_ITEM_IMAGE: "Image"
 COURSES_ITEM_NAME: "Name"
 COURSES_ITEM_DESC: "Description"
 COURSES_NOT_FOUND: "There are currently no courses added, do you want to %link_start%add one%link_end% now?"
+PUBLIC_COURSES_NOT_FOUND: "There are currently no courses added, if you have permissions you can %link_start%add one%link_end% now."
 
 # Course add
 COURSES_ADD_TITLE: "New course"

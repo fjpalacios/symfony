@@ -25,6 +25,7 @@ class AppExtension extends \Twig_Extension
                 new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
                 new \Twig_SimpleFunction('has_content', [$this, 'userHasPublishedContent']),
                 new \Twig_SimpleFunction('has_posts', [$this, 'categoryHasPosts']),
+                new \Twig_SimpleFunction('has_courses', [$this, 'courseHasPosts']),
         ];
     }
 
@@ -84,6 +85,24 @@ class AppExtension extends \Twig_Extension
         $postRepo = $this->doctrine->getRepository('AppBundle:Post');
         $hasContent = $postRepo->findOneBy(array(
                 'category' => $id,
+                'status' => 'publish'
+            )
+        );
+        if ($hasContent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+     * Checks if a given course id has (or not) published posts
+     */
+    public function courseHasPosts($id)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $hasContent = $postRepo->findOneBy(array(
+                'course' => $id,
                 'status' => 'publish'
             )
         );

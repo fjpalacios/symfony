@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Course;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
@@ -230,6 +231,24 @@ class PublicController extends Controller
             'pagesCount' => $pagesCount,
             'page' => $page,
             'slug' => $category->getSlug()
+        ));
+    }
+
+    /**
+     * @Route("/courses/", name="courses")
+     */
+    public function coursesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $courses = $courseRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $courses = $courseRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
+        return $this->render('public/courses.html.twig', array(
+            'courses' => $courses
         ));
     }
 
