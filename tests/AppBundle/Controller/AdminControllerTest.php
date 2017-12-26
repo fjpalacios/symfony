@@ -5,6 +5,7 @@ namespace Tests\AppBundle\Controller;
 use AppBundle\DataFixtures\FixturesTrait;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Course;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -218,6 +219,66 @@ class AdminControllerTest extends WebTestCase
         $user = $client->getContainer()->get('doctrine')
             ->getRepository(Category::class)->find(1);
         $this->assertNull($user);
+    }
+
+    public function testAddCourse()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'charlie',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $newCourseName = 'course' . mt_rand();
+        $newDescriptionEs = 'Nuevo curso de prueba';
+        $newDescriptionEn = 'New test course';
+        $crawler = $client->request('GET', '/es/admin/courses/add');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_course[nameEs]' => $newCourseName,
+            'appbundle_course[nameEn]' => $newCourseName,
+            'appbundle_course[descriptionEs]' => $newDescriptionEs,
+            'appbundle_course[descriptionEn]' => $newDescriptionEn
+        ));
+        $client->submit($form);
+        $course = $client->getContainer()->get('doctrine')
+            ->getRepository(Course::class)->findOneBy(array(
+                'nameEs' => $newCourseName,
+            ));
+        $this->assertNotNull($course);
+        $this->assertSame($newCourseName, $course->getNameEs());
+        $this->assertSame($newDescriptionEn, $course->getDescriptionEn());
+    }
+
+    public function testEditCourse()
+    {
+        $newCourseName = 'course' . mt_rand();
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'charlie',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $crawler = $client->request('GET', '/es/admin/courses/edit/1');
+        $this->assertSame(Response::HTTP_OK,
+            $client->getResponse()->getStatusCode());
+        $form = $crawler->selectButton('submit')->form(array(
+            'appbundle_course[nameEs]' => $newCourseName
+        ));
+        $client->submit($form);
+        $course = $client->getContainer()->get('doctrine')
+            ->getRepository(Course::class)->find(1);
+        $this->assertSame($newCourseName, $course->getNameEs());
+    }
+
+    public function testDeleteCourse()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'alice',
+            'PHP_AUTH_PW' => '123456',
+        ]);
+        $client->followRedirects(true);
+        $crawler = $client->request('GET', '/es/admin/courses/del/1');
+        $course = $client->getContainer()->get('doctrine')
+            ->getRepository(Course::class)->find(1);
+        $this->assertNull($course);
     }
 
     public function testEditComment()
