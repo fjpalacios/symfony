@@ -43,8 +43,7 @@ class CourseType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_category';
+        return 'appbundle_course';
     }
-
 
 }
