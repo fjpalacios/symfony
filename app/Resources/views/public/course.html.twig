@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {% if app.request.locale == 'es' %}
+    {{ course.nameEs }} — {{ 'TITLE'|trans }}
+  {% else %}
+    {{ course.nameEn }} — {{ 'TITLE'|trans }}
+  {% endif %}
+{% endblock %}
+
+{% block meta %}
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site" content="@SargantanaCode"/>
+  <meta name="twitter:creator" content="@fjpalacios"/>
+  <meta property="og:url"
+        content="{{ url('category', {'slug': course.slug }) }}"/>
+  {% if app.request.locale == 'es' %}
+    <meta property="og:title" content="{{ course.nameEs }} — SargantanaCode"/>
+  {% else %}
+    <meta property="og:title" content="{{ course.nameEn }} — SargantanaCode"/>
+  {% endif %}
+
+  <meta property="og:site_name" content="SargantanaCode"/>
+  <meta property="article:author"
+        content="https://www.facebook.com/sargantanacode/"/>
+  <meta property="fb:admins" content="826302220"/>
+  {% if app.request.locale == 'es' %}
+    <meta property="og:description" content="{{ course.descriptionEs }}"/>
+  {% else %}
+    <meta property="og:description" content="{{ course.descriptionEn }}"/>
+  {% endif %}
+  <meta property="og:type" content="article"/>
+  {% if course.image is not null %}
+    <meta property="og:image"
+          content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ course.image ) }}"/>
+  {% else %}
+    <meta property="og:image"
+          content="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/default.jpg') }}"/>
+  {% endif %}
+{% endblock %}
+
+{% block body_id "categories" %}
+
+{% block body %}
+  <div class="container mt-5 page">
+    <div class="content category">
+      {% if course.image is not null %}
+        <div class="category__avatar">
+          {% if app.request.locale == 'es' %}
+            <img src="{{ asset( 'uploads/' ~ course.image ) }}"
+                 alt="{{ course.nameEs }}">
+          {% else %}
+            <img src="{{ asset( 'uploads/' ~ course.image ) }}"
+                 alt="{{ course.nameEn }}">
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="category__desc">
+        <h2>
+          {% if app.request.locale == 'es' %}
+            {{ course.nameEs }}
+          {% else %}
+            {{ course.nameEn }}
+          {% endif %}
+        </h2>
+        {% if app.request.locale == 'es' %}
+          {{ course.descriptionEs }}
+        {% else %}
+          {{ course.descriptionEn }}
+        {% endif %}
+      </div>
+    </div>
+    {% include('public/_list-content.html.twig') %}
+    {% if totalItems > constant('AppBundle\\Entity\\Post::NUM_ITEMS') %}
+      {% include('_pagination.html.twig') %}
+    {% endif %}
+  </div>
+{% endblock %}

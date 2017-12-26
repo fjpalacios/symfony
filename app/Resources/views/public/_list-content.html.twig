@@ -1,0 +1,26 @@
+<div class="row mt-5">
+  {% for post in posts %}
+    <div class="col-12 mb-2">
+      <div class="list">
+        <a href="{{ path('post', { 'slug': post.slug }) }}">
+          <div class="list__content">
+            <h4 class="list__title">
+              {% if app.request.locale == 'es' %}
+                {{ post.titleEs }}
+              {% else %}
+                {{ post.titleEn }}
+              {% endif %}
+            </h4>
+            <p class="list__text">
+              {% if app.request.locale == 'es' %}
+                {{ post.excerptEs }}
+              {% else %}
+                {{ post.excerptEn }}
+              {% endif %}
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+</div>

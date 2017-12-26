@@ -253,6 +253,27 @@ class PublicController extends Controller
     }
 
     /**
+     * @Route("/course/{slug}", name="course", defaults={"page": "1"})
+     * @Route("/course/{slug}/page/{page}", name="paginated_course", requirements={"page": "[1-9]\d*"})
+     */
+    public function courseAction(Request $request, Course $course, $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $posts = $postRepo->getPaginatedCourse($page, $course->getId());
+        $totalItems = count($posts);
+        $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
+        return $this->render('public/course.html.twig', array(
+            'posts' => $posts,
+            'course' => $course,
+            'totalItems' => $totalItems,
+            'pagesCount' => $pagesCount,
+            'page' => $page,
+            'slug' => $course->getSlug()
+        ));
+    }
+
+    /**
      * @Route("/contact/", name="contact")
      */
     public function contactAction(Request $request)
