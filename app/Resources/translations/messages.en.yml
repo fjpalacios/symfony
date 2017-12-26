@@ -59,6 +59,11 @@ USER_EDIT: "Edit user"
 CATEGORIES_EXCERPT: "List of all the categories available at SargantanaCode"
 COURSES_EXCERPT: "List of all the courses available at SargantanaCode"
 CONTACT_EXCERPT: "SargantanaCode contact form"
+COURSE_HEADER: "Starving for knowledge?"
+COURSE_INFO: "This article is part of the %courselink_start%%course%%link_end% course."
+COURSE_INFO_ANTERIOR_POSTERIOR: "The previous article of this course is %anteriorlink_start%%anteriorcourse%%link_end% and the next one is %posteriorlink_start%%posteriorcourse%%link_end%."
+COURSE_INFO_ANTERIOR: "The previous article of this course is %courselink_start%%course%%link_end%."
+COURSE_INFO_POSTERIOR: "The next article of this course is %courselink_start%%course%%link_end%."
 
 # Login
 LOGIN_TITLE: "Enter your credentials"

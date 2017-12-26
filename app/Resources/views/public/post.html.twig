@@ -83,6 +83,33 @@
         {% else %}
           {{ post.contentEn|raw|md2html }}
         {% endif %}
+        {% if post.course %}
+          <h3>{{ 'COURSE_HEADER'|trans }}</h3>
+          {{ 'COURSE_INFO'|trans({
+            '%courselink_start%': '<a href="'~path('post', {'slug': course_slug(post.course)})~'">',
+            '%course%': course_name(post.course, app.request.locale),
+            '%link_end%': '</a>'})|raw }}
+          {% set anterior = course_anterior(post.id, post.course) %}
+          {% set posterior = course_posterior(post.id, post.course) %}
+          {% if anterior and posterior %}
+            {{ 'COURSE_INFO_ANTERIOR_POSTERIOR'|trans({
+              '%anteriorlink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+              '%posteriorlink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+              '%anteriorcourse%': (app.request.locale == 'es' ? anterior[0] : anterior [1]),
+              '%posteriorcourse%': (app.request.locale == 'es' ? posterior[0] : posterior [1]),
+              '%link_end%': '</a>'})|raw }}
+            {% elseif anterior and not posterior %}
+              {{ 'COURSE_INFO_ANTERIOR'|trans({
+                '%courselink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+                '%course%': (app.request.locale == 'es' ? anterior[0] : anterior [1]),
+                '%link_end%': '</a>'})|raw }}
+            {% else %}
+            {{ 'COURSE_INFO_POSTERIOR'|trans({
+              '%courselink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+              '%course%': (app.request.locale == 'es' ? posterior[0] : posterior [1]),
+              '%link_end%': '</a>'})|raw }}
+          {% endif %}
+        {% endif %}
       </div>
     </div>
     {% if post.type == 'post' %}
