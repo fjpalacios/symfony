@@ -25,7 +25,7 @@
               {% if anterior or posterior %}
                 <h3>{{ 'COURSE_HEADER'|trans }}</h3>
                 {{ 'COURSE_INFO'|trans({
-                  '%courselink_start%': '<a href="'~path('post', {'slug': course_slug(post.course)})~'">',
+                  '%courselink_start%': '<a href="'~path('course', {'slug': course_slug(post.course)})~'">',
                   '%course%': course_name(post.course, app.request.locale),
                   '%link_end%': '</a>'})|raw }}
                 {% if anterior and posterior %}
@@ -62,7 +62,7 @@
               {% if anterior or posterior %}
                 <h3>{{ 'COURSE_HEADER'|trans }}</h3>
                 {{ 'COURSE_INFO'|trans({
-                  '%courselink_start%': '<a href="'~path('post', {'slug': course_slug(post.course)})~'">',
+                  '%courselink_start%': '<a href="'~path('course', {'slug': course_slug(post.course)})~'">',
                   '%course%': course_name(post.course, app.request.locale),
                   '%link_end%': '</a>'})|raw }}
                 {% if anterior and posterior %}
