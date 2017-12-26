@@ -19,6 +19,35 @@
           <content:encoded>
             <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEs }}" />
             {{ post.contentEs|raw|md2html }}]]>
+            {% if post.course %}
+              {% set anterior = course_anterior(post.id, post.course) %}
+              {% set posterior = course_posterior(post.id, post.course) %}
+              {% if anterior or posterior %}
+                <h3>{{ 'COURSE_HEADER'|trans }}</h3>
+                {{ 'COURSE_INFO'|trans({
+                  '%courselink_start%': '<a href="'~path('post', {'slug': course_slug(post.course)})~'">',
+                  '%course%': course_name(post.course, app.request.locale),
+                  '%link_end%': '</a>'})|raw }}
+                {% if anterior and posterior %}
+                  {{ 'COURSE_INFO_ANTERIOR_POSTERIOR'|trans({
+                    '%anteriorlink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+                    '%posteriorlink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+                    '%anteriorcourse%': anterior[0],
+                    '%posteriorcourse%': posterior[0],
+                    '%link_end%': '</a>'})|raw }}
+                {% elseif anterior and not posterior %}
+                  {{ 'COURSE_INFO_ANTERIOR'|trans({
+                    '%courselink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+                    '%course%': anterior[0],
+                    '%link_end%': '</a>'})|raw }}
+                {% else %}
+                  {{ 'COURSE_INFO_POSTERIOR'|trans({
+                    '%courselink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+                    '%course%': posterior[0],
+                    '%link_end%': '</a>'})|raw }}
+                {% endif %}
+              {% endif %}
+            {% endif %}
           </content:encoded>
           <category>{{ post.category.nameEs }}</category>
         {% else %}
@@ -27,6 +56,35 @@
           <content:encoded>
             <![CDATA[<img src="{{ app.request.getSchemeAndHttpHost() ~ asset( '/uploads/' ~ post.image ) }}" alt="{{ post.titleEn }}" />
             {{ post.contentEn|raw|md2html }}]]>
+            {% if post.course %}
+              {% set anterior = course_anterior(post.id, post.course) %}
+              {% set posterior = course_posterior(post.id, post.course) %}
+              {% if anterior or posterior %}
+                <h3>{{ 'COURSE_HEADER'|trans }}</h3>
+                {{ 'COURSE_INFO'|trans({
+                  '%courselink_start%': '<a href="'~path('post', {'slug': course_slug(post.course)})~'">',
+                  '%course%': course_name(post.course, app.request.locale),
+                  '%link_end%': '</a>'})|raw }}
+                {% if anterior and posterior %}
+                  {{ 'COURSE_INFO_ANTERIOR_POSTERIOR'|trans({
+                    '%anteriorlink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+                    '%posteriorlink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+                    '%anteriorcourse%': anterior[1],
+                    '%posteriorcourse%': posterior[1],
+                    '%link_end%': '</a>'})|raw }}
+                {% elseif anterior and not posterior %}
+                  {{ 'COURSE_INFO_ANTERIOR'|trans({
+                    '%courselink_start%': '<a href="'~path('post', {'slug': anterior[2]})~'">',
+                    '%course%': anterior[1],
+                    '%link_end%': '</a>'})|raw }}
+                {% else %}
+                  {{ 'COURSE_INFO_POSTERIOR'|trans({
+                    '%courselink_start%': '<a href="'~path('post', {'slug': posterior[2]})~'">',
+                    '%course%': posterior[1],
+                    '%link_end%': '</a>'})|raw }}
+                {% endif %}
+              {% endif %}
+            {% endif %}
           </content:encoded>
           <category>{{ post.category.nameEn }}</category>
         {% endif %}

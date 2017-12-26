@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Course;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\ContactType;
@@ -230,6 +231,45 @@ class PublicController extends Controller
             'pagesCount' => $pagesCount,
             'page' => $page,
             'slug' => $category->getSlug()
+        ));
+    }
+
+    /**
+     * @Route("/courses/", name="courses")
+     */
+    public function coursesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $courses = $courseRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $courses = $courseRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
+        return $this->render('public/courses.html.twig', array(
+            'courses' => $courses
+        ));
+    }
+
+    /**
+     * @Route("/course/{slug}", name="course", defaults={"page": "1"})
+     * @Route("/course/{slug}/page/{page}", name="paginated_course", requirements={"page": "[1-9]\d*"})
+     */
+    public function courseAction(Request $request, Course $course, $page)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $postRepo = $em->getRepository('AppBundle:Post');
+        $posts = $postRepo->getPaginatedCourse($page, $course->getId());
+        $totalItems = count($posts);
+        $pagesCount = ceil($totalItems / Post::NUM_ITEMS);
+        return $this->render('public/course.html.twig', array(
+            'posts' => $posts,
+            'course' => $course,
+            'totalItems' => $totalItems,
+            'pagesCount' => $pagesCount,
+            'page' => $page,
+            'slug' => $course->getSlug()
         ));
     }
 

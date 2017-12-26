@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use AppBundle\AppBundle;
 use AppBundle\Utils\Markdown;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Intl\Intl;
@@ -25,6 +26,11 @@ class AppExtension extends \Twig_Extension
                 new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
                 new \Twig_SimpleFunction('has_content', [$this, 'userHasPublishedContent']),
                 new \Twig_SimpleFunction('has_posts', [$this, 'categoryHasPosts']),
+                new \Twig_SimpleFunction('has_courses', [$this, 'courseHasPosts']),
+                new \Twig_SimpleFunction('course_slug', [$this, 'courseSlug']),
+                new \Twig_SimpleFunction('course_name', [$this, 'courseName']),
+                new \Twig_SimpleFunction('course_anterior', [$this, 'courseAnteriorArticle']),
+                new \Twig_SimpleFunction('course_posterior', [$this, 'coursePosteriorArticle']),
         ];
     }
 
@@ -92,5 +98,76 @@ class AppExtension extends \Twig_Extension
         } else {
             return false;
         }
+    }
+
+    /*
+     * Checks if a given course id has (or not) published posts
+     */
+    public function courseHasPosts($id)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $hasContent = $postRepo->findOneBy(array(
+                'course' => $id,
+                'status' => 'publish'
+            )
+        );
+        if ($hasContent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /*
+     * Returns the name of the course in Spanish or English depends on current locale
+     */
+    public function courseName($id, $locale)
+    {
+        $courseRepo = $this->doctrine->getRepository('AppBundle:Course');
+        $course = $courseRepo->findOneBy(array('id' => $id));
+        if ($locale == 'en') {
+            return $course->getNameEn();
+        }
+        return $course->getNameEs();
+    }
+
+    /*
+     * Returns the slug of the course
+     */
+    public function courseSlug($id)
+    {
+        $courseRepo = $this->doctrine->getRepository('AppBundle:Course');
+        $course = $courseRepo->findOneBy(array('id' => $id));
+        return $course->getSlug();
+    }
+
+    /*
+     * Returns the previous course's article required data or null if none exists
+     */
+    public function courseAnteriorArticle($id, $course)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $article = $postRepo->findOneBy(array(
+                'course' => $course,
+                'id' => $id-1,
+                'status' => 'publish'
+            )
+        );
+        return $article ? [$article->getTitleEs(), $article->getTitleEn(), $article->getSlug()] : null;
+    }
+
+    /*
+     * Returns the next course's article required data or null if none exists
+     */
+    public function coursePosteriorArticle($id, $course)
+    {
+        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
+        $article = $postRepo->findOneBy(array(
+                'course' => $course,
+                'id' => $id+1,
+                'status' => 'publish'
+            )
+        );
+        return $article ? [$article->getTitleEs(), $article->getTitleEn(), $article->getSlug()] : null;
     }
 }

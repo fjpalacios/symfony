@@ -16,12 +16,12 @@
           {{ 'HOME'|trans }}</a>
       </li>
       <li class="nav-item
-                    {% if app.request.get('_route') == 'about_us' %}
+                    {% if app.request.get('_route') == 'courses' %}
                     active
                     {% endif %}">
-        <a class="nav-link" href="{{ path('about_us',
+        <a class="nav-link" href="{{ path('courses',
         {'_locale': app.request.locale }) }}">
-          {{ 'ABOUT_US'|trans }}</a>
+          {{ 'COURSES'|trans }}</a>
       </li>
       <li class="nav-item
                     {% if app.request.get('_route') == 'categories' %}
@@ -47,6 +47,14 @@
         <a class="nav-link" href="{{ path('contact',
         {'_locale': app.request.locale }) }}">
           {{ 'CONTACT'|trans }}</a>
+      </li>
+      <li class="nav-item
+                    {% if app.request.get('_route') == 'about_us' %}
+                    active
+                    {% endif %}">
+        <a class="nav-link" href="{{ path('about_us',
+        {'_locale': app.request.locale }) }}">
+          {{ 'ABOUT_US'|trans }}</a>
       </li>
       <li class="nav-item"><a class="nav-link" href="{{ path('rss') }}">RSS</a>
       </li>

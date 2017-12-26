@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Course;
 use AppBundle\Entity\Image;
 use AppBundle\Form\CategoryType;
 use AppBundle\Entity\Post;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\CourseType;
 use AppBundle\Form\ImageType;
 use AppBundle\Form\PostType;
 use AppBundle\Form\UserType;
@@ -606,6 +608,127 @@ class AdminController extends Controller
         return $this->render('admin/categories/categories-edit.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("/courses/", name="admin_courses")
+     */
+    public function coursesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $locale = $request->getLocale();
+        if ($locale == 'es') {
+            $courses = $courseRepo->findBy(array(), array('nameEs' => 'ASC'));
+        } else {
+            $courses = $courseRepo->findBy(array(), array('nameEn' => 'ASC'));
+        }
+        return $this->render('admin/courses/courses.html.twig', array(
+            'courses' => $courses
+        ));
+    }
+
+    /**
+     * @Route("/courses/add", name="admin_courses_add")
+     */
+    public function coursesAddAction(Request $request)
+    {
+        $course = new Course();
+        $form = $this->createForm(CourseType::class, $course);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $slug = new Slugify();
+            $course->setSlug($slug->slugify($course->getNameEn()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $course->setImage($fileName);
+            }
+            $em->persist($course);
+            $flush = $em->flush();
+            $id = $course->getId();
+            if (!$flush) {
+                $status = 'COURSE_ADDED_PROPERLY';
+            } else {
+                $status = 'COURSE_ADDED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_courses_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/courses/courses-add.html.twig', array(
+            'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/courses/edit/{id}", name="admin_courses_edit")
+     */
+    public function coursesEditAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $courseRepo = $em->getRepository('AppBundle:Course');
+        $course = $courseRepo->find($id);
+        $image = $course->getImage();
+        $form = $this->createForm(CourseType::class, $course);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = new Slugify();
+            $course->setSlug($slug->slugify($form->get('slug')->getData()));
+            $file = $form->get('image')->getData();
+            if ($file) {
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                $file->move("uploads", $fileName);
+                $course->setImage($fileName);
+                if ($image) {
+                    $fs = new Filesystem();
+                    $fs->remove($this->get('kernel')->getRootDir() .
+                        '/../web/uploads/' . $image);
+                }
+            } else {
+                $course->setImage($image);
+            }
+            $em->persist($course);
+            $flush = $em->flush();
+            if (!$flush) {
+                $status = 'COURSE_EDITED_PROPERLY';
+            } else {
+                $status = 'COURSE_EDITED_ERROR';
+            }
+            $this->session->getFlashBag()->add('status', $status);
+            return $this->redirectToRoute('admin_courses_edit', array(
+                'id' => $id
+            ));
+        }
+        return $this->render('admin/courses/courses-edit.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/courses/del/{id}", name="admin_courses_del")
+     */
+    public function coursesRemoveAction(Course $course)
+    {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN', null, 'ONLY_ADMIN');
+        $image = $course->getImage();
+        if ($image) {
+            $fs = new Filesystem();
+            $fs->remove($this->get('kernel')->getRootDir() .
+                '/../web/uploads/' . $image);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($course);
+        $flush = $em->flush();
+        if (!$flush) {
+            $status = 'COURSE_REMOVED_PROPERLY';
+        } else {
+            $status = 'COURSE_REMOVED_ERROR';
+        }
+        $this->session->getFlashBag()->add('status', $status);
+        return $this->redirectToRoute('admin_courses');
     }
 
     /**

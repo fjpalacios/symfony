@@ -6,6 +6,7 @@ CONTENT_LICENSE: "The content of this page has a %link_start%CC BY-SA%link_end% 
 # Titles
 TITLE: "SargantanaCode"
 CATEGORIES_LIST_TITLE: "List of categories"
+COURSES_LIST_TITLE: "List of courses"
 ADMIN_PANEL_TITLE: "Admin area"
 ADMIN_CATEGORIES_TITLE: "Categories"
 ADMIN_CATEGORIES_ADD_TITLE: "New category"
@@ -27,6 +28,9 @@ ADMIN_COMMENTS_PENDING_TITLE: "Pending comments"
 ADMIN_IMAGES_TITLE: "Images"
 ADMIN_IMAGES_ADD_TITLE: "New image"
 ADMIN_IMAGES_EDIT_TITLE: "Edit image"
+ADMIN_COURSES_TITLE: "Courses"
+ADMIN_COURSES_ADD_TITLE: "New course"
+ADMIN_COURSES_EDIT_TITLE: "Edit course"
 
 # Roles
 ROLE_USER: "User"
@@ -39,6 +43,7 @@ Superadmin: "Superadmin"
 # Navbar
 HOME: "Home"
 ABOUT_US: "About us"
+COURSES: "Courses"
 CATEGORIES: "Categories"
 CONTACT: "Contact"
 USER_HOME: "Home page"
@@ -53,7 +58,13 @@ USER_EDIT: "Edit user"
 
 # Meta
 CATEGORIES_EXCERPT: "List of all the categories available at SargantanaCode"
+COURSES_EXCERPT: "List of all the courses available at SargantanaCode"
 CONTACT_EXCERPT: "SargantanaCode contact form"
+COURSE_HEADER: "Starving for knowledge?"
+COURSE_INFO: "This article is part of the %courselink_start%%course%%link_end% course."
+COURSE_INFO_ANTERIOR_POSTERIOR: "The previous article of this course is %anteriorlink_start%%anteriorcourse%%link_end% and the next one is %posteriorlink_start%%posteriorcourse%%link_end%."
+COURSE_INFO_ANTERIOR: "The previous article of this course is %courselink_start%%course%%link_end%."
+COURSE_INFO_POSTERIOR: "The next article of this course is %courselink_start%%course%%link_end%."
 
 # Login
 LOGIN_TITLE: "Enter your credentials"
@@ -64,6 +75,7 @@ REMEMBER_LOGIN: "Keep me logged in"
 LOGIN_BTN: "Sign in"
 
 # Posts
+ADMIN_POSTS_PAGES: "Posts and Pages"
 ADMIN_POSTS: "Posts"
 POSTS_TITLE: "Posts"
 ADMIN_POSTS_ADD: "Add post"
@@ -87,6 +99,8 @@ POST_EXCERPT_ES: "Extracto"
 POST_EXCERPT_EN: "Excerpt"
 POST_CATEGORY: "Category"
 CHOOSE_A_CATEGORY: "Choose a category"
+POST_COURSE: "Course"
+CHOOSE_A_COURSE: "Choose a course"
 POST_STATUS: "Status"
 Draft: "Draft"
 Publish: "Publish"
@@ -185,6 +199,7 @@ USER_EDITED_ERROR: "Something went wrong when editing the user"
 CANCEL_PASSWORD: "Cancel"
 
 # Categories
+ADMIN_CATEGORIES_COURSES: "Categories and Courses"
 ADMIN_CATEGORIES: "Categories"
 CATEGORIES_TITLE: "Categories"
 ADMIN_CATEGORIES_ADD: "Add category"
@@ -213,6 +228,36 @@ CATEGORY_EDITED_ERROR: "Something went wrong when editing the category"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "Category removed properly"
 CATEGORY_REMOVED_ERROR: "Something went wrong when removing the category"
+
+# Courses
+ADMIN_COURSES: "Courses"
+COURSES_TITLE: "Courses"
+ADMIN_COURSES_ADD: "Add course"
+COURSES_ITEM_IMAGE: "Image"
+COURSES_ITEM_NAME: "Name"
+COURSES_ITEM_DESC: "Description"
+COURSES_NOT_FOUND: "There are currently no courses added, do you want to %link_start%add one%link_end% now?"
+PUBLIC_COURSES_NOT_FOUND: "There are currently no courses added, if you have permissions you can %link_start%add one%link_end% now."
+
+# Course add
+COURSES_ADD_TITLE: "New course"
+COURSE_NAME_ES: "Nombre del curso"
+COURSE_NAME_EN: "Course name"
+COURSE_DESC_ES: "Descripción"
+COURSE_DESC_EN: "Description"
+COURSE_IMAGE: "Image (300x300)"
+COURSE_ADDED_PROPERLY: "Course added properly"
+COURSE_ADDED_ERROR: "Something went wrong when adding the new course"
+
+# Course edit
+COURSES_EDIT_TITLE: "Edit course"
+COURSE_SLUG: "Permanent link"
+COURSE_EDITED_PROPERLY: "Course edited properly"
+COURSE_EDITED_ERROR: "Something went wrong when editing the course"
+
+# Course del
+COURSE_REMOVED_PROPERLY: "Course removed properly"
+COURSE_REMOVED_ERROR: "Something went wrong when removing the course"
 
 # Comments
 ADMIN_COMMENTS: "Comments"

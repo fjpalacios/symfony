@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'ADMIN_COURSES_EDIT_TITLE'|trans }} — {{ 'TITLE'|trans }}
+{% endblock %}
+
+{% block body_id "admin-courses-edit" %}
+
+{% block body %}
+  <div class="row justify-content-center page">
+    <div class="col-lg-7 mt-5 page">
+      {% for message in app.session.flashbag().get('status') %}
+        <div class="alert alert-info" role="alert">
+          {{ message|trans }}
+        </div>
+      {% endfor %}
+      <h2 class="text-center mb-4">
+        {{ 'COURSES_EDIT_TITLE'|trans }}
+      </h2>
+      {{ form_start(form,{ 'enctype': "multipart/form-data" }) }}
+        <div class="container content">
+          <div class="form-group">
+            {{ form_label(form.nameEs, 'COURSE_NAME_ES') }}
+            {{ form_widget(form.nameEs, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.nameEn, 'COURSE_NAME_EN') }}
+            {{ form_widget(form.nameEn, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.slug, 'COURSE_SLUG') }}
+            {{ form_widget(form.slug, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.descriptionEs, 'COURSE_DESC_ES') }}
+            {{ form_widget(form.descriptionEs, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.descriptionEn, 'COURSE_DESC_EN') }}
+            {{ form_widget(form.descriptionEn, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+          <div class="form-group">
+            {{ form_label(form.image, 'COURSE_IMAGE') }}
+            {{ form_widget(form.image, { 'attr':
+              {'class': 'form-control'} }) }}
+          </div>
+        </div>
+        {{ form_widget(form._token) }}
+        <div class="container buttons mt-5">
+          <button type="submit" id="submit" name="submit"
+                  class="btn btn-primary">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            &nbsp; {{ 'EDIT_BTN'|trans }}</button>
+          <button type="reset" id="submit" name="submit"
+                  class="btn">
+            <i class="fa fa-eraser" aria-hidden="true"></i>
+            &nbsp; {{ 'RESET_BTN'|trans }}</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+  </div>
+{% endblock %}

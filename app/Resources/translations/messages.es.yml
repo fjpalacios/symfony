@@ -7,6 +7,7 @@ CONTENT_LICENSE: "El contenido de esta página tiene una licencia %link_start%CC
 # Titles
 TITLE: "SargantanaCode"
 CATEGORIES_LIST_TITLE: "Listado de categorías"
+COURSES_LIST_TITLE: "Listado de cursos"
 ADMIN_PANEL_TITLE: "Panel de administración"
 ADMIN_CATEGORIES_TITLE: "Categorías"
 ADMIN_CATEGORIES_ADD_TITLE: "Nueva categoría"
@@ -28,6 +29,9 @@ ADMIN_COMMENTS_PENDING_TITLE: "Comentarios pendientes"
 ADMIN_IMAGES_TITLE: "Imágenes"
 ADMIN_IMAGES_ADD_TITLE: "Nueva imagen"
 ADMIN_IMAGES_EDIT_TITLE: "Editar imagen"
+ADMIN_COURSES_TITLE: "Cursos"
+ADMIN_COURSES_ADD_TITLE: "Nuevo curso"
+ADMIN_COURSES_EDIT_TITLE: "Editar curso"
 
 # Roles
 ROLE_USER: "Usuario"
@@ -40,6 +44,7 @@ Superadmin: "Superadministrador"
 # Navbar
 HOME: "Inicio"
 ABOUT_US: "Sobre nosotros"
+COURSES: "Cursos"
 CATEGORIES: "Categorías"
 CONTACT: "Contacto"
 USER_HOME: "Página de inicio"
@@ -54,7 +59,13 @@ USER_EDIT: "Editar usuario"
 
 # Meta
 CATEGORIES_EXCERPT: "Listado con todas las categorías disponibles en SargantanaCode"
+COURSES_EXCERPT: "Listado con todos los cursos disponibles en SargantanaCode"
 CONTACT_EXCERPT: "Formulario de contacto de SargantanaCode"
+COURSE_HEADER: "¿Sed de conocimiento?"
+COURSE_INFO: "Este artículo forma parte del curso %courselink_start%%course%%link_end%."
+COURSE_INFO_ANTERIOR_POSTERIOR: "El anterior artículo de este curso es %anteriorlink_start%%anteriorcourse%%link_end% y el próximo es %posteriorlink_start%%posteriorcourse%%link_end%."
+COURSE_INFO_ANTERIOR: "El anterior artículo de este curso es %courselink_start%%course%%link_end%."
+COURSE_INFO_POSTERIOR: "El próximo artículo de este curso es %courselink_start%%course%%link_end%."
 
 # Login
 LOGIN_TITLE: "Introduce tus datos"
@@ -65,6 +76,7 @@ REMEMBER_LOGIN: "Recuérdame"
 LOGIN_BTN: "Iniciar sesión"
 
 # Posts
+ADMIN_POSTS_PAGES: "Artículos y páginas"
 ADMIN_POSTS: "Artículos"
 POSTS_TITLE: "Artículos"
 ADMIN_POSTS_ADD: "Añadir artículo"
@@ -88,6 +100,8 @@ POST_EXCERPT_ES: "Extracto"
 POST_EXCERPT_EN: "Excerpt"
 POST_CATEGORY: "Categoría"
 CHOOSE_A_CATEGORY: "Elige una categoría"
+POST_COURSE: "Curso"
+CHOOSE_A_COURSE: "Elige un curso"
 POST_STATUS: "Estado"
 Draft: "Borrador"
 Publish: "Publicado"
@@ -186,6 +200,7 @@ USER_EDITED_ERROR: "Algo salió mal al editar el usuario"
 CANCEL_PASSWORD: "Cancelar"
 
 # Categories
+ADMIN_CATEGORIES_COURSES: "Categorías y cursos"
 ADMIN_CATEGORIES: "Categorías"
 CATEGORIES_TITLE: "Categorías"
 ADMIN_CATEGORIES_ADD: "Añadir categoría"
@@ -214,6 +229,35 @@ CATEGORY_EDITED_ERROR: "Algo salió mal al editar la categoría"
 # Category del
 CATEGORY_REMOVED_PROPERLY: "La categoría se eliminó correctamente"
 CATEGORY_REMOVED_ERROR: "Algo salió mal al eliminar la categoría"
+
+# Courses
+ADMIN_COURSES: "Cursos"
+COURSES_TITLE: "Cursos"
+ADMIN_COURSES_ADD: "Añadir curso"
+COURSES_ITEM_IMAGE: "Imagen"
+COURSES_ITEM_NAME: "Nombre"
+COURSES_ITEM_DESC: "Descripción"
+COURSES_NOT_FOUND: "Actualmente no hay ningún curso añadido, anímate y %link_start%añade uno ahora%link_end%."
+
+# Course add
+COURSES_ADD_TITLE: "Nuevo curso"
+COURSE_NAME_ES: "Nombre del curso"
+COURSE_NAME_EN: "Course name"
+COURSE_DESC_ES: "Descripción"
+COURSE_DESC_EN: "Description"
+COURSE_IMAGE: "Imagen (300x300)"
+COURSE_ADDED_PROPERLY: "El curso se añadió correctamente"
+COURSE_ADDED_ERROR: "Algo salió mal al añadir el nuevo curso"
+
+# Course edit
+COURSES_EDIT_TITLE: "Editar curso"
+COURSE_SLUG: "Enlace permanente"
+COURSE_EDITED_PROPERLY: "El curso se editó correctamente"
+COURSE_EDITED_ERROR: "Algo salió mal al editar el curso"
+
+# Course del
+COURSE_REMOVED_PROPERLY: "El curso se eliminó correctamente"
+COURSE_REMOVED_ERROR: "Algo salió mal al eliminar el curso"
 
 # Comments
 ADMIN_COMMENTS: "Comentarios"
