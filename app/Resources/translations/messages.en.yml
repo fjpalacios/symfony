@@ -43,6 +43,7 @@ Superadmin: "Superadmin"
 # Navbar
 HOME: "Home"
 ABOUT_US: "About us"
+COURSES: "Courses"
 CATEGORIES: "Categories"
 CONTACT: "Contact"
 USER_HOME: "Home page"
