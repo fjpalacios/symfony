@@ -5,6 +5,8 @@ namespace AppBundle\Twig;
 use AppBundle\AppBundle;
 use AppBundle\Utils\Markdown;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query;
 use Symfony\Component\Intl\Intl;
 
 class AppExtension extends \Twig_Extension
@@ -12,12 +14,14 @@ class AppExtension extends \Twig_Extension
     private $locales;
     private $parser;
     private $doctrine;
+    private $em;
 
-    public function __construct($locales, Markdown $parser, ManagerRegistry $doctrine)
+    public function __construct($locales, Markdown $parser, ManagerRegistry $doctrine, EntityManager $em)
     {
         $this->locales = $locales;
         $this->parser = $parser;
         $this->doctrine = $doctrine;
+        $this->em = $em;
     }
 
     public function getFunctions()
@@ -29,8 +33,8 @@ class AppExtension extends \Twig_Extension
                 new \Twig_SimpleFunction('has_courses', [$this, 'courseHasPosts']),
                 new \Twig_SimpleFunction('course_slug', [$this, 'courseSlug']),
                 new \Twig_SimpleFunction('course_name', [$this, 'courseName']),
-                new \Twig_SimpleFunction('course_anterior', [$this, 'courseAnteriorArticle']),
-                new \Twig_SimpleFunction('course_posterior', [$this, 'coursePosteriorArticle']),
+                new \Twig_SimpleFunction('course_previous', [$this, 'coursePreviousArticle']),
+                new \Twig_SimpleFunction('course_next', [$this, 'courseNextArticle']),
         ];
     }
 
@@ -144,30 +148,33 @@ class AppExtension extends \Twig_Extension
     /*
      * Returns the previous course's article required data or null if none exists
      */
-    public function courseAnteriorArticle($id, $course)
+    public function coursePreviousArticle($id, $course)
     {
-        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
-        $article = $postRepo->findOneBy(array(
-                'course' => $course,
-                'id' => $id-1,
-                'status' => 'publish'
-            )
-        );
-        return $article ? [$article->getTitleEs(), $article->getTitleEn(), $article->getSlug()] : null;
-    }
+        $dql = "SELECT p.titleEs, p.titleEn, p.slug 
+                FROM AppBundle\Entity\Post p 
+                WHERE p.course = :course AND p.id < :id AND p.status = 'publish'
+                ORDER BY p.date DESC";
+        $query = $this->em->createQuery($dql)
+            ->setParameter('course', $course)
+            ->setParameter('id', $id)
+            ->setMaxResults(1);
+        $article = $query->getOneOrNullResult();
+        return $article;    }
 
     /*
      * Returns the next course's article required data or null if none exists
      */
-    public function coursePosteriorArticle($id, $course)
+    public function courseNextArticle($id, $course)
     {
-        $postRepo = $this->doctrine->getRepository('AppBundle:Post');
-        $article = $postRepo->findOneBy(array(
-                'course' => $course,
-                'id' => $id+1,
-                'status' => 'publish'
-            )
-        );
-        return $article ? [$article->getTitleEs(), $article->getTitleEn(), $article->getSlug()] : null;
+        $dql = "SELECT p.titleEs, p.titleEn, p.slug 
+                FROM AppBundle\Entity\Post p 
+                WHERE p.course = :course AND p.id > :id AND p.status = 'publish'
+                ORDER BY p.date ASC";
+        $query = $this->em->createQuery($dql)
+            ->setParameter('course', $course)
+            ->setParameter('id', $id)
+            ->setMaxResults(1);
+        $article = $query->getOneOrNullResult();
+        return $article;
     }
 }
