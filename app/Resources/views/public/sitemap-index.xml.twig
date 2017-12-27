@@ -8,7 +8,7 @@
         <loc>{{ url.loc }}</loc>
       {% endif %}
       {% if url.modDate is defined %}
-        <lastmod>{{ (posts|first).modDate|default('now')|date('r') }}</lastmod>
+        <lastmod>{{ (posts|first).modDate|default('now')|date('Y-m-d') }}</lastmod>
       {% endif %}
     </sitemap>
   {% endfor %}
