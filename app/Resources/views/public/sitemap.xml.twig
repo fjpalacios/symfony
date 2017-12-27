@@ -8,7 +8,7 @@
         <loc>{{ url.loc }}</loc>
       {% endif %}
       {% if url.modDate is defined %}
-        <lastmod>{{ url.modDate|date('r', timezone='GMT') }}</lastmod>
+        <lastmod>{{ url.modDate|date('r') }}</lastmod>
       {% endif %}
       {% if url.changefreq is defined %}
         <changefreq>{{ url.changefreq }}</changefreq>
