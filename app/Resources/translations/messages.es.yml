@@ -63,8 +63,8 @@ COURSES_EXCERPT: "Listado con todos los cursos disponibles en SargantanaCode"
 CONTACT_EXCERPT: "Formulario de contacto de SargantanaCode"
 COURSE_HEADER: "¿Sed de conocimiento?"
 COURSE_INFO: "Este artículo forma parte del curso %courselink_start%%course%%link_end%."
-COURSE_INFO_PREVIOUS_NEXT: "El previous artículo de este curso es %previouslink_start%%previouscourse%%link_end% y el próximo es %nextlink_start%%nextcourse%%link_end%."
-COURSE_INFO_PREVIOUS: "El previous artículo de este curso es %courselink_start%%course%%link_end%."
+COURSE_INFO_PREVIOUS_NEXT: "El anterior artículo de este curso es %previouslink_start%%previouscourse%%link_end% y el próximo es %nextlink_start%%nextcourse%%link_end%."
+COURSE_INFO_PREVIOUS: "El anterior artículo de este curso es %courselink_start%%course%%link_end%."
 COURSE_INFO_NEXT: "El próximo artículo de este curso es %courselink_start%%course%%link_end%."
 
 # Login
