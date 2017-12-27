@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findTeamMembers()
+    {
+        $em = $this->getEntityManager();
+        $dql = "SELECT u FROM AppBundle\Entity\User u
+                WHERE u.job != 'NULL'
+                ORDER BY u.date";
+        $query = $em->createQuery($dql);
+        return $query->execute();
+    }
 }

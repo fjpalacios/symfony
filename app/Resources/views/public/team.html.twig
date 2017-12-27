@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'TITLE'|trans }}
+{% endblock %}
+
+{% block body_id "team" %}
+
+{% block body %}
+  <div class="container page mt-5">
+    <div class="row">
+      {% for user in users %}
+        {% include('public/_team-list.html.twig') %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

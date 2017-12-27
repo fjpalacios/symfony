@@ -71,6 +71,14 @@
 .user, .category, .comment {
   @include breakpoint-up(small) {
     @include flex-direction(row);
+    &:nth-child(n+3) {
+      margin-top: 3rem;
+    }
+  }
+  @include breakpoint-down(medium) {
+    &:nth-child(n+2) {
+      margin-top: 3rem;
+    }
   }
   @include flexbox();
   @include justify-content(space-netween);

@@ -5,7 +5,7 @@ namespace AppBundle\Twig;
 use AppBundle\AppBundle;
 use AppBundle\Utils\Markdown;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 use Symfony\Component\Intl\Intl;
 
@@ -16,7 +16,7 @@ class AppExtension extends \Twig_Extension
     private $doctrine;
     private $em;
 
-    public function __construct($locales, Markdown $parser, ManagerRegistry $doctrine, EntityManager $em)
+    public function __construct($locales, Markdown $parser, ManagerRegistry $doctrine, EntityManagerInterface $em)
     {
         $this->locales = $locales;
         $this->parser = $parser;

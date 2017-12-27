@@ -24,6 +24,9 @@
           <th class="d-none d-sm-table-cell text-center">
             {{ 'USERS_ITEM_ROLES'|trans }}
           </th>
+          <th class="d-none d-sm-table-cell text-center">
+            {{ 'USERS_ITEM_JOB'|trans }}
+          </th>
           <th class="text-center">
             <i class="fa fa-wrench" aria-hidden="true"></i>
           </th>
@@ -37,6 +40,13 @@
             </td>
             <td class="d-none d-sm-table-cell text-center">
               {{ user.roles|join(', ')|trans }}
+            </td>
+            <td class="d-none d-sm-table-cell text-center">
+              {% if user.job %}
+                {{ user.job|trans }}
+              {% else %}
+                {{ 'WITHOUT_JOB'|trans }}
+              {% endif %}
             </td>
             <td class="text-center">
               <a href="{{ path('profile',

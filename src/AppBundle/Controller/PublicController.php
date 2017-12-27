@@ -175,6 +175,20 @@ class PublicController extends Controller
     }
 
     /**
+     * @Route("/team/", name="team")
+     */
+    public function teamAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $userRepo = $em->getRepository('AppBundle:User');
+        $users = $userRepo->findTeamMembers();
+        return $this->render('public/team.html.twig', array(
+            'users' => $users
+        ));
+    }
+
+
+    /**
      * @Route("/profile/{username}", name="profile", defaults={"page": "1"})
      * @Route("/profile/{username}/page/{page}", name="paginated_profile", requirements={"page": "[1-9]\d*"})
      */
