@@ -1,4 +1,4 @@
-<div class="content user">
+<div class="content user col-lg-5 mx-auto">
   <div class="user__avatar">
     <img src="{{ gravatar( user.email ) }}"
          alt="{{ user.name }}"/>
@@ -7,9 +7,7 @@
     <a href="{{ path('profile', { 'username': user.username }) }}">
       <h2>{{ user.name }}</h2>
     </a>
-    {% if user.job %}
-      <h3><small>{{ user.job|trans }}</small></h3>
-    {% endif %}
+    <h3><small>{{ user.job|trans }}</small></h3>
     {{ user.bio|raw|md2html }}
     {% if user.url or user.github or user.linkedin or user.twitter or user.facebook %}
       <ul class="user__links">

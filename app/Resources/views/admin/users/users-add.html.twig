@@ -75,11 +75,18 @@
             {{ form_widget(form.bio, { 'attr':
               {'class': 'form-control'} }) }}
           </div>
-          <div class="form-group">
-            {{ form_label(form.roles, 'ROLES') }}
-            {{ form_widget(form.roles, { 'attr':
-              {'class': 'form-control'} }) }}
-          </div>
+          {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <div class="form-group">
+              {{ form_label(form.job, 'JOB') }}
+              {{ form_widget(form.job, { 'attr':
+                {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              {{ form_label(form.roles, 'ROLES') }}
+              {{ form_widget(form.roles, { 'attr':
+                {'class': 'form-control'} }) }}
+            </div>
+          {% endif %}
         </div>
         {{ form_widget(form._token) }}
         <div class="container buttons mt-5">

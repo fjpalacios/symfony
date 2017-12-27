@@ -44,6 +44,16 @@ class UserType extends AbstractType
                                 'Admin' => "ROLE_ADMIN",
                                 'Superadmin' => "ROLE_SUPER_ADMIN"),
                         'multiple' => true
+                ))
+                ->add('job', ChoiceType::class, array(
+                    'choices' => array(
+                        'Translator' => "Translator",
+                        'Graphic_Designer' => "Graphic_Designer",
+                        'Editor' => "Editor",
+                        'Developer' => "Developer"),
+                    'multiple' => false,
+                    'required' => false,
+                    'placeholder' => 'CHOOSE_A_JOB'
                 ));
     }
 

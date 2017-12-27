@@ -117,6 +117,13 @@ class User implements UserInterface
      */
     private $roles = [];
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="job", type="string", nullable=true, length=50)
+     */
+    private $job;
+
 
     public function __construct()
     {
@@ -448,6 +455,30 @@ class User implements UserInterface
         }
 
         return array_unique($roles);
+    }
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     *
+     * @return User
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
     }
 
     public function getSalt()
