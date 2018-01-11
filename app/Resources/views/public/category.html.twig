@@ -16,19 +16,17 @@
         content="{{ url('category', {'slug': category.slug }) }}"/>
   {% if app.request.locale == 'es' %}
     <meta property="og:title" content="{{ category.nameEs }} — SargantanaCode"/>
+    <meta property="og:description" content="{{ category.descriptionEs }}"/>
+    <meta name="description" content="{{ category.descriptionEs }}"/>
   {% else %}
     <meta property="og:title" content="{{ category.nameEn }} — SargantanaCode"/>
+    <meta property="og:description" content="{{ category.descriptionEn }}"/>
+    <meta name="description" content="{{ category.descriptionEn }}"/>
   {% endif %}
-
   <meta property="og:site_name" content="SargantanaCode"/>
   <meta property="article:author"
         content="https://www.facebook.com/sargantanacode/"/>
   <meta property="fb:admins" content="826302220"/>
-  {% if app.request.locale == 'es' %}
-    <meta property="og:description" content="{{ category.descriptionEs }}"/>
-  {% else %}
-    <meta property="og:description" content="{{ category.descriptionEn }}"/>
-  {% endif %}
   <meta property="og:type" content="article"/>
   {% if category.image is not null %}
     <meta property="og:image"

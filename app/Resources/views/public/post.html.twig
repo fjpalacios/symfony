@@ -16,9 +16,11 @@
   {% if app.request.locale == 'es' %}
     <meta property="og:title" content="{{ post.titleEs }} — SargantanaCode"/>
     <meta property="og:description" content="{{ post.excerptEs }}"/>
+    <meta name="description" content="{{ post.excerptEs }}"/>
   {% else %}
     <meta property="og:title" content="{{ post.titleEn }} — SargantanaCode"/>
     <meta property="og:description" content="{{ post.excerptEn }}"/>
+    <meta name="description" content="{{ post.excerptEn }}"/>
   {% endif %}
   <meta property="og:site_name" content="SargantanaCode"/>
   <meta property="article:author"
