@@ -13,7 +13,7 @@ This is the public sourcecode for [SargantanaCode](http://sargantanacode.es)'s p
 This application has been developed from scratch using the [Symfony](https://symfony.com/) PHP framework.
 
 # Requirements
-* PHP 5.5.9 or higher.
+* PHP 7.1 or higher.
 * MariaDB or MySQL (this app has not been tested with other DBMS, so we do not offer support for them).
 * The [usual Symfony application requirements](https://symfony.com/doc/current/reference/requirements.html).
 

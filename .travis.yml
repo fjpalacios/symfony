@@ -14,9 +14,10 @@ cache:
 matrix:
     fast_finish: true
     include:
-        - php: 5.6.31
-        - php: 7.0.22
-        - php: 7.1.8
+        - php: 7.1
+        - php: 7.1.*
+        - php: 7.2
+        - php: 7.2.*
 
 env:
     - SYMFONY_VERSION="3.3.*" DB=sqlite
