@@ -15,12 +15,10 @@ matrix:
     fast_finish: true
     include:
         - php: 7.1
-        - php: 7.1.*
-        - php: 7.2
-        - php: 7.2.*
+        - php: 7.1.14
 
 env:
-    - SYMFONY_VERSION="3.3.*" DB=sqlite
+    - SYMFONY_VERSION="3.4.*" DB=sqlite
 
 before-install:
     - composer self-update
